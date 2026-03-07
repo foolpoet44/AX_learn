@@ -1,0 +1,3178 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0052)file:///C:/Users/poet1/Downloads/lovable-hr-lab.html -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lovable × HR — AX 실습 교재</title>
+<link href="./Lovable_ HR_AX 실습 교재_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0f;
+    --surface: #141417;
+    --surface2: #1c1c21;
+    --border: #2a2a32;
+    --accent: #e8ff47;
+    --accent2: #47c8ff;
+    --accent3: #ff6b6b;
+    --text: #f0f0f4;
+    --muted: #7a7a8c;
+    --tag-bg: #1e1e28;
+    --page-pad: clamp(20px, 4vw, 48px);
+    --content-max: 1040px;
+    --sidebar-width: 280px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .task-btn:focus-visible,
+  .back-btn:focus-visible,
+  .generate-btn:focus-visible,
+  .mobile-nav-select:focus-visible,
+  .overview-card:focus-visible,
+  .instructor-guide-header:focus-visible,
+  .eval-item:focus-visible,
+  .input-field:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    padding: clamp(44px, 6vw, 64px) var(--page-pad) 40px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(232,255,71,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: #0d0d0f;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    margin-bottom: 20px;
+  }
+  .header h1 {
+    font-family: 'Noto Serif KR', 'Nanum Myeongjo', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900;
+    line-height: 1.15;
+    max-width: 700px;
+    word-break: keep-all;
+    line-break: strict;
+  }
+  .header h1 span { color: var(--accent); }
+  .header-sub {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 560px;
+  }
+  .header-meta {
+    margin-top: 32px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .meta-chip .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .container {
+    display: grid;
+    grid-template-columns: minmax(220px, var(--sidebar-width)) minmax(0, 1fr);
+    min-height: calc(100vh - 200px);
+    padding: 0 var(--page-pad);
+    align-items: start;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    border-right: 1px solid var(--border);
+    padding: 32px 24px;
+    position: sticky;
+    top: 24px;
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+    align-self: start;
+  }
+  .sidebar-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .mission-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+  .mission-card .title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .mission-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .task-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .task-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--muted);
+    font-size: 13px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    font-family: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI', sans-serif;
+  }
+  .task-btn:hover {
+    background: var(--surface2);
+    color: var(--text);
+    border-color: var(--border);
+  }
+  .task-btn.active {
+    background: var(--surface2);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .task-btn .num {
+    font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 11px;
+    width: 20px;
+  }
+  .task-btn .check {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--accent);
+    display: none;
+  }
+  .task-btn.done .check { display: block; }
+  .task-btn.done .num { color: var(--accent); }
+
+  /* ── CONTENT AREA ── */
+  .content {
+    padding: 36px 32px 48px;
+    min-width: 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* ── TASK SELECTOR ── */
+  .task-selector {
+    display: none;
+  }
+  .task-selector.active {
+    display: block;
+  }
+
+  /* ── OVERVIEW ── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .overview-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .overview-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px; width: 0;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+  .overview-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .overview-card:hover::after { width: 100%; }
+  .overview-card .card-num {
+    font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 11px;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .overview-card .card-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    word-break: keep-all;
+    line-break: strict;
+  }
+  .overview-card .card-time {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .overview-card .card-emoji {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  /* ── TASK DETAIL ── */
+  .task-detail { display: none; }
+  .task-detail.active { display: block; }
+
+  .task-header {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 16px;
+  }
+  .task-header .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    margin-bottom: 20px;
+    background: none;
+    border: none;
+    font-family: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI', sans-serif;
+    transition: color 0.2s;
+  }
+  .task-header .back-btn:hover { color: var(--text); }
+  .task-header .task-badge {
+    display: inline-block;
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--accent2);
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 12px;
+    font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  }
+  .task-header h2 {
+    font-family: 'Noto Serif KR', 'Nanum Myeongjo', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    word-break: keep-all;
+    line-break: strict;
+  }
+  .task-header p {
+    color: var(--muted);
+    font-size: 15px;
+    word-break: keep-all;
+    line-break: strict;
+  }
+
+  /* ── STEP FLOW ── */
+  .step-flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 40px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+  .step-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    font-family: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI', sans-serif;
+    color: var(--muted);
+  }
+  .step-pill.active {
+    background: var(--accent);
+    color: #0d0d0f;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  .step-pill.done {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .step-arrow {
+    font-size: 12px;
+    color: var(--border);
+    padding: 0 4px;
+    flex-shrink: 0;
+  }
+
+  /* ── STEP CONTENT ── */
+  .step-content { display: none; }
+  .step-content.active { display: block; }
+
+  .step-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 32px;
+    margin-bottom: 20px;
+  }
+  .step-block .step-num {
+    font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .step-block h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .step-block p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  /* ── PROMPT BOX ── */
+  .prompt-box {
+    background: #0a0a0c;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 20px 0;
+  }
+  .prompt-box-header {
+    background: var(--accent);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .prompt-box-header .label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0d0d0f;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  }
+  .copy-btn {
+    background: rgba(0,0,0,0.15);
+    border: none;
+    color: #0d0d0f;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    transition: background 0.2s;
+  }
+  .copy-btn:hover { background: rgba(0,0,0,0.3); }
+  .copy-btn.copied { background: #0d0d0f; color: var(--accent); }
+  .prompt-text {
+    padding: 20px;
+    font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #c8ffa0;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* ── INFO BOX ── */
+  .info-box {
+    border-left: 3px solid var(--accent2);
+    background: rgba(71, 200, 255, 0.05);
+    padding: 16px 20px;
+    border-radius: 0 4px 4px 0;
+    margin: 16px 0;
+  }
+  .info-box .info-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent2);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .info-box p { color: var(--muted); font-size: 13px; margin: 0; }
+
+  .warn-box {
+    border-left: 3px solid var(--accent3);
+    background: rgba(255,107,107,0.05);
+    padding: 16px 20px;
+    border-radius: 0 4px 4px 0;
+    margin: 16px 0;
+  }
+  .warn-box .warn-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent3);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .warn-box p { color: var(--muted); font-size: 13px; margin: 0; }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    list-style: none;
+    margin: 16px 0;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li .cb {
+    width: 16px; height: 16px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    transition: all 0.2s;
+  }
+  .checklist li.checked { color: var(--text); }
+  .checklist li.checked .cb {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #0d0d0f;
+  }
+
+  /* ── MOCKUP PREVIEW ── */
+  .mockup {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 20px 0;
+  }
+  .mockup-bar {
+    background: var(--surface);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .mockup-inner {
+    padding: 24px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── RESULT PREVIEW ── */
+  .result-frame {
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 20px 0;
+  }
+  .result-header {
+    background: var(--accent);
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0d0d0f;
+    font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    letter-spacing: 1px;
+  }
+  .result-body {
+    padding: 24px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* ── NAV BUTTONS ── */
+  .step-nav {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .btn-prev, .btn-next {
+    padding: 12px 24px;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI', sans-serif;
+    border: none;
+  }
+  .btn-next {
+    background: var(--accent);
+    color: #0d0d0f;
+  }
+  .btn-next:hover { background: #d4eb3a; }
+  .btn-prev {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .btn-prev:hover { color: var(--text); border-color: var(--text); }
+
+  /* ── SELF EVAL ── */
+  .eval-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .eval-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .eval-item:hover { border-color: var(--accent); color: var(--text); }
+  .eval-item.selected { border-color: var(--accent); background: rgba(232,255,71,0.05); color: var(--accent); }
+  .eval-label { font-size: 11px; color: var(--muted); margin-bottom: 6px; font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+
+  /* ── BADGE ── */
+  .badge-area {
+    text-align: center;
+    padding: 40px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  .badge-icon { font-size: 64px; margin-bottom: 16px; }
+  .badge-title { font-family: 'Noto Serif KR', 'Nanum Myeongjo', serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .badge-sub { color: var(--muted); font-size: 14px; }
+
+  /* ── COMPLETION STARS ── */
+  .stars { color: var(--accent); font-size: 20px; letter-spacing: 4px; margin: 16px 0; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* ── MOBILE NAV ── */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 10px 16px;
+    z-index: 100;
+    align-items: center;
+    gap: 10px;
+  }
+  .mobile-nav-label {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .mobile-nav-select {
+    flex: 1;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-size: 13px;
+    padding: 8px 12px;
+    font-family: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI', sans-serif;
+    outline: none;
+    cursor: pointer;
+  }
+  .mobile-nav-select:focus { border-color: var(--accent); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .container { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .content { padding: 24px 24px 88px; }
+    .eval-grid { grid-template-columns: 1fr; }
+    .ig-grid { grid-template-columns: 1fr; }
+    .overview-grid { grid-template-columns: 1fr 1fr; }
+    .mobile-nav { display: flex; }
+    .mapping-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .step-flow { flex-wrap: nowrap; }
+  }
+
+  @media (max-width: 520px) {
+    .header { padding: 36px var(--page-pad) 28px; }
+    .header-meta { gap: 12px; }
+    .overview-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar-wrap {
+    height: 3px;
+    background: var(--border);
+    margin-bottom: 32px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+
+  .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+  .tag { background: var(--tag-bg); border: 1px solid var(--border); font-size: 11px; padding: 3px 10px; border-radius: 2px; color: var(--muted); font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+  .input-field {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 16px;
+    color: var(--text);
+    font-size: 14px;
+    font-family: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI', sans-serif;
+    transition: border-color 0.2s;
+    resize: vertical;
+    min-height: 80px;
+    outline: none;
+  }
+  .input-field:focus { border-color: var(--accent); }
+  .input-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; display: block; }
+
+  .generate-btn {
+    background: var(--accent);
+    color: #0d0d0f;
+    border: none;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI', sans-serif;
+    transition: all 0.2s;
+    margin-top: 12px;
+  }
+  .generate-btn:hover { background: #d4eb3a; transform: translateY(-1px); }
+
+  .output-area {
+    display: none;
+    background: var(--surface2);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 24px;
+    margin-top: 16px;
+    animation: fadeIn 0.4s ease;
+  }
+  .output-area.visible { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .loading-dots::after {
+    content: '...';
+    animation: dots 1.2s infinite;
+  }
+  @keyframes dots {
+    0% { content: '.'; }
+    33% { content: '..'; }
+    66% { content: '...'; }
+  }
+
+  /* ── MAPPING TABLE ── */
+  .mapping-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 20px 0;
+  }
+  .mapping-table thead tr {
+    border-bottom: 2px solid var(--accent);
+  }
+  .mapping-table th {
+    text-align: left;
+    padding: 8px 12px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .mapping-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .mapping-table tr:last-child td { border-bottom: none; }
+  .mapping-table .cell-label {
+    color: var(--muted);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .mapping-table .cell-value {
+    color: var(--text);
+    font-size: 13px;
+  }
+  .mapping-table .cell-prompt {
+    font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 11px;
+    color: #c8ffa0;
+    background: #0a0a0c;
+    padding: 4px 8px;
+    border-radius: 2px;
+    display: inline-block;
+    line-height: 1.6;
+  }
+  .mapping-table .arrow-cell {
+    color: var(--accent);
+    font-size: 16px;
+    text-align: center;
+    width: 32px;
+    padding: 10px 4px;
+  }
+  .mapping-intro {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    padding: 14px 16px;
+    background: rgba(232,255,71,0.04);
+    border: 1px solid rgba(232,255,71,0.15);
+    border-radius: 4px;
+  }
+  .mapping-intro strong { color: var(--accent); }
+
+  /* ── INSTRUCTOR GUIDE ── */
+  .instructor-guide {
+    border: 1px solid rgba(71,200,255,0.3);
+    background: rgba(71,200,255,0.03);
+    border-radius: 4px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .instructor-guide-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .instructor-guide-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent2);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  }
+  .instructor-guide-toggle {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  }
+  .instructor-guide-body {
+    display: none;
+    padding: 16px;
+    border-top: 1px solid rgba(71,200,255,0.15);
+  }
+  .instructor-guide-body.open { display: block; }
+  .ig-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .ig-item { font-size: 12px; }
+  .ig-label {
+    font-size: 10px;
+    color: var(--accent2);
+    font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .ig-item p { color: var(--muted); line-height: 1.6; margin: 0; }
+  .ig-trouble {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    border-top: 1px solid rgba(71,200,255,0.15);
+    padding-top: 12px;
+  }
+  .ig-trouble strong { color: var(--accent2); display: block; margin-bottom: 4px; }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-tag">AX Training Lab · 2026</div>
+  <h1>Lovable로 만드는<br><span>HR 앱 3분 실습</span></h1>
+  <p class="header-sub">코드 없이, 프롬프트 하나로 — HR 담당자를 위한 AI 앱 빌딩 실전 가이드<br><span style="font-size:13px;color:var(--accent);font-family:&#39;DM Mono&#39;,monospace;letter-spacing:1px;">기획 → 프롬프트 → 수정 → 배포</span></p>
+  <div class="header-meta">
+    <div class="meta-chip"><span class="dot"></span>7가지 과제</div>
+    <div class="meta-chip"><span class="dot"></span>단계별 실습</div>
+    <div class="meta-chip"><span class="dot"></span>복사 가능한 프롬프트</div>
+    <div class="meta-chip"><span class="dot"></span>실시간 결과 체험</div>
+  </div>
+</div>
+
+<!-- CONTAINER -->
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-label">학습 진행</div>
+    <div class="mission-card">
+      <div class="title">오늘의 미션</div>
+      <p>Lovable에서 HR 앱을 3분 안에 만들어 팀에 공유한다</p>
+    </div>
+    <div class="sidebar-label">과제 목록</div>
+    <div class="task-nav" id="taskNav">
+      <button class="task-btn" data-task="overview">
+        <span class="num">00</span> 과제 선택
+        <span class="check">✓</span>
+      </button>
+      <button class="task-btn active" data-task="t1">
+        <span class="num">01</span> 1on1 어젠다 생성기
+        <span class="check">✓</span>
+      </button>
+      <button class="task-btn" data-task="t2">
+        <span class="num">02</span> AI 활용 브레인스토머
+        <span class="check">✓</span>
+      </button>
+      <button class="task-btn" data-task="t3">
+        <span class="num">03</span> 팀 감정 온도계
+        <span class="check">✓</span>
+      </button>
+      <button class="task-btn" data-task="t4">
+        <span class="num">04</span> AX 레벨 자가진단
+        <span class="check">✓</span>
+      </button>
+      <button class="task-btn" data-task="t5">
+        <span class="num">05</span> 회의록 액션아이템 추출
+        <span class="check">✓</span>
+      </button>
+      <button class="task-btn" data-task="t6">
+        <span class="num">06</span> 채용 공고 자동 작성기
+        <span class="check">✓</span>
+      </button>
+      <button class="task-btn" data-task="t7">
+        <span class="num">07</span> 교육 만족도 분석
+        <span class="check">✓</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content" id="mainContent">
+
+    <!-- ════════ OVERVIEW ════════ -->
+    <div id="view-overview" class="task-selector">
+      <div style="margin-bottom: 12px; font-size: 13px; color: var(--muted);">실습할 과제를 선택하세요. 각 과제는 기획 → 프롬프트 작성 → Lovable 구현 → 결과 체험의 4단계로 구성됩니다.</div>
+      <div style="margin-bottom: 32px;">
+        <div class="info-box">
+          <div class="info-label">실습 전 준비</div>
+          <p>Lovable 계정 로그인 필요 (lovable.dev) · 영어 프롬프트 권장 · 무료 플랜으로 충분</p>
+        </div>
+      </div>
+      <div class="overview-grid">
+        <div class="overview-card" onclick="showTask(&#39;t1&#39;)">
+          <div class="card-emoji">🗣</div>
+          <div class="card-num">TASK 01</div>
+          <div class="card-title">1on1 미팅<br>어젠다 생성기</div>
+          <div class="card-time">⏱ ~3분</div>
+        </div>
+        <div class="overview-card" onclick="showTask(&#39;t2&#39;)">
+          <div class="card-emoji">💡</div>
+          <div class="card-num">TASK 02</div>
+          <div class="card-title">역할별 AI 활용<br>브레인스토머</div>
+          <div class="card-time">⏱ ~3분 · 추천</div>
+        </div>
+        <div class="overview-card" onclick="showTask(&#39;t3&#39;)">
+          <div class="card-emoji">🌡</div>
+          <div class="card-num">TASK 03</div>
+          <div class="card-title">팀 감정<br>온도계</div>
+          <div class="card-time">⏱ ~4분</div>
+        </div>
+        <div class="overview-card" onclick="showTask(&#39;t4&#39;)">
+          <div class="card-emoji">🎯</div>
+          <div class="card-num">TASK 04</div>
+          <div class="card-title">AX 레벨<br>자가진단 퀴즈</div>
+          <div class="card-time">⏱ ~3분</div>
+        </div>
+        <div class="overview-card" onclick="showTask(&#39;t5&#39;)">
+          <div class="card-emoji">📋</div>
+          <div class="card-num">TASK 05</div>
+          <div class="card-title">회의록 액션<br>아이템 추출기</div>
+          <div class="card-time">⏱ ~3분</div>
+        </div>
+        <div class="overview-card" onclick="showTask(&#39;t6&#39;)">
+          <div class="card-emoji">📝</div>
+          <div class="card-num">TASK 06</div>
+          <div class="card-title">채용 공고<br>자동 작성기</div>
+          <div class="card-time">⏱ ~3분</div>
+        </div>
+        <div class="overview-card" onclick="showTask(&#39;t7&#39;)">
+          <div class="card-emoji">📊</div>
+          <div class="card-num">TASK 07</div>
+          <div class="card-title">교육 만족도<br>분석 대시보드</div>
+          <div class="card-time">⏱ ~3분</div>
+        </div>
+      </div>
+
+      <hr class="divider">
+      <div style="font-size: 13px; color: var(--muted); line-height: 1.8;">
+        <strong style="color: var(--text);">Lovable이란?</strong><br>
+        자연어로 웹앱을 생성하는 AI 빌더입니다. "이런 앱을 만들어줘"라는 문장 하나로 실제 동작하는 프로토타입이 수십 초 안에 만들어집니다. 디자인 감각이나 코딩 지식이 전혀 없어도 됩니다.
+      </div>
+    </div>
+
+    <!-- ════════ TASK 1 ════════ -->
+    <div id="view-t1" class="task-selector active">
+      <div class="task-header">
+        <button class="back-btn" onclick="showTask(&#39;overview&#39;)">← 과제 목록으로</button>
+        <div class="task-badge">TASK 01</div>
+        <h2>🗣 1on1 미팅 어젠다 생성기</h2>
+        <p>팀원 정보를 입력하면 구조화된 1on1 어젠다를 자동으로 만들어주는 앱 — 리더십 교육과 직결되는 실전 도구</p>
+        <div class="tag-row">
+          <span class="tag">리더십개발</span>
+          <span class="tag">HR자동화</span>
+          <span class="tag">Lovable</span>
+        </div>
+      </div>
+
+      <div class="instructor-guide">
+        <div class="instructor-guide-header" onclick="toggleIG(this)">
+          <span class="instructor-guide-label">강사 가이드</span>
+          <span class="instructor-guide-toggle">▾ 펼치기</span>
+        </div>
+        <div class="instructor-guide-body">
+          <div class="ig-grid">
+            <div class="ig-item">
+              <div class="ig-label">예상 소요</div>
+              <p>전체 12~15분<br>기획 3분 · 프롬프트 4분 · 수정 4분 · 배포 3분</p>
+            </div>
+            <div class="ig-item">
+              <div class="ig-label">교육 포인트</div>
+              <p>생성 후 실제 팀원 이름으로 직접 써보게 유도. "내가 만든 앱"이라는 소유감이 몰입의 핵심</p>
+            </div>
+          </div>
+          <div class="ig-trouble">
+            <strong>자주 막히는 포인트 &amp; 대응</strong>
+            ① Lovable 로그인 미비 → 교육 전날 사전 안내 필수<br>
+            ② 생성 중 에러 메시지 → "새 프로젝트"에서 그대로 재시도<br>
+            ③ "영어로 해야 하나요?" → 한국어도 충분, 영어는 선택사항으로 안내<br>
+            ④ 어젠다 퀄리티가 낮다 → 수정 Step에서 추가 프롬프트로 개선 가능함을 시연
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="p-t1" style="width:0%"></div></div>
+
+      <div class="step-flow" id="flow-t1">
+        <div class="step-pill active" data-step="1" onclick="goStep(&#39;t1&#39;,1)"><span>1</span> 기획</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="2" onclick="goStep(&#39;t1&#39;,2)"><span>2</span> 프롬프트</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="3" onclick="goStep(&#39;t1&#39;,3)"><span>3</span> 수정</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="4" onclick="goStep(&#39;t1&#39;,4)"><span>4</span> 배포</div>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="step-content active" id="t1-s1">
+        <div class="step-block">
+          <div class="step-num">STEP 01 / 기획</div>
+          <h3>무엇을 만들 것인가?</h3>
+          <p>구현 전에 딱 3가지만 정합니다. "무엇을 입력받고, 무엇을 출력하고, 누가 쓰는가"</p>
+          <div class="eval-grid">
+            <div class="eval-item">
+              <div class="eval-label">INPUT</div>
+              팀원 이름 · 최근 이슈 키워드 · 미팅 목적
+            </div>
+            <div class="eval-item">
+              <div class="eval-label">OUTPUT</div>
+              구조화된 어젠다 (Ice-break / 업무 / 성장 / 클로징)
+            </div>
+            <div class="eval-item">
+              <div class="eval-label">사용자</div>
+              팀장 / 리더급 구성원
+            </div>
+            <div class="eval-item">
+              <div class="eval-label">핵심 가치</div>
+              준비 시간 단축 + 대화 품질 향상
+            </div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">HR 관점 TIP</div>
+            <p>좋은 1on1은 어젠다가 있어야 가능합니다. 대부분의 리더가 준비 없이 들어가는 이유는 "만드는 게 번거로워서"입니다. 이 앱 하나가 그 장벽을 제거합니다.</p>
+          </div>
+          <ul class="checklist" id="cl-t1-1">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 앱의 목적이 명확히 이해되었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 입력/출력 구조가 파악되었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> Lovable을 열어 새 프로젝트를 준비했다</li>
+          </ul>
+        </div>
+        <div class="step-nav">
+          <button class="btn-next" onclick="goStep(&#39;t1&#39;,2)">다음 단계 →</button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-content" id="t1-s2">
+        <div class="step-block">
+          <div class="step-num">STEP 02 / 프롬프트 작성</div>
+          <h3>기획 결과를 프롬프트 언어로 번역하기</h3>
+          <div class="mapping-intro">
+            좋은 프롬프트는 기획 단계에서 이미 결정됩니다. <strong>아래 표는 Step 1에서 정의한 요소가 프롬프트의 어느 문장이 되었는지를 보여줍니다.</strong> 이 사고 흐름이 Lovable 프롬프트 작성의 핵심 공식입니다.
+          </div>
+          <table class="mapping-table">
+            <thead>
+              <tr>
+                <th>기획 요소</th>
+                <th>기획에서 정의한 내용</th>
+                <th class="arrow-cell"></th>
+                <th>프롬프트로 번역된 문장</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cell-label">INPUT</td>
+                <td class="cell-value">팀원 이름 · 최근 이슈 · 미팅 목적</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">입력 항목: 팀원 이름, 최근 이슈 (텍스트 영역), 미팅 목적 (드롭다운)</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">OUTPUT</td>
+                <td class="cell-value">구조화된 어젠다 (Ice-break / 업무 / 성장 / 클로징)</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">4개 섹션 어젠다: 아이스브레이크, 업무 현황, 성장&amp;피드백, 마무리</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">사용자</td>
+                <td class="cell-value">팀장 / 리더급 구성원</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">전문적인 디자인 / 한국어 UI</span><br><span style="font-size:11px;color:var(--muted);">→ 사용자 맥락이 디자인 톤 지시로 변환됨</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">핵심 가치</td>
+                <td class="cell-value">준비 시간 단축 + 대화 품질 향상</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">팀원 이름과 이슈 내용이 질문에 동적으로 반영</span><br><span style="font-size:11px;color:var(--muted);">→ "동적 반영"이 시간 단축의 핵심 구현체</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="info-box">
+            <div class="info-label">프롬프트 작성 공식</div>
+            <p>INPUT → <em>fields / form elements</em> · OUTPUT → <em>section structure / display format</em> · 사용자 → <em>design tone &amp; language</em> · 핵심가치 → <em>dynamic behavior / key feature</em></p>
+          </div>
+          <div class="prompt-box">
+            <div class="prompt-box-header">
+              <span class="label">Lovable Prompt — Copy &amp; Paste</span>
+              <button class="copy-btn" onclick="copyPrompt(this, &#39;t1&#39;)">COPY</button>
+            </div>
+            <div class="prompt-text" id="prompt-t1">깔끔하고 전문적인 1on1 미팅 어젠다 자동 생성 웹앱을 만들어줘.
+
+기능 요구사항:
+- 입력 항목: 팀원 이름 (텍스트), 최근 이슈 또는 대화 주제 (텍스트 영역), 미팅 목적 (드롭다운: 정기 체크인 / 성과 피드백 / 커리어 성장 / 문제 해결)
+- "어젠다 생성" 버튼
+- 출력 영역: 4개 섹션으로 구성된 어젠다 — 아이스브레이크(2분), 업무 현황(10분), 성장 &amp; 피드백(10분), 마무리 &amp; 다음 액션(3분)
+- 각 섹션마다 입력 내용을 반영한 구체적인 질문 2~3개 자동 생성
+- 출력 결과에 "어젠다 복사" 버튼 포함
+- 다크 테마, 한국어 UI
+- 팀원 이름과 이슈 내용이 질문에 동적으로 반영되어야 함</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">작성 팁</div>
+            <p>위 프롬프트를 그대로 사용해도 되고, 원하는 기능을 자유롭게 추가·수정해도 됩니다. 영어로 작성하면 Lovable의 이해도가 높아지는 경향이 있지만, 한국어로도 충분히 잘 동작합니다.</p>
+          </div>
+          <ul class="checklist" id="cl-t1-2">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 매핑 테이블에서 기획 → 프롬프트 연결을 확인했다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 프롬프트를 복사해서 Lovable에 붙여넣었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 생성 버튼을 눌렀다 (약 30초 대기)</li>
+          </ul>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t1&#39;,1)">← 이전</button>
+          <button class="btn-next" onclick="goStep(&#39;t1&#39;,3)">다음 단계 →</button>
+        </div>
+      </div>
+      <!-- Step 3 -->
+      <div class="step-content" id="t1-s3">
+        <div class="step-block">
+          <div class="step-num">STEP 03 / 수정 실습</div>
+          <h3>Lovable 앱 품질 개선하기</h3>
+          <p>처음 생성된 앱은 70점짜리입니다. 추가 프롬프트로 30점을 더 올리는 것이 이 단계의 목표입니다. 아래 수정 프롬프트를 순서대로 적용해보세요.</p>
+          <div style="display:grid;gap:12px;margin:20px 0;">
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+                <span style="background:var(--accent);color:#0d0d0f;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;font-family:&#39;DM Mono&#39;,monospace;">수정 1 · UI 한국어화</span>
+              </div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px 14px;border-radius:2px;margin-bottom:8px;">모든 UI 텍스트와 레이블을 한국어로 번역해줘. 여백을 더 넉넉하게 해서 디자인을 깔끔하게 개선해줘.</div>
+              <div style="font-size:12px;color:var(--muted);">→ 한국어 UI + 여백 개선</div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+                <span style="background:var(--accent2);color:#0d0d0f;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;font-family:&#39;DM Mono&#39;,monospace;">수정 2 · 기능 추가</span>
+              </div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px 14px;border-radius:2px;margin-bottom:8px;">"어젠다 인쇄" 버튼을 추가하고, 출력 영역 상단에 총 예상 미팅 시간을 표시해줘.</div>
+              <div style="font-size:12px;color:var(--muted);">→ 출력·인쇄 기능 + 총 소요시간 표시</div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+                <span style="background:var(--accent3);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;font-family:&#39;DM Mono&#39;,monospace;">수정 3 · 고도화 (선택)</span>
+              </div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px 14px;border-radius:2px;margin-bottom:8px;">최근 생성된 어젠다 5개를 타임스탬프와 함께 보여주는 히스토리 섹션을 추가해줘. 접기/펼치기 가능하게 해줘.</div>
+              <div style="font-size:12px;color:var(--muted);">→ 최근 어젠다 히스토리 (접기/펼치기)</div>
+            </div>
+          </div>
+          <div class="warn-box">
+            <div class="warn-label">수정 원칙</div>
+            <p>한 번에 하나씩 적용하세요. 여러 요청을 한꺼번에 넣으면 Lovable이 일부를 무시할 수 있습니다. 수정 후 반드시 Preview에서 확인하세요.</p>
+          </div>
+          <ul class="checklist" id="cl-t1-3">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 한국어 UI로 변경 완료</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 수정 프롬프트 1개 이상 적용</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> Preview에서 기능이 정상 동작함을 확인</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 팀원에게 보여줄 만한 완성도가 되었다</li>
+          </ul>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t1&#39;,2)">← 이전</button>
+          <button class="btn-next" onclick="goStep(&#39;t1&#39;,4)">배포하기 →</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step-content" id="t1-s4">
+        <div class="step-block">
+          <div class="step-num">STEP 04 / 배포 &amp; 체험</div>
+          <h3>팀에 공유하고, 직접 써보기</h3>
+          <p>Lovable은 버튼 하나로 공개 URL을 생성합니다. 배포 후 팀 채팅에 링크를 공유하면 끝입니다.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0;">
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:11px;color:var(--accent);font-family:&#39;DM Mono&#39;,monospace;margin-bottom:8px;">배포 방법</div>
+              <div style="font-size:13px;color:var(--muted);line-height:1.8;">
+                ① Lovable 우상단 <strong style="color:var(--text);">Publish</strong> 클릭<br>
+                ② 공개 URL 자동 생성<br>
+                ③ URL 복사 → 팀 공유<br>
+                ④ 모바일에서도 동작 확인
+              </div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:11px;color:var(--accent2);font-family:&#39;DM Mono&#39;,monospace;margin-bottom:8px;">공유 채널 추천</div>
+              <div style="font-size:13px;color:var(--muted);line-height:1.8;">
+                📱 팀 카카오톡 / Slack<br>
+                📧 팀 메일 (링크 + 한 줄 설명)<br>
+                📺 회의 중 화면 공유<br>
+                📌 팀 노션/위키에 고정
+              </div>
+            </div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">공유 메시지 예시</div>
+            <p>"1on1 어젠다 자동으로 만들어주는 앱 만들었습니다 → [URL] 팀원 이름이랑 요즘 이슈 넣으면 바로 나와요 😄"</p>
+          </div>
+          <hr class="divider">
+          <h3 style="margin-bottom:8px;">미니 데모 체험</h3>
+          <p>아래에서 직접 어젠다를 생성해보세요. Lovable 앱이 어떻게 동작하는지 미리 체험하는 데모입니다.</p>
+
+          <label class="input-label">팀원 이름</label>
+          <input type="text" class="input-field" id="t1-name" placeholder="예: 김민준" style="min-height:0;height:44px;resize:none;">
+
+          <label class="input-label" style="margin-top:12px;">최근 이슈 또는 키워드</label>
+          <textarea class="input-field" id="t1-issue" placeholder="예: 프로젝트 마감 스트레스, 팀 협업 어려움, 커리어 방향 고민"></textarea>
+
+          <label class="input-label" style="margin-top:12px;">미팅 목적</label>
+          <select class="input-field" id="t1-goal" style="min-height:0;height:44px;resize:none;">
+            <option value="check-in">정기 체크인</option>
+            <option value="performance">성과 피드백</option>
+            <option value="growth">커리어 성장</option>
+            <option value="problem">문제 해결</option>
+          </select>
+
+          <button class="generate-btn" onclick="generateAgenda()">어젠다 생성하기</button>
+
+          <div class="output-area" id="t1-output"></div>
+        </div>
+
+        <div class="badge-area" id="badge-t1" style="display:none">
+          <div class="badge-icon">🗣</div>
+          <div class="stars">★★★</div>
+          <div class="badge-title">TASK 01 완료!</div>
+          <div class="badge-sub">1on1 어젠다 생성기를 직접 만들고 체험했습니다</div>
+          <button class="btn-next" style="margin-top:20px" onclick="showTask(&#39;overview&#39;)">다른 과제 선택하기</button>
+        </div>
+
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t1&#39;,3)">← 이전</button>
+          <button class="btn-next" onclick="completeTask(&#39;t1&#39;)">완료 ✓</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════ TASK 2 ════════ -->
+    <div id="view-t2" class="task-selector">
+      <div class="task-header">
+        <button class="back-btn" onclick="showTask(&#39;overview&#39;)">← 과제 목록으로</button>
+        <div class="task-badge">TASK 02 · 추천</div>
+        <h2>💡 역할별 AI 활용 브레인스토머</h2>
+        <p>직무를 선택하면 그 역할에서 AI를 활용할 수 있는 아이디어 10가지를 카드로 보여주는 앱 — AX 교육 오프닝 5분을 바꿔버린다</p>
+        <div class="tag-row"><span class="tag">AX내재화</span><span class="tag">교육설계</span><span class="tag">Lovable</span></div>
+      </div>
+
+      <div class="instructor-guide">
+        <div class="instructor-guide-header" onclick="toggleIG(this)">
+          <span class="instructor-guide-label">강사 가이드</span>
+          <span class="instructor-guide-toggle">▾ 펼치기</span>
+        </div>
+        <div class="instructor-guide-body">
+          <div class="ig-grid">
+            <div class="ig-item">
+              <div class="ig-label">예상 소요</div>
+              <p>전체 10~12분<br>교육 오프닝 활용 시 5분으로 단축 가능</p>
+            </div>
+            <div class="ig-item">
+              <div class="ig-label">교육 활용 팁</div>
+              <p>교육 시작 전 URL 공유 → 참가자가 직접 직무 선택 → "가장 해보고 싶은 카드 1개" 발표 유도</p>
+            </div>
+          </div>
+          <div class="ig-trouble">
+            <strong>자주 막히는 포인트 &amp; 대응</strong>
+            ① "내 직무가 없어요" → 가장 가까운 직무 선택 안내, 혹은 수정 Step에서 직무명 변경<br>
+            ② 카드 내용이 너무 어렵다 → 난이도 Easy 카드부터 체험하도록 안내<br>
+            ③ 아이디어가 추상적이다 → 수정 1 적용 후 실제 조직명으로 변경하면 공감도 상승
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="p-t2" style="width:0%"></div></div>
+      <div class="step-flow" id="flow-t2">
+        <div class="step-pill active" data-step="1" onclick="goStep(&#39;t2&#39;,1)"><span>1</span> 기획</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="2" onclick="goStep(&#39;t2&#39;,2)"><span>2</span> 프롬프트</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="3" onclick="goStep(&#39;t2&#39;,3)"><span>3</span> 수정</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="4" onclick="goStep(&#39;t2&#39;,4)"><span>4</span> 배포</div>
+      </div>
+      <div class="step-content active" id="t2-s1">
+        <div class="step-block">
+          <div class="step-num">STEP 01 / 기획</div>
+          <h3>왜 이 앱이 AX 교육의 첫 5분인가?</h3>
+          <p>대부분의 AX 교육이 실패하는 이유는 "AI가 내 일과 관계있다"는 체감을 주지 못하기 때문입니다. 이 앱은 직무를 선택하는 순간, AI가 내 일을 어떻게 바꾸는지를 즉각 보여줍니다.</p>
+          <div class="eval-grid">
+            <div class="eval-item"><div class="eval-label">INPUT</div>직무 선택 (생산기술/품질/설비/HR/구매 등)</div>
+            <div class="eval-item"><div class="eval-label">OUTPUT</div>AI 활용 아이디어 10가지 카드</div>
+            <div class="eval-item"><div class="eval-label">사용자</div>교육 참가자 (전 직군)</div>
+            <div class="eval-item"><div class="eval-label">핵심 가치</div>AI와 내 업무의 연결점 즉각 체감</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">교육 설계 포인트</div>
+            <p>이 앱을 교육 시작 5분에 참가자 스스로 돌려보게 하세요. "내 직무가 있다"는 것만으로도 몰입도가 3배 올라갑니다.</p>
+          </div>
+          <ul class="checklist" id="cl-t2-1">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 앱의 교육적 목적이 명확히 이해되었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 입력/출력 구조가 파악되었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> Lovable을 열어 새 프로젝트를 준비했다</li>
+          </ul>
+        </div>
+        <div class="step-nav"><button class="btn-next" onclick="goStep(&#39;t2&#39;,2)">다음 단계 →</button></div>
+      </div>
+      <div class="step-content" id="t2-s2">
+        <div class="step-block">
+          <div class="step-num">STEP 02 / 프롬프트 작성</div>
+          <h3>기획 결과를 프롬프트 언어로 번역하기</h3>
+          <div class="mapping-intro">
+            Step 1에서 "직무별 AI 아이디어 10개"라고 정의한 순간, 프롬프트의 뼈대는 이미 완성된 것입니다. <strong>아래 테이블은 그 번역 과정을 명시화합니다.</strong>
+          </div>
+          <table class="mapping-table">
+            <thead>
+              <tr><th>기획 요소</th><th>기획 내용</th><th class="arrow-cell"></th><th>프롬프트 번역</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cell-label">INPUT</td>
+                <td class="cell-value">직무 선택 (생산기술/품질 등)</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">직무 선택 버튼: 생산기술, 품질관리, 설비/유지보수...</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">OUTPUT</td>
+                <td class="cell-value">AI 활용 아이디어 10가지 카드</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">AI 활용 아이디어 카드 10개 / 각 카드: 제목 + 한 줄 설명 + 난이도 배지</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">사용자</td>
+                <td class="cell-value">교육 참가자 (전 직군, 비개발자)</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">제조업 HR 담당자 대상 / 전체 한국어 인터페이스</span><br><span style="font-size:11px;color:var(--muted);">→ 누가 쓰는지가 언어·레이아웃 결정</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">핵심 가치</td>
+                <td class="cell-value">AI와 내 업무의 연결점 즉각 체감</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">"아이디어 섞기" 버튼 / 난이도별 필터·검색 바</span><br><span style="font-size:11px;color:var(--muted);">→ "즉각성"이 셔플·필터 인터랙션으로 구현됨</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="info-box">
+            <div class="info-label">이 과제의 번역 포인트</div>
+            <p>"교육 오프닝 5분"이라는 시간 제약이 → 카드 중심 스캔 가능 UI와 즉각 반응 인터랙션으로 번역됩니다. 시나리오가 구체적일수록 프롬프트가 더 정밀해집니다.</p>
+          </div>
+          <div class="prompt-box">
+            <div class="prompt-box-header">
+              <span class="label">Lovable Prompt — Copy &amp; Paste</span>
+              <button class="copy-btn" onclick="copyPrompt(this, &#39;t2&#39;)">COPY</button>
+            </div>
+            <div class="prompt-text" id="prompt-t2">제조업 HR 담당자를 위한 AI 활용 아이디어 브레인스토밍 웹앱을 만들어줘.
+
+기능 요구사항:
+- 직무 선택 버튼: 생산기술, 품질관리, 설비/유지보수, HR &amp; 교육, 구매/조달, 연구개발, 안전관리
+- 직무 선택 시 해당 직무에 맞는 AI 활용 아이디어 카드 10개 표시
+- 각 카드 구성: 짧은 제목, 한 줄 설명, 난이도 배지 (쉬움/보통/심화)
+- 카드는 2열 그리드, 마우스 오버 시 애니메이션 효과
+- "아이디어 섞기" 버튼으로 다른 조합 표시
+- 난이도별 필터/검색 바
+- 노란색 포인트 컬러의 모던 다크 UI
+- 전체 한국어 인터페이스</div>
+          </div>
+          <div class="warn-box">
+            <div class="warn-label">직접 써보기 — 나만의 프롬프트</div>
+            <p>위 매핑 공식을 그대로 써서 나만의 버전을 만들어보세요: "INPUT은 [  ], OUTPUT은 [  ], 사용자는 [  ], 핵심 가치는 [  ]" — 이 4칸을 채우면 프롬프트 초안이 됩니다.</p>
+          </div>
+          <ul class="checklist" id="cl-t2-2">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 매핑 테이블을 읽고 번역 흐름을 이해했다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 프롬프트를 복사해서 Lovable에 붙여넣었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 생성 완료 후 결과를 확인했다</li>
+          </ul>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t2&#39;,1)">← 이전</button>
+          <button class="btn-next" onclick="goStep(&#39;t2&#39;,3)">다음 →</button>
+        </div>
+      </div>
+      <div class="step-content" id="t2-s3">
+        <div class="step-block">
+          <div class="step-num">STEP 03 / 수정 실습</div>
+          <h3>LG PRI 맥락에 맞게 커스터마이징</h3>
+          <p>기본 생성 앱을 LG PRI 실제 조직 맥락에 맞게 다듬어보세요. 아래 수정 프롬프트를 선택적으로 적용하면 됩니다.</p>
+          <div style="display:grid;gap:12px;margin:20px 0;">
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:10px;font-weight:700;color:var(--accent);padding:2px 8px;border:1px solid var(--accent);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">수정 1 · 직무 맞춤</div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">Change job roles to: 생산기술, 품질보증, 설비기술, HR/HRD, 구매, 안전환경, 연구개발</div>
+              <div style="font-size:12px;color:var(--muted);">→ LG PRI 실제 조직 구조 반영</div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:10px;font-weight:700;color:var(--accent2);padding:2px 8px;border:1px solid var(--accent2);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">수정 2 · AX 연결</div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">각 카드에 AX 성숙도 레벨 태그를 추가해줘: 입문 / 실무자 / 전문가</div>
+              <div style="font-size:12px;color:var(--muted);">→ AX 성숙도 레벨 태그 추가</div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:10px;font-weight:700;color:var(--accent3);padding:2px 8px;border:1px solid var(--accent3);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">수정 3 · 공유 기능</div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">Add a "내 아이디어 저장" button that bookmarks selected cards. Show saved count in header.</div>
+              <div style="font-size:12px;color:var(--muted);">→ 관심 아이디어 북마크 기능</div>
+            </div>
+          </div>
+          <ul class="checklist" id="cl-t2-3">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 직무명이 우리 조직 이름으로 변경되었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 카드 내용이 실제 업무와 연관성 있다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 교육 참가자가 바로 이해할 수 있는 수준이다</li>
+          </ul>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t2&#39;,2)">← 이전</button>
+          <button class="btn-next" onclick="goStep(&#39;t2&#39;,4)">배포 &amp; 체험 →</button>
+        </div>
+      </div>
+      <div class="step-content" id="t2-s4">
+        <div class="step-block">
+          <div class="step-num">STEP 04 / 배포 &amp; 체험</div>
+          <h3>교육 현장에서 바로 쓰기</h3>
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;margin-bottom:20px;">
+            <div style="font-size:11px;color:var(--accent);font-family:&#39;DM Mono&#39;,monospace;margin-bottom:10px;">교육 활용 시나리오</div>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:13px;">
+              <span style="color:var(--accent);font-family:&#39;DM Mono&#39;,monospace;font-weight:700;">T+0</span><span style="color:var(--muted);">교육 시작 전 QR코드 or URL 링크 공유</span>
+              <span style="color:var(--accent);font-family:&#39;DM Mono&#39;,monospace;font-weight:700;">T+2</span><span style="color:var(--muted);">참가자가 자신의 직무를 선택</span>
+              <span style="color:var(--accent);font-family:&#39;DM Mono&#39;,monospace;font-weight:700;">T+5</span><span style="color:var(--muted);">"내 업무와 가장 관련 있는 카드" 1개 선택 후 발표</span>
+              <span style="color:var(--accent);font-family:&#39;DM Mono&#39;,monospace;font-weight:700;">T+10</span><span style="color:var(--muted);">강사가 선택된 아이디어를 교육 내용과 연결</span>
+            </div>
+          </div>
+          <hr class="divider">
+          <h3 style="margin-bottom:8px;">아이디어 카드 데모</h3>
+          <p>직무를 선택하면 AI 활용 아이디어 카드가 나타납니다.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0;" id="roleButtons">
+            <button class="tag" style="cursor:pointer;padding:8px 14px;font-size:13px;" onclick="showRoleIdeas(&#39;생산기술&#39;)">생산기술</button>
+            <button class="tag" style="cursor:pointer;padding:8px 14px;font-size:13px;" onclick="showRoleIdeas(&#39;품질관리&#39;)">품질관리</button>
+            <button class="tag" style="cursor:pointer;padding:8px 14px;font-size:13px;" onclick="showRoleIdeas(&#39;설비/유지보수&#39;)">설비/유지보수</button>
+            <button class="tag" style="cursor:pointer;padding:8px 14px;font-size:13px;" onclick="showRoleIdeas(&#39;HR/교육&#39;)">HR/교육</button>
+            <button class="tag" style="cursor:pointer;padding:8px 14px;font-size:13px;" onclick="showRoleIdeas(&#39;구매/조달&#39;)">구매/조달</button>
+            <button class="tag" style="cursor:pointer;padding:8px 14px;font-size:13px;" onclick="showRoleIdeas(&#39;연구개발&#39;)">연구개발</button>
+            <button class="tag" style="cursor:pointer;padding:8px 14px;font-size:13px;" onclick="showRoleIdeas(&#39;안전관리&#39;)">안전관리</button>
+          </div>
+          <div id="ideas-output" style="display:none">
+            <div style="font-size:12px;color:var(--muted);margin-bottom:12px;" id="ideas-role-label"></div>
+            <div id="ideas-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>
+          </div>
+        </div>
+        <div class="badge-area" id="badge-t2" style="display:none">
+          <div class="badge-icon">💡</div>
+          <div class="stars">★★★</div>
+          <div class="badge-title">TASK 02 완료!</div>
+          <div class="badge-sub">AX 교육 오프닝 도구를 직접 만들고 체험했습니다</div>
+          <button class="btn-next" style="margin-top:20px" onclick="showTask(&#39;overview&#39;)">다른 과제 선택하기</button>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t2&#39;,3)">← 이전</button>
+          <button class="btn-next" onclick="completeTask(&#39;t2&#39;)">완료 ✓</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════ TASK 3 ════════ -->
+    <div id="view-t3" class="task-selector">
+      <div class="task-header">
+        <button class="back-btn" onclick="showTask(&#39;overview&#39;)">← 과제 목록으로</button>
+        <div class="task-badge">TASK 03</div>
+        <h2>🌡 팀 감정 온도계</h2>
+        <p>익명으로 오늘의 컨디션을 이모지 + 한 줄 코멘트로 남기면, 팀 전체의 감정 분포를 실시간 보여주는 Pulse Check MVP</p>
+        <div class="tag-row"><span class="tag">조직건강도</span><span class="tag">PulseCheck</span><span class="tag">Lovable</span></div>
+      </div>
+
+      <div class="instructor-guide">
+        <div class="instructor-guide-header" onclick="toggleIG(this)">
+          <span class="instructor-guide-label">강사 가이드</span>
+          <span class="instructor-guide-toggle">▾ 펼치기</span>
+        </div>
+        <div class="instructor-guide-body">
+          <div class="ig-grid">
+            <div class="ig-item">
+              <div class="ig-label">예상 소요</div>
+              <p>전체 12~15분<br>배포 후 실제 응답 수집까지 포함 시 20분</p>
+            </div>
+            <div class="ig-item">
+              <div class="ig-label">교육 포인트</div>
+              <p>"익명"임을 강조할 것. 심리적 안전감이 낮은 조직일수록 이 앱의 가치가 크다는 맥락 설명</p>
+            </div>
+          </div>
+          <div class="ig-trouble">
+            <strong>자주 막히는 포인트 &amp; 대응</strong>
+            ① 도넛 차트가 안 나온다 → localStorage 허용 여부 확인, 시크릿 모드 해제<br>
+            ② "실제로 팀에서 쓸 수 있나요?" → 데모 수준이며, 실제 데이터 수집은 Supabase 연동 필요 설명<br>
+            ③ 감정 선택이 부담스럽다는 반응 → 익명임을 재강조, 옵션 코멘트는 건너뛰어도 됨 안내
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="p-t3" style="width:0%"></div></div>
+      <div class="step-flow" id="flow-t3">
+        <div class="step-pill active" data-step="1" onclick="goStep(&#39;t3&#39;,1)"><span>1</span> 기획</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="2" onclick="goStep(&#39;t3&#39;,2)"><span>2</span> 프롬프트</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="3" onclick="goStep(&#39;t3&#39;,3)"><span>3</span> 수정</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="4" onclick="goStep(&#39;t3&#39;,4)"><span>4</span> 배포</div>
+      </div>
+      <div class="step-content active" id="t3-s1">
+        <div class="step-block">
+          <div class="step-num">STEP 01 / 기획</div>
+          <h3>Pulse Check의 MVP</h3>
+          <p>조직 건강도 측정의 핵심은 "참여의 마찰을 없애는 것"입니다. 5분짜리 설문이 아니라, 이모지 하나로 30초 안에 끝나는 것이 MVP의 철학입니다.</p>
+          <div class="eval-grid">
+            <div class="eval-item"><div class="eval-label">INPUT</div>이모지 선택 + 익명 한 줄 코멘트 (선택)</div>
+            <div class="eval-item"><div class="eval-label">OUTPUT</div>팀 감정 분포 차트 + 최근 코멘트 피드</div>
+            <div class="eval-item"><div class="eval-label">사용자</div>팀원 (응답) + 팀장 (대시보드)</div>
+            <div class="eval-item"><div class="eval-label">핵심 가치</div>심리적 안전감 기반의 낮은 참여 장벽</div>
+          </div>
+          <ul class="checklist" id="cl-t3-1">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> MVP의 "참여 마찰 제거" 철학이 이해되었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 2종 사용자(팀원/팀장) 구조가 파악되었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> Lovable을 열어 새 프로젝트를 준비했다</li>
+          </ul>
+        </div>
+        <div class="step-nav"><button class="btn-next" onclick="goStep(&#39;t3&#39;,2)">다음 →</button></div>
+      </div>
+      <div class="step-content" id="t3-s2">
+        <div class="step-block">
+          <div class="step-num">STEP 02 / 프롬프트 작성</div>
+          <h3>기획 결과를 프롬프트 언어로 번역하기</h3>
+          <div class="mapping-intro">
+            이 앱의 기획 핵심어는 <strong>"참여 마찰 제거"와 "심리적 안전감"</strong>입니다. 이 두 단어가 프롬프트에서 어떻게 구체적 기능으로 번역되는지 확인하세요.
+          </div>
+          <table class="mapping-table">
+            <thead>
+              <tr><th>기획 요소</th><th>기획 내용</th><th class="arrow-cell"></th><th>프롬프트 번역</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cell-label">INPUT</td>
+                <td class="cell-value">이모지 선택 + 익명 한 줄 코멘트</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">이모지 5개 선택 / 선택적 익명 코멘트 입력창 (최대 100자)</span><br><span style="font-size:11px;color:var(--muted);">→ "선택적(optional)" 한 단어가 참여 허들을 낮춤</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">OUTPUT</td>
+                <td class="cell-value">팀 감정 분포 차트 + 코멘트 피드</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">감정 분포 도넛 차트(%) / 최근 익명 코멘트 스크롤 피드</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">사용자</td>
+                <td class="cell-value">팀원(응답) + 팀장(대시보드) 2종</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">"체크인"과 "대시보드" 뷰 전환 토글</span><br><span style="font-size:11px;color:var(--muted);">→ 2종 사용자가 Toggle 구조로 번역됨</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">핵심 가치</td>
+                <td class="cell-value">심리적 안전감 기반, 낮은 참여 장벽</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">차분하고 따뜻한 다크 UI (멘탈 헬스 앱 느낌)</span><br><span style="font-size:11px;color:var(--muted);">→ "심리적 안전감"이 UI 무드 지시어로 번역됨</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="info-box">
+            <div class="info-label">번역의 핵심</div>
+            <p>"익명"이라는 기획 결정이 → "anonymous" 한 단어로 프롬프트에 들어가고 → Lovable이 데이터 저장 시 이름 필드를 아예 만들지 않는 구조로 구현됩니다. 기획의 언어가 곧 기능의 언어입니다.</p>
+          </div>
+          <div class="prompt-box">
+            <div class="prompt-box-header">
+              <span class="label">Lovable Prompt</span>
+              <button class="copy-btn" onclick="copyPrompt(this, &#39;t3&#39;)">COPY</button>
+            </div>
+            <div class="prompt-text" id="prompt-t3">"팀 Pulse"라는 이름의 팀 감정 온도계 웹앱을 만들어줘.
+
+기능 요구사항:
+- 감정 체크인 화면: 이모지 5개 선택 — 😄 최고, 🙂 좋음, 😐 보통, 😔 힘듦, 😤 스트레스
+- 선택적 익명 코멘트 입력창 (최대 100자)
+- "제출" 버튼
+- 대시보드 화면:
+  - 감정 분포 도넛 차트 (%)
+  - 오늘 총 응답 수
+  - 최근 익명 코멘트 피드 (최대 10개, 스크롤)
+  - 최근 7일 감정 트렌드 막대 차트
+- 데모용 데이터는 localStorage에 저장
+- "체크인"과 "대시보드" 뷰 전환 토글
+- 차분하고 따뜻한 다크 UI (멘탈 헬스 앱 느낌)
+- 전체 한국어 인터페이스</div>
+          </div>
+          <ul class="checklist" id="cl-t3-2">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> "optional"이 참여 허들을 낮추는 장치임을 이해했다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 프롬프트를 복사해서 Lovable에 붙여넣었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 생성 완료 후 결과를 확인했다</li>
+          </ul>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t3&#39;,1)">← 이전</button>
+          <button class="btn-next" onclick="goStep(&#39;t3&#39;,3)">다음 →</button>
+        </div>
+      </div>
+      <div class="step-content" id="t3-s3">
+        <div class="step-block">
+          <div class="step-num">STEP 03 / 수정 실습</div>
+          <h3>Pulse Check를 우리 팀 버전으로</h3>
+          <p>기본 앱에 심리적 안전감을 높이는 요소와 팀 맥락을 추가해보세요.</p>
+          <div style="display:grid;gap:12px;margin:20px 0;">
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:10px;font-weight:700;color:var(--accent);padding:2px 8px;border:1px solid var(--accent);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">수정 1 · 팀 이름 설정</div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">Change the app name to "생산기술HRD 팀 Pulse" and add today's date in the header.</div>
+              <div style="font-size:12px;color:var(--muted);">→ 팀 맞춤 브랜딩</div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:10px;font-weight:700;color:var(--accent2);padding:2px 8px;border:1px solid var(--accent2);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">수정 2 · 응원 메시지</div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">제출 후 선택한 감정에 맞는 따뜻한 응원 메시지를 보여줘. 힘들거나 스트레스 감정에는 더 세심한 위로 메시지를 표시해줘.</div>
+              <div style="font-size:12px;color:var(--muted);">→ 감정에 따른 맞춤 응원 메시지</div>
+            </div>
+          </div>
+          <ul class="checklist" id="cl-t3-3">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 이모지 5개 선택 UI가 보인다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 제출 후 대시보드로 전환된다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 도넛 차트가 나타난다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 수정 프롬프트 1개 이상 적용했다</li>
+          </ul>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t3&#39;,2)">← 이전</button>
+          <button class="btn-next" onclick="goStep(&#39;t3&#39;,4)">배포 &amp; 체험 →</button>
+        </div>
+      </div>
+      <div class="step-content" id="t3-s4">
+        <div class="step-block">
+          <div class="step-num">STEP 04 / 배포 &amp; 체험</div>
+          <h3>팀 배포 &amp; 직접 응답해보기</h3>
+          <div class="info-box" style="margin-bottom:20px;">
+            <div class="info-label">배포 팁</div>
+            <p>Publish 후 URL을 팀 단톡방에 공유하고, "오늘 컨디션 어떠세요? 10초만요 😊" 라고 보내보세요. 익명이라 참여 허들이 낮습니다.</p>
+          </div>
+          <hr class="divider">
+          <h3 style="margin-bottom:8px;">지금 바로 응답해보기</h3>
+          <p>지금 팀원으로서 응답해보세요.</p>
+          <div style="display:flex;gap:12px;margin:20px 0;flex-wrap:wrap;" id="moodPicker">
+            <button class="eval-item" onclick="selectMood(this,&#39;😄&#39;)" style="font-size:28px;padding:16px 20px;flex:1;min-width:60px;">😄</button>
+            <button class="eval-item" onclick="selectMood(this,&#39;🙂&#39;)" style="font-size:28px;padding:16px 20px;flex:1;min-width:60px;">🙂</button>
+            <button class="eval-item" onclick="selectMood(this,&#39;😐&#39;)" style="font-size:28px;padding:16px 20px;flex:1;min-width:60px;">😐</button>
+            <button class="eval-item" onclick="selectMood(this,&#39;😔&#39;)" style="font-size:28px;padding:16px 20px;flex:1;min-width:60px;">😔</button>
+            <button class="eval-item" onclick="selectMood(this,&#39;😤&#39;)" style="font-size:28px;padding:16px 20px;flex:1;min-width:60px;">😤</button>
+          </div>
+          <textarea class="input-field" id="mood-comment" placeholder="익명 코멘트 (선택, 최대 50자)" style="margin-top:4px;min-height:60px;"></textarea>
+          <button class="generate-btn" onclick="submitMood()">제출하기</button>
+          <div class="output-area" id="mood-output"></div>
+        </div>
+        <div class="badge-area" id="badge-t3" style="display:none">
+          <div class="badge-icon">🌡</div><div class="stars">★★★</div>
+          <div class="badge-title">TASK 03 완료!</div>
+          <div class="badge-sub">Pulse Check MVP를 직접 만들고 체험했습니다</div>
+          <button class="btn-next" style="margin-top:20px" onclick="showTask(&#39;overview&#39;)">다른 과제 선택하기</button>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t3&#39;,3)">← 이전</button>
+          <button class="btn-next" onclick="completeTask(&#39;t3&#39;)">완료 ✓</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════ TASK 4 ════════ -->
+    <div id="view-t4" class="task-selector">
+      <div class="task-header">
+        <button class="back-btn" onclick="showTask(&#39;overview&#39;)">← 과제 목록으로</button>
+        <div class="task-badge">TASK 04</div>
+        <h2>🎯 AX 레벨 자가진단 퀴즈</h2>
+        <p>AI 활용 역량을 5문항으로 진단하고 레벨을 판정해주는 앱 — 교육 전 사전 조사를 대체한다</p>
+        <div class="tag-row"><span class="tag">AX인증</span><span class="tag">역량진단</span><span class="tag">Lovable</span></div>
+      </div>
+
+      <div class="instructor-guide">
+        <div class="instructor-guide-header" onclick="toggleIG(this)">
+          <span class="instructor-guide-label">강사 가이드</span>
+          <span class="instructor-guide-toggle">▾ 펼치기</span>
+        </div>
+        <div class="instructor-guide-body">
+          <div class="ig-grid">
+            <div class="ig-item">
+              <div class="ig-label">예상 소요</div>
+              <p>전체 10~12분<br>교육 전 사전 배포 시 수준별 반 편성 자료로 활용 가능</p>
+            </div>
+            <div class="ig-item">
+              <div class="ig-label">교육 포인트</div>
+              <p>결과 레벨보다 "다음 추천 액션"에 집중하도록 유도. 레벨 판정이 목적이 아닌 출발점임을 강조</p>
+            </div>
+          </div>
+          <div class="ig-trouble">
+            <strong>자주 막히는 포인트 &amp; 대응</strong>
+            ① "문항이 내 상황과 안 맞아요" → 정확한 진단보다 대략의 위치 파악이 목적임을 안내<br>
+            ② Practitioner 결과에 실망하는 참가자 → "지금 이 실습 자체가 Developer로 가는 첫 걸음" 강조<br>
+            ③ Expert 결과 → 조직 내 AX 리더/멘토 역할 제안 기회로 활용
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="p-t4" style="width:0%"></div></div>
+      <div class="step-flow" id="flow-t4">
+        <div class="step-pill active" data-step="1" onclick="goStep(&#39;t4&#39;,1)"><span>1</span> 기획</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="2" onclick="goStep(&#39;t4&#39;,2)"><span>2</span> 프롬프트</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="3" onclick="goStep(&#39;t4&#39;,3)"><span>3</span> 수정</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="4" onclick="goStep(&#39;t4&#39;,4)"><span>4</span> 배포</div>
+      </div>
+      <div class="step-content active" id="t4-s1">
+        <div class="step-block">
+          <div class="step-num">STEP 01 / 기획</div>
+          <h3>역량 진단이 왜 앱이어야 하는가?</h3>
+          <p>종이 설문은 집계가 늦고, 피드백이 없습니다. 앱으로 만들면 응답 즉시 레벨이 판정되고, 다음 학습 경로까지 제안됩니다. 이것이 HR 자동화의 본질입니다.</p>
+          <div class="eval-grid">
+            <div class="eval-item"><div class="eval-label">INPUT</div>5문항 객관식 응답</div>
+            <div class="eval-item"><div class="eval-label">OUTPUT</div>레벨 판정 + 설명 + 추천 과정</div>
+            <div class="eval-item"><div class="eval-label">레벨 체계</div>Practitioner → Developer → Architect → Expert</div>
+            <div class="eval-item"><div class="eval-label">핵심 가치</div>즉각 피드백 + 학습 경로 연결</div>
+          </div>
+        </div>
+        <div class="step-nav"><button class="btn-next" onclick="goStep(&#39;t4&#39;,2)">다음 →</button></div>
+      </div>
+      <div class="step-content" id="t4-s2">
+        <div class="step-block">
+          <div class="step-num">STEP 02 / 프롬프트 작성</div>
+          <h3>기획 결과를 프롬프트 언어로 번역하기</h3>
+          <div class="mapping-intro">
+            이 앱의 기획 핵심은 <strong>"즉각 피드백"과 "학습 경로 자동 연결"</strong>입니다. 4단계 레벨 체계가 프롬프트에서 어떻게 스코어링 로직으로 번역되는지 주목하세요.
+          </div>
+          <table class="mapping-table">
+            <thead>
+              <tr><th>기획 요소</th><th>기획 내용</th><th class="arrow-cell"></th><th>프롬프트 번역</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cell-label">INPUT</td>
+                <td class="cell-value">5문항 객관식 응답</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">5문항, 각 4개 선택지 (1~4점 배점)</span><br><span style="font-size:11px;color:var(--muted);">→ 문항수와 점수 범위를 명시해야 로직이 생김</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">OUTPUT</td>
+                <td class="cell-value">레벨 판정 + 설명 + 추천 과정</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">총점 계산 → 레벨 배지 + 설명 + 추천 액션 2가지 표시</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">레벨 체계</td>
+                <td class="cell-value">Practitioner → Developer → Architect → Expert</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">5~8점: Practitioner 🌱 / 9~12점: Developer 🔧 / 13~16점: Architect 🏗 / 17~20점: Expert 🚀</span><br><span style="font-size:11px;color:var(--muted);">→ 레벨명·점수구간·이모지까지 명시해야 정확히 구현됨</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">핵심 가치</td>
+                <td class="cell-value">즉각 피드백 + 학습 경로 연결</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">문항 사이 진행 바 / 제출 즉시 레벨·설명·추천 액션 표시</span><br><span style="font-size:11px;color:var(--muted);">→ "즉각"이 progress bar와 결과 즉시표시로 분리 구현됨</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="info-box">
+            <div class="info-label">번역의 핵심</div>
+            <p>레벨 체계처럼 <em>도메인 고유의 분류 기준</em>은 프롬프트에 명시적으로 써야 합니다. AI는 "AX 인증 4레벨"의 내부 로직을 모릅니다 — 기획자가 정의한 규칙을 그대로 텍스트로 넣는 것이 핵심입니다.</p>
+          </div>
+          <div class="prompt-box">
+            <div class="prompt-box-header">
+              <span class="label">Lovable Prompt</span>
+              <button class="copy-btn" onclick="copyPrompt(this, &#39;t4&#39;)">COPY</button>
+            </div>
+            <div class="prompt-text" id="prompt-t4">AX(AI 전환) 역량 자가진단 퀴즈 웹앱을 만들어줘.
+
+총 5문항이며, 각 문항은 4개 선택지 (1~4점 배점):
+
+Q1: "AI 도구를 업무에 얼마나 자주 활용하나요?"
+선택지: 거의 안 씀 / 한두 번 시도해봄 / 가끔 활용 / 매일 활용
+
+Q2: "프롬프트 엔지니어링 경험이 있나요?"
+선택지: 개념을 모름 / 들어는 봤음 / 기본 프롬프트 작성 가능 / 구조화된 고급 프롬프트 작성
+
+Q3: "AI로 업무를 자동화한 경험이 있나요?"
+선택지: 없음 / 계획만 있음 / 1~2가지 부분 자동화 / 여러 워크플로우 자동화
+
+Q4: "AI 결과물의 품질을 팀원에게 설명할 수 있나요?"
+선택지: 불가능 / 기본적인 설명만 가능 / 상세하게 피드백 가능 / 타인을 교육할 수 있음
+
+Q5: "AI 기반 도구를 직접 만들거나 기여한 경험이 있나요?"
+선택지: 없음 / 기획에만 참여 / 구현에 일부 기여 / 프로젝트를 주도함
+
+제출 후 총점(5~20점)으로 레벨 판정:
+- 5~8점: Practitioner 🌱 — "AI 도구를 처음 접하는 단계"
+- 9~12점: Developer 🔧 — "AI 활용을 업무에 적용하기 시작한 단계"
+- 13~16점: Architect 🏗 — "AI 워크플로우를 설계할 수 있는 단계"
+- 17~20점: Expert 🚀 — "AI 시스템을 주도적으로 구축하는 단계"
+
+레벨 배지, 레벨 설명, 추천 다음 액션 2가지 표시.
+문항 사이 진행 바, 전체 한국어 UI, 전문적인 다크 테마.</div>
+          </div>
+          <ul class="checklist" id="cl-t4-2">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 레벨 체계를 프롬프트에 직접 명시해야 하는 이유를 이해했다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 프롬프트를 복사해서 Lovable에 붙여넣었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 생성 완료 후 결과를 확인했다</li>
+          </ul>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t4&#39;,1)">← 이전</button>
+          <button class="btn-next" onclick="goStep(&#39;t4&#39;,3)">다음 →</button>
+        </div>
+      </div>
+      <div class="step-content" id="t4-s3">
+        <div class="step-block">
+          <div class="step-num">STEP 03 / 수정 실습</div>
+          <h3>인증제 연동 버전으로 업그레이드</h3>
+          <p>기본 진단 앱을 LG PRI AX 인증 체계와 연결되는 버전으로 개선해보세요.</p>
+          <div style="display:grid;gap:12px;margin:20px 0;">
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:10px;font-weight:700;color:var(--accent);padding:2px 8px;border:1px solid var(--accent);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">수정 1 · 결과 화면 강화</div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">In the result screen, add a "추천 교육과정" section listing 2 course names and their expected outcomes.</div>
+              <div style="font-size:12px;color:var(--muted);">→ 레벨별 맞춤 교육과정 연결</div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:10px;font-weight:700;color:var(--accent2);padding:2px 8px;border:1px solid var(--accent2);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">수정 2 · 결과 공유</div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">Add a "결과 이미지로 저장" button that creates a shareable card with the level badge and score.</div>
+              <div style="font-size:12px;color:var(--muted);">→ SNS 공유용 결과 카드 생성</div>
+            </div>
+          </div>
+          <ul class="checklist" id="cl-t4-3">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 문항이 하나씩 순서대로 나온다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 결과 화면에 레벨 배지가 나온다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 추천 학습 경로가 표시된다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 수정 프롬프트 1개 이상 적용</li>
+          </ul>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t4&#39;,2)">← 이전</button>
+          <button class="btn-next" onclick="goStep(&#39;t4&#39;,4)">배포 &amp; 체험 →</button>
+        </div>
+      </div>
+      <div class="step-content" id="t4-s4">
+        <div class="step-block">
+          <div class="step-num">STEP 04 / 배포 &amp; 체험</div>
+          <div class="info-box" style="margin-bottom:20px;">
+            <div class="info-label">교육 전 배포 전략</div>
+            <p>교육 1주일 전에 URL을 발송하고, 결과 레벨을 교육 신청 시 입력받으면 수준별 반 편성 자료로 활용 가능합니다.</p>
+          </div>
+          <hr class="divider">
+          <div id="quiz-container">
+            <div id="quiz-question-area"></div>
+          </div>
+          <div class="output-area" id="quiz-output"></div>
+        </div>
+        <div class="badge-area" id="badge-t4" style="display:none">
+          <div class="badge-icon">🎯</div><div class="stars">★★★</div>
+          <div class="badge-title">TASK 04 완료!</div>
+          <div class="badge-sub">AX 자가진단 퀴즈를 직접 만들고 체험했습니다</div>
+          <button class="btn-next" style="margin-top:20px" onclick="showTask(&#39;overview&#39;)">다른 과제 선택하기</button>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t4&#39;,3)">← 이전</button>
+          <button class="btn-next" onclick="completeTask(&#39;t4&#39;)">완료 ✓</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════ TASK 5 ════════ -->
+    <div id="view-t5" class="task-selector">
+      <div class="task-header">
+        <button class="back-btn" onclick="showTask(&#39;overview&#39;)">← 과제 목록으로</button>
+        <div class="task-badge">TASK 05</div>
+        <h2>📋 회의록 액션아이템 추출기</h2>
+        <p>회의록 텍스트를 붙여넣으면 담당자 / 기한 / 할 일을 자동으로 표 형태로 추출 — 공통업무 워크플로우 재설계의 가장 직관적인 예시</p>
+        <div class="tag-row"><span class="tag">공통업무</span><span class="tag">워크플로우</span><span class="tag">Lovable</span></div>
+      </div>
+
+      <div class="instructor-guide">
+        <div class="instructor-guide-header" onclick="toggleIG(this)">
+          <span class="instructor-guide-label">강사 가이드</span>
+          <span class="instructor-guide-toggle">▾ 펼치기</span>
+        </div>
+        <div class="instructor-guide-body">
+          <div class="ig-grid">
+            <div class="ig-item">
+              <div class="ig-label">예상 소요</div>
+              <p>전체 10~12분<br>실제 회의록 사용 시 추가 5분</p>
+            </div>
+            <div class="ig-item">
+              <div class="ig-label">교육 포인트</div>
+              <p>추출 결과가 완벽하지 않아도 됨. "AI가 초안, 사람이 검수"라는 협업 개념 강조</p>
+            </div>
+          </div>
+          <div class="ig-trouble">
+            <strong>자주 막히는 포인트 &amp; 대응</strong>
+            ① 추출 결과가 비어있다 → 샘플 데이터 버튼으로 먼저 체험 후 실제 회의록 입력<br>
+            ② 담당자가 "미정"으로 나온다 → 회의록에 이름이 명확히 없는 경우로, "수동 편집" 개념 설명<br>
+            ③ 우선순위가 다 Medium이다 → "경영진 보고", "긴급" 등 키워드 포함 시 자동 분류됨 안내
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="p-t5" style="width:0%"></div></div>
+      <div class="step-flow" id="flow-t5">
+        <div class="step-pill active" data-step="1" onclick="goStep(&#39;t5&#39;,1)"><span>1</span> 기획</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="2" onclick="goStep(&#39;t5&#39;,2)"><span>2</span> 프롬프트</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="3" onclick="goStep(&#39;t5&#39;,3)"><span>3</span> 수정</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="4" onclick="goStep(&#39;t5&#39;,4)"><span>4</span> 배포</div>
+      </div>
+      <div class="step-content active" id="t5-s1">
+        <div class="step-block">
+          <div class="step-num">STEP 01 / 기획</div>
+          <h3>회의 후 10분을 돌려주는 앱</h3>
+          <p>모든 회의가 끝난 뒤 "누가 뭘 하기로 했더라?"를 정리하는 데 평균 10분이 소요됩니다. 연간으로 환산하면 수십 시간입니다. 이 앱은 그 시간을 10초로 줄입니다.</p>
+          <div class="eval-grid">
+            <div class="eval-item"><div class="eval-label">INPUT</div>회의록 원문 텍스트 (붙여넣기)</div>
+            <div class="eval-item"><div class="eval-label">OUTPUT</div>담당자 / 할 일 / 기한 / 우선순위 표</div>
+            <div class="eval-item"><div class="eval-label">사용자</div>회의 참석자 / 서기 / 팀장</div>
+            <div class="eval-item"><div class="eval-label">핵심 가치</div>정리 시간 90% 단축</div>
+          </div>
+        </div>
+        <div class="step-nav"><button class="btn-next" onclick="goStep(&#39;t5&#39;,2)">다음 →</button></div>
+      </div>
+      <div class="step-content" id="t5-s2">
+        <div class="step-block">
+          <div class="step-num">STEP 02 / 프롬프트 작성</div>
+          <h3>기획 결과를 프롬프트 언어로 번역하기</h3>
+          <div class="mapping-intro">
+            이 앱의 기획 핵심어는 <strong>"회의 후 10분을 10초로"</strong>입니다. 이 단 하나의 가치 제안이 프롬프트 전체의 방향을 결정합니다.
+          </div>
+          <table class="mapping-table">
+            <thead>
+              <tr><th>기획 요소</th><th>기획 내용</th><th class="arrow-cell"></th><th>프롬프트 번역</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cell-label">INPUT</td>
+                <td class="cell-value">회의록 원문 텍스트 (붙여넣기)</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">대형 텍스트 입력창 (회의록 붙여넣기, 한/영 모두 지원)</span><br><span style="font-size:11px;color:var(--muted);">→ "붙여넣기" 행위 → textarea / "한국어" 맥락 → Korean 명시</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">OUTPUT</td>
+                <td class="cell-value">담당자 / 할 일 / 기한 / 우선순위 표</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">표: 할 일 / 담당자 / 기한 / 우선순위 (높음/보통/낮음)</span><br><span style="font-size:11px;color:var(--muted);">→ 기획의 4개 항목이 테이블 컬럼 4개로 1:1 매핑됨</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">사용자</td>
+                <td class="cell-value">회의 참석자 / 서기 / 팀장</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">"CSV 내보내기", "표 복사", "샘플 데이터" 버튼</span><br><span style="font-size:11px;color:var(--muted);">→ "서기"의 공유 니즈 → 내보내기 기능 / "팀장"의 검토 니즈 → 요약 섹션</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">핵심 가치</td>
+                <td class="cell-value">정리 시간 90% 단축</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">"~가 ~할 예정", "담당자:", "~까지" 패턴 자동 인식 / 담당자 불명 시 "미정" 빨간색 표시</span><br><span style="font-size:11px;color:var(--muted);">→ "자동"의 핵심은 파싱 패턴을 명시하는 것 — 이게 없으면 AI가 추측함</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="info-box">
+            <div class="info-label">이 과제의 핵심 번역 원칙</div>
+            <p>텍스트 파싱 앱은 <em>어떤 패턴을 인식할지</em>를 프롬프트에 예시와 함께 명시해야 합니다. "~가 ~할 예정", "담당자:" 같은 실제 회의록 패턴을 직접 써넣는 것 — 이것이 도메인 전문가(HR)만 쓸 수 있는 프롬프트의 힘입니다.</p>
+          </div>
+          <div class="prompt-box">
+            <div class="prompt-box-header">
+              <span class="label">Lovable Prompt</span>
+              <button class="copy-btn" onclick="copyPrompt(this, &#39;t5&#39;)">COPY</button>
+            </div>
+            <div class="prompt-text" id="prompt-t5">회의록 액션아이템 자동 추출 웹앱을 만들어줘.
+
+기능 요구사항:
+- 회의록 텍스트 붙여넣기용 대형 입력창 (한국어/영어 모두 지원)
+- "액션아이템 추출" 버튼
+- 출력: 표 형태 — 할 일 / 담당자 / 기한 / 우선순위 (높음/보통/낮음) 컬럼
+- 다음 패턴 자동 인식: "~가 ~할 예정", "~담당", "~까지", "담당자:", "Action:"
+- 우선순위 색상 배지 (빨강=높음, 노랑=보통, 초록=낮음)
+- "CSV로 내보내기", "표 복사" 버튼
+- 요약 섹션: 총 액션 수, 담당자별 할 일 수 미니 막대 차트
+- 담당자를 특정할 수 없으면 "미정"을 빨간색으로 표시
+- 전문적인 다크 UI, 표 중심 레이아웃
+- 샘플 회의록 자동 채우기 버튼 포함</div>
+          </div>
+          <ul class="checklist" id="cl-t5-2">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 파싱 패턴 명시가 왜 필요한지 이해했다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 프롬프트를 복사해서 Lovable에 붙여넣었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 생성 완료 후 결과를 확인했다</li>
+          </ul>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t5&#39;,1)">← 이전</button>
+          <button class="btn-next" onclick="goStep(&#39;t5&#39;,3)">다음 →</button>
+        </div>
+      </div>
+      <div class="step-content" id="t5-s3">
+        <div class="step-block">
+          <div class="step-num">STEP 03 / 수정 실습</div>
+          <h3>실무 밀착형으로 개선하기</h3>
+          <div style="display:grid;gap:12px;margin:20px 0;">
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:10px;font-weight:700;color:var(--accent);padding:2px 8px;border:1px solid var(--accent);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">수정 1 · 알림 연동</div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">Add a "기한 D-day" column that calculates days remaining from today. Highlight overdue items in red.</div>
+              <div style="font-size:12px;color:var(--muted);">→ D-day 계산 + 기한 초과 강조</div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:10px;font-weight:700;color:var(--accent2);padding:2px 8px;border:1px solid var(--accent2);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">수정 2 · 완료 체크</div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">Add a checkbox in each row. When checked, strikethrough the row and move it to a "완료" section.</div>
+              <div style="font-size:12px;color:var(--muted);">→ 완료 처리 + 완료 섹션 분리</div>
+            </div>
+          </div>
+          <ul class="checklist" id="cl-t5-3">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 추출 버튼 클릭 시 표가 나타난다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 우선순위 색상 배지가 표시된다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> CSV 내보내기가 작동한다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 수정 프롬프트 1개 이상 적용</li>
+          </ul>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t5&#39;,2)">← 이전</button>
+          <button class="btn-next" onclick="goStep(&#39;t5&#39;,4)">배포 &amp; 체험 →</button>
+        </div>
+      </div>
+      <div class="step-content" id="t5-s4">
+        <div class="step-block">
+          <div class="step-num">STEP 04 / 배포 &amp; 체험</div>
+          <div class="info-box" style="margin-bottom:20px;">
+            <div class="info-label">팀 도입 방법</div>
+            <p>팀 회의 후 서기가 회의록을 이 앱에 붙여넣고 → 추출된 표를 캡처해서 공유하는 루틴을 만들어보세요. 3번만 반복하면 팀 문화가 됩니다.</p>
+          </div>
+          <hr class="divider">
+          <h3 style="margin-bottom:8px;">회의록을 붙여넣고 추출해보기</h3>
+          <textarea class="input-field" id="minutes-input" placeholder="회의록을 여기에 붙여넣으세요..." style="min-height:140px;"></textarea>
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <button class="generate-btn" onclick="loadSampleMinutes()" style="background:var(--surface2);color:var(--text);border:1px solid var(--border);">샘플 데이터 불러오기</button>
+            <button class="generate-btn" onclick="extractActions()">액션아이템 추출</button>
+          </div>
+          <div class="output-area" id="minutes-output"></div>
+        </div>
+        <div class="badge-area" id="badge-t5" style="display:none">
+          <div class="badge-icon">📋</div><div class="stars">★★★</div>
+          <div class="badge-title">TASK 05 완료!</div>
+          <div class="badge-sub">회의록 자동화 도구를 직접 만들고 체험했습니다</div>
+          <button class="btn-next" style="margin-top:20px" onclick="showTask(&#39;overview&#39;)">다른 과제 선택하기</button>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t5&#39;,3)">← 이전</button>
+          <button class="btn-next" onclick="completeTask(&#39;t5&#39;)">완료 ✓</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════ TASK 6 ════════ -->
+    <div id="view-t6" class="task-selector">
+      <div class="task-header">
+        <button class="back-btn" onclick="showTask(&#39;overview&#39;)">← 과제 목록으로</button>
+        <div class="task-badge">TASK 06</div>
+        <h2>📝 채용 공고 자동 작성기</h2>
+        <p>직무명과 핵심 역량 키워드를 입력하면 완성된 채용 공고 초안을 즉시 생성 — 채용 업무의 가장 번거로운 첫 단계를 AI가 해결한다</p>
+        <div class="tag-row"><span class="tag">채용</span><span class="tag">리크루팅</span><span class="tag">Lovable</span></div>
+      </div>
+
+      <div class="instructor-guide">
+        <div class="instructor-guide-header" onclick="toggleIG(this)">
+          <span class="instructor-guide-label">강사 가이드</span>
+          <span class="instructor-guide-toggle">▾ 펼치기</span>
+        </div>
+        <div class="instructor-guide-body">
+          <div class="ig-grid">
+            <div class="ig-item">
+              <div class="ig-label">예상 소요</div>
+              <p>전체 12~15분<br>채용 담당자 및 HRBP 대상 특화 과제</p>
+            </div>
+            <div class="ig-item">
+              <div class="ig-label">교육 포인트</div>
+              <p>기존 채용 공고와 AI 생성 공고를 나란히 비교 후 토론. 차이점 발견이 학습 핵심</p>
+            </div>
+          </div>
+          <div class="ig-trouble">
+            <strong>자주 막히는 포인트 &amp; 대응</strong>
+            ① "회사 정보를 어디서 가져오나요?" → 직무 설명 + 조직 맥락만 입력해도 충분함 안내<br>
+            ② 생성 결과가 너무 일반적이다 → 구체적 키워드(기술스택, 팀규모) 추가 입력 유도<br>
+            ③ "실제로 쓸 수 있나요?" → 초안으로 활용, 법적 검토는 별도 필요함을 안내
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="p-t6" style="width:0%"></div></div>
+      <div class="step-flow" id="flow-t6">
+        <div class="step-pill active" data-step="1" onclick="goStep(&#39;t6&#39;,1)"><span>1</span> 기획</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="2" onclick="goStep(&#39;t6&#39;,2)"><span>2</span> 프롬프트</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="3" onclick="goStep(&#39;t6&#39;,3)"><span>3</span> 수정</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="4" onclick="goStep(&#39;t6&#39;,4)"><span>4</span> 배포</div>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="step-content active" id="t6-s1">
+        <div class="step-block">
+          <div class="step-num">STEP 01 / 기획</div>
+          <h3>채용 공고 작성의 어디서 시간이 낭비되는가?</h3>
+          <p>채용 공고 한 건 작성에 평균 2~3시간이 소요됩니다. JD 분석 → 역할 정의 → 문구 작성 → 교정 — 이 모든 과정을 AI가 초안 단계에서 대신합니다.</p>
+          <div class="eval-grid">
+            <div class="eval-item"><div class="eval-label">INPUT</div>직무명 · 팀/조직 설명 · 핵심 역량 키워드 · 우대사항</div>
+            <div class="eval-item"><div class="eval-label">OUTPUT</div>완성된 채용 공고 (포지션 개요 / 담당 업무 / 자격 요건 / 우대사항)</div>
+            <div class="eval-item"><div class="eval-label">사용자</div>채용 담당자 / HRBP</div>
+            <div class="eval-item"><div class="eval-label">핵심 가치</div>작성 시간 80% 단축 + 일관된 공고 품질</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">HR 관점 TIP</div>
+            <p>좋은 채용 공고는 지원자를 거르는 것이 아니라 끌어당깁니다. AI 초안을 기반으로 "우리 팀 문화"를 덧입히는 것이 HR의 역할입니다.</p>
+          </div>
+          <ul class="checklist" id="cl-t6-1">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 앱의 목적과 절약 효과가 이해되었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 입력/출력 구조가 파악되었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> Lovable을 열어 새 프로젝트를 준비했다</li>
+          </ul>
+        </div>
+        <div class="step-nav"><button class="btn-next" onclick="goStep(&#39;t6&#39;,2)">다음 단계 →</button></div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-content" id="t6-s2">
+        <div class="step-block">
+          <div class="step-num">STEP 02 / 프롬프트 작성</div>
+          <h3>기획 결과를 프롬프트 언어로 번역하기</h3>
+          <div class="mapping-intro">
+            채용 공고는 <strong>구조가 명확한 문서</strong>입니다. 구조가 명확할수록 프롬프트로 번역하기 쉽습니다. 4개 섹션이 곧 4개의 프롬프트 출력 지시가 됩니다.
+          </div>
+          <table class="mapping-table">
+            <thead><tr><th>기획 요소</th><th>기획 내용</th><th class="arrow-cell"></th><th>프롬프트 번역</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="cell-label">INPUT</td>
+                <td class="cell-value">직무명 · 팀 설명 · 역량 키워드</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">텍스트 입력창: 직무명, 팀/조직 소개 (2~3문장), 핵심 역량 3~5개 (쉼표 구분), 우대사항</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">OUTPUT</td>
+                <td class="cell-value">4개 섹션 채용 공고</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">포지션 개요 / 담당 업무 5~7개 / 자격 요건 5개 / 우대사항 3개 — 섹션별 구분 출력</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">사용자</td>
+                <td class="cell-value">채용 담당자 (비개발자)</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">한국어 UI / "공고 복사" + "다시 생성" 버튼</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">핵심 가치</td>
+                <td class="cell-value">작성 시간 단축 + 일관된 품질</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">입력 키워드가 공고 전체에 자연스럽게 반영됨 / 전문적인 HR 문체</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="prompt-box">
+            <div class="prompt-box-header">
+              <span class="label">Lovable Prompt — Copy &amp; Paste</span>
+              <button class="copy-btn" onclick="copyPrompt(this, &#39;t6&#39;)">COPY</button>
+            </div>
+            <div class="prompt-text" id="prompt-t6">채용 공고 자동 작성 웹앱을 만들어줘.
+
+기능 요구사항:
+- 입력 항목:
+  - 직무명 (텍스트, 예: "HRD 기획자")
+  - 팀/조직 소개 (텍스트 영역, 2~3문장)
+  - 핵심 역량 키워드 (텍스트, 쉼표로 구분 입력)
+  - 우대사항 키워드 (텍스트, 선택 입력)
+  - 경력 조건 (드롭다운: 신입 / 3년 이상 / 5년 이상 / 경력무관)
+- "공고 생성" 버튼
+- 출력 영역: 4개 섹션으로 구성된 채용 공고
+  - 포지션 개요 (2~3문장, 입력 키워드 반영)
+  - 담당 업무 (불릿 포인트 5~7개)
+  - 자격 요건 (불릿 포인트 5개, 경력 조건 포함)
+  - 우대사항 (불릿 포인트 3개)
+- "공고 복사" 버튼, "다시 생성" 버튼
+- 전문적이고 신뢰감 있는 다크 UI, 한국어 인터페이스
+- 입력된 키워드가 공고 전체에 자연스럽게 녹아드는 HR 전문 문체</div>
+          </div>
+          <ul class="checklist" id="cl-t6-2">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 구조적 문서일수록 프롬프트 번역이 쉬운 이유를 이해했다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 프롬프트를 복사해서 Lovable에 붙여넣었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 생성 완료 후 결과를 확인했다</li>
+          </ul>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t6&#39;,1)">← 이전</button>
+          <button class="btn-next" onclick="goStep(&#39;t6&#39;,3)">다음 →</button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step-content" id="t6-s3">
+        <div class="step-block">
+          <div class="step-num">STEP 03 / 수정 실습</div>
+          <h3>채용 공고를 우리 회사 버전으로 고도화</h3>
+          <div style="display:grid;gap:12px;margin:20px 0;">
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:10px;font-weight:700;color:var(--accent);padding:2px 8px;border:1px solid var(--accent);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">수정 1 · 브랜드 톤 적용</div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">공고 전체 문체를 좀 더 인간적이고 따뜻한 톤으로 바꿔줘. "함께", "성장", "도전"이라는 단어를 자연스럽게 포함해줘.</div>
+              <div style="font-size:12px;color:var(--muted);">→ 회사 브랜드 톤앤매너 반영</div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:10px;font-weight:700;color:var(--accent2);padding:2px 8px;border:1px solid var(--accent2);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">수정 2 · 다국어 버전</div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">Add an "English Version" toggle button that shows the same job posting in English for global recruiting.</div>
+              <div style="font-size:12px;color:var(--muted);">→ 한/영 전환 버튼으로 글로벌 채용 지원</div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:10px;font-weight:700;color:var(--accent3);padding:2px 8px;border:1px solid var(--accent3);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">수정 3 · 히스토리 (선택)</div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">최근 생성된 공고 3개를 직무명 + 생성 시각과 함께 저장하는 히스토리 섹션을 추가해줘.</div>
+              <div style="font-size:12px;color:var(--muted);">→ 과거 공고 이력 관리</div>
+            </div>
+          </div>
+          <ul class="checklist" id="cl-t6-3">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 공고 4개 섹션이 모두 생성된다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 수정 프롬프트 1개 이상 적용했다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 결과물이 실제 채용 공고로 활용 가능한 수준이다</li>
+          </ul>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t6&#39;,2)">← 이전</button>
+          <button class="btn-next" onclick="goStep(&#39;t6&#39;,4)">배포 &amp; 체험 →</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step-content" id="t6-s4">
+        <div class="step-block">
+          <div class="step-num">STEP 04 / 배포 &amp; 체험</div>
+          <h3>지금 바로 공고 초안을 만들어보세요</h3>
+          <div class="info-box" style="margin-bottom:20px;">
+            <div class="info-label">활용 시나리오</div>
+            <p>배포된 앱 URL을 현업 팀장에게 공유 → 팀장이 직접 JD 초안 생성 → HR이 검토·보완하는 협업 워크플로우로 발전 가능</p>
+          </div>
+          <label class="input-label">직무명</label>
+          <input type="text" class="input-field" id="t6-role" placeholder="예: HRD 기획자, 생산기술 엔지니어" style="min-height:0;height:44px;resize:none;">
+          <label class="input-label" style="margin-top:12px;">핵심 역량 키워드 (쉼표로 구분)</label>
+          <input type="text" class="input-field" id="t6-skills" placeholder="예: 교육과정 설계, 데이터 분석, 이해관계자 소통" style="min-height:0;height:44px;resize:none;">
+          <label class="input-label" style="margin-top:12px;">경력 조건</label>
+          <select class="input-field" id="t6-career" style="min-height:0;height:44px;resize:none;">
+            <option value="신입">신입</option>
+            <option value="3년 이상" selected>3년 이상</option>
+            <option value="5년 이상">5년 이상</option>
+            <option value="경력무관">경력무관</option>
+          </select>
+          <button class="generate-btn" onclick="generateJobPosting()">공고 초안 생성</button>
+          <div class="output-area" id="t6-output"></div>
+        </div>
+        <div class="badge-area" id="badge-t6" style="display:none">
+          <div class="badge-icon">📝</div>
+          <div class="stars">★★★</div>
+          <div class="badge-title">TASK 06 완료!</div>
+          <div class="badge-sub">채용 공고 자동 작성기를 직접 만들고 체험했습니다</div>
+          <button class="btn-next" style="margin-top:20px" onclick="showTask(&#39;overview&#39;)">다른 과제 선택하기</button>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t6&#39;,3)">← 이전</button>
+          <button class="btn-next" onclick="completeTask(&#39;t6&#39;)">완료 ✓</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════ TASK 7 ════════ -->
+    <div id="view-t7" class="task-selector">
+      <div class="task-header">
+        <button class="back-btn" onclick="showTask(&#39;overview&#39;)">← 과제 목록으로</button>
+        <div class="task-badge">TASK 07</div>
+        <h2>📊 교육 만족도 분석 대시보드</h2>
+        <p>교육 후기 텍스트를 붙여넣으면 긍정/중립/개선 요청으로 자동 분류하고 핵심 인사이트를 시각화 — HRD 담당자의 보고서 작성 시간을 획기적으로 줄인다</p>
+        <div class="tag-row"><span class="tag">HRD</span><span class="tag">교육효과분석</span><span class="tag">Lovable</span></div>
+      </div>
+
+      <div class="instructor-guide">
+        <div class="instructor-guide-header" onclick="toggleIG(this)">
+          <span class="instructor-guide-label">강사 가이드</span>
+          <span class="instructor-guide-toggle">▾ 펼치기</span>
+        </div>
+        <div class="instructor-guide-body">
+          <div class="ig-grid">
+            <div class="ig-item">
+              <div class="ig-label">예상 소요</div>
+              <p>전체 12~15분<br>HRD / 교육 기획 담당자 대상 특화 과제</p>
+            </div>
+            <div class="ig-item">
+              <div class="ig-label">교육 포인트</div>
+              <p>실제 교육 후기 데이터 지참 유도. 데이터가 없으면 샘플 사용. "숫자 보고서"에서 "인사이트 보고서"로의 전환이 핵심</p>
+            </div>
+          </div>
+          <div class="ig-trouble">
+            <strong>자주 막히는 포인트 &amp; 대응</strong>
+            ① 분류 결과가 맞지 않는다 → AI 분류는 약 80% 정확도, 나머지는 사람이 검수하는 협업 모델 설명<br>
+            ② "어떤 데이터를 써야 하나요?" → 구글폼 응답, 카카오폼 결과, 이메일 피드백 모두 가능<br>
+            ③ 차트가 안 보인다 → 최소 3개 이상의 후기 입력 후 재시도 안내
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="p-t7" style="width:0%"></div></div>
+      <div class="step-flow" id="flow-t7">
+        <div class="step-pill active" data-step="1" onclick="goStep(&#39;t7&#39;,1)"><span>1</span> 기획</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="2" onclick="goStep(&#39;t7&#39;,2)"><span>2</span> 프롬프트</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="3" onclick="goStep(&#39;t7&#39;,3)"><span>3</span> 수정</div>
+        <div class="step-arrow">›</div>
+        <div class="step-pill" data-step="4" onclick="goStep(&#39;t7&#39;,4)"><span>4</span> 배포</div>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="step-content active" id="t7-s1">
+        <div class="step-block">
+          <div class="step-num">STEP 01 / 기획</div>
+          <h3>교육 후기 분석에서 낭비되는 시간</h3>
+          <p>교육 후기 100건을 수동으로 읽고 분류하는 데 평균 3~4시간이 소요됩니다. AI는 이를 10초로 줄이고, 핵심 인사이트까지 자동으로 뽑아냅니다.</p>
+          <div class="eval-grid">
+            <div class="eval-item"><div class="eval-label">INPUT</div>교육 후기 텍스트 (줄바꿈으로 구분, 붙여넣기)</div>
+            <div class="eval-item"><div class="eval-label">OUTPUT</div>긍정/중립/개선요청 분류 + 키워드 빈도 + 핵심 인사이트 3가지</div>
+            <div class="eval-item"><div class="eval-label">사용자</div>HRD 담당자 / 교육 기획자</div>
+            <div class="eval-item"><div class="eval-label">핵심 가치</div>분석 시간 90% 단축 + 근거 기반 개선 방향 도출</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">HRD 관점 TIP</div>
+            <p>만족도 점수(숫자)는 현황을 보여주지만, 텍스트 후기는 "왜"를 알려줍니다. 이 앱은 "왜"를 빠르게 읽어주는 AI 조교입니다.</p>
+          </div>
+          <ul class="checklist" id="cl-t7-1">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 텍스트 분석이 숫자 분석과 다른 이유를 이해했다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 입력/출력 구조가 파악되었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> Lovable을 열어 새 프로젝트를 준비했다</li>
+          </ul>
+        </div>
+        <div class="step-nav"><button class="btn-next" onclick="goStep(&#39;t7&#39;,2)">다음 단계 →</button></div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-content" id="t7-s2">
+        <div class="step-block">
+          <div class="step-num">STEP 02 / 프롬프트 작성</div>
+          <h3>기획 결과를 프롬프트 언어로 번역하기</h3>
+          <div class="mapping-intro">
+            이 앱의 핵심은 <strong>"분류 기준을 프롬프트에 명시"</strong>하는 것입니다. "긍정/중립/개선"이라는 3가지 카테고리가 프롬프트에 정확히 정의되어야 일관된 결과가 나옵니다.
+          </div>
+          <table class="mapping-table">
+            <thead><tr><th>기획 요소</th><th>기획 내용</th><th class="arrow-cell"></th><th>프롬프트 번역</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="cell-label">INPUT</td>
+                <td class="cell-value">교육 후기 텍스트 (줄바꿈 구분)</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">대형 텍스트 영역 + "분석 시작" 버튼 / 샘플 데이터 버튼</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">OUTPUT</td>
+                <td class="cell-value">3분류 + 키워드 + 인사이트</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">파이 차트(긍정%/중립%/개선%) + 상위 키워드 태그 + 인사이트 카드 3장</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">사용자</td>
+                <td class="cell-value">HRD 담당자</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">"보고서 복사" 버튼 / 분류 결과 테이블 포함</span></td>
+              </tr>
+              <tr>
+                <td class="cell-label">핵심 가치</td>
+                <td class="cell-value">분석 시간 단축 + 개선 방향 도출</td>
+                <td class="arrow-cell">→</td>
+                <td><span class="cell-prompt">긍정 키워드와 개선 키워드를 색상으로 구분 / 개선 요청 우선순위 자동 정렬</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="prompt-box">
+            <div class="prompt-box-header">
+              <span class="label">Lovable Prompt — Copy &amp; Paste</span>
+              <button class="copy-btn" onclick="copyPrompt(this, &#39;t7&#39;)">COPY</button>
+            </div>
+            <div class="prompt-text" id="prompt-t7">교육 만족도 후기 텍스트 분석 대시보드 웹앱을 만들어줘.
+
+기능 요구사항:
+- 교육 후기 텍스트 입력창 (줄바꿈으로 각 후기 구분, 대형 textarea)
+- 샘플 데이터 자동 채우기 버튼 포함
+- "분석 시작" 버튼
+- 분석 출력:
+  1. 파이 차트: 긍정 / 중립 / 개선요청 비율 (%)
+  2. 상위 키워드 태그 클라우드 (긍정=초록, 개선=빨강)
+  3. 인사이트 카드 3장:
+     - "가장 많이 칭찬받은 점"
+     - "가장 많이 요청된 개선 사항"
+     - "다음 교육을 위한 추천 액션"
+  4. 후기별 분류 결과 테이블 (후기 / 분류 / 핵심 키워드)
+- "보고서 복사" 버튼 (인사이트 + 통계 텍스트 복사)
+- 다크 UI, 데이터 시각화 중심 레이아웃, 한국어 인터페이스</div>
+          </div>
+          <ul class="checklist" id="cl-t7-2">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 분류 기준을 프롬프트에 명시해야 하는 이유를 이해했다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 프롬프트를 복사해서 Lovable에 붙여넣었다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 생성 완료 후 결과를 확인했다</li>
+          </ul>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t7&#39;,1)">← 이전</button>
+          <button class="btn-next" onclick="goStep(&#39;t7&#39;,3)">다음 →</button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step-content" id="t7-s3">
+        <div class="step-block">
+          <div class="step-num">STEP 03 / 수정 실습</div>
+          <h3>보고서 품질을 경영진 수준으로 끌어올리기</h3>
+          <div style="display:grid;gap:12px;margin:20px 0;">
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:10px;font-weight:700;color:var(--accent);padding:2px 8px;border:1px solid var(--accent);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">수정 1 · 교육 과정명 필드</div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">Add an "교육과정명" input field at the top. Include it in the report header and the copied report text.</div>
+              <div style="font-size:12px;color:var(--muted);">→ 과정명 포함 보고서 자동 완성</div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px;">
+              <div style="font-size:10px;font-weight:700;color:var(--accent2);padding:2px 8px;border:1px solid var(--accent2);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">수정 2 · 트렌드 비교</div>
+              <div style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">Add a second text area to input previous session feedback, then show a comparison bar chart: "이번 vs 지난 회차" 긍정률 비교.</div>
+              <div style="font-size:12px;color:var(--muted);">→ 회차 간 개선 트렌드 시각화</div>
+            </div>
+          </div>
+          <ul class="checklist" id="cl-t7-3">
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 파이 차트가 정상 출력된다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 인사이트 카드 3장이 나타난다</li>
+            <li onclick="toggleCheck(this)"><span class="cb"></span> 수정 프롬프트 1개 이상 적용했다</li>
+          </ul>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t7&#39;,2)">← 이전</button>
+          <button class="btn-next" onclick="goStep(&#39;t7&#39;,4)">배포 &amp; 체험 →</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step-content" id="t7-s4">
+        <div class="step-block">
+          <div class="step-num">STEP 04 / 배포 &amp; 체험</div>
+          <h3>교육 후기를 붙여넣고 분석해보세요</h3>
+          <div class="info-box" style="margin-bottom:20px;">
+            <div class="info-label">활용 시나리오</div>
+            <p>교육 종료 직후 구글폼 응답을 복사해서 이 앱에 붙여넣기 → 분석 결과를 캡처해서 바로 팀장 보고 — 보고서 작성 시간 0분 달성</p>
+          </div>
+          <textarea class="input-field" id="t7-reviews" placeholder="교육 후기를 줄바꿈으로 구분해서 붙여넣으세요..." style="min-height:160px;"></textarea>
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <button class="generate-btn" onclick="loadSampleReviews()" style="background:var(--surface2);color:var(--text);border:1px solid var(--border);">샘플 후기 불러오기</button>
+            <button class="generate-btn" onclick="analyzeReviews()">후기 분석하기</button>
+          </div>
+          <div class="output-area" id="t7-output"></div>
+        </div>
+        <div class="badge-area" id="badge-t7" style="display:none">
+          <div class="badge-icon">📊</div>
+          <div class="stars">★★★</div>
+          <div class="badge-title">TASK 07 완료!</div>
+          <div class="badge-sub">교육 만족도 분석 대시보드를 직접 만들고 체험했습니다</div>
+          <button class="btn-next" style="margin-top:20px" onclick="showTask(&#39;overview&#39;)">다른 과제 선택하기</button>
+        </div>
+        <div class="step-nav">
+          <button class="btn-prev" onclick="goStep(&#39;t7&#39;,3)">← 이전</button>
+          <button class="btn-next" onclick="completeTask(&#39;t7&#39;)">완료 ✓</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /container -->
+
+<script>
+// ── STATE ──
+const state = {
+  currentTask: 'overview',
+  taskSteps: { t1:1, t2:1, t3:1, t4:1, t5:1, t6:1, t7:1 },
+  completedTasks: new Set(),
+  quizAnswers: [],
+  currentQ: 0,
+  selectedMood: null
+};
+
+// ── PERSIST ──
+function saveProgress() {
+  try {
+    localStorage.setItem('hrax_progress', JSON.stringify({
+      currentTask: state.currentTask,
+      taskSteps: state.taskSteps,
+      completedTasks: [...state.completedTasks]
+    }));
+  } catch(e) {}
+}
+
+function loadProgress() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('hrax_progress') || 'null');
+    if (!saved) return;
+    if (saved.completedTasks) {
+      saved.completedTasks.forEach(task => {
+        state.completedTasks.add(task);
+        const navBtn = document.querySelector(`[data-task="${task}"]`);
+        if(navBtn) navBtn.classList.add('done');
+        const bar = document.getElementById(`p-${task}`);
+        if(bar) bar.style.width = '100%';
+      });
+    }
+    if (saved.taskSteps) Object.assign(state.taskSteps, saved.taskSteps);
+    const taskToShow = saved.currentTask || 'overview';
+    showTask(taskToShow, true);
+    if (taskToShow !== 'overview' && saved.taskSteps && saved.taskSteps[taskToShow] > 1) {
+      goStep(taskToShow, saved.taskSteps[taskToShow], true);
+    }
+  } catch(e) {}
+}
+
+// ── NAVIGATION ──
+function showTask(taskId, skipSave) {
+  document.querySelectorAll('.task-selector').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-' + taskId).classList.add('active');
+  document.querySelectorAll('.task-btn').forEach(btn => btn.classList.remove('active'));
+  const btn = document.querySelector(`[data-task="${taskId}"]`);
+  if(btn) btn.classList.add('active');
+  state.currentTask = taskId;
+  const mobileNav = document.getElementById('mobileNavSelect');
+  if(mobileNav) mobileNav.value = taskId;
+  const view = document.getElementById('view-' + taskId);
+  requestAnimationFrame(() => {
+    const anchor = view ? (view.querySelector('.task-header') || view) : null;
+    if (anchor && anchor.scrollIntoView) {
+      anchor.scrollIntoView({ behavior: 'auto', block: 'start' });
+    } else {
+      window.scrollTo(0,0);
+    }
+  });
+  if(taskId === 't4') initQuiz();
+  if(!skipSave) saveProgress();
+}
+
+function goStep(task, step, skipSave) {
+  const total = 4;
+  document.querySelectorAll(`#view-${task} .step-content`).forEach(el => el.classList.remove('active'));
+  const target = document.getElementById(`${task}-s${step}`);
+  if(target) target.classList.add('active');
+
+  document.querySelectorAll(`#flow-${task} .step-pill`).forEach((pill, i) => {
+    pill.classList.remove('active','done');
+    if(i+1 < step) pill.classList.add('done');
+    else if(i+1 === step) pill.classList.add('active');
+  });
+
+  const pct = ((step-1)/(total-1))*100;
+  const bar = document.getElementById(`p-${task}`);
+  if(bar) bar.style.width = pct + '%';
+  state.taskSteps[task] = step;
+  if(!skipSave) saveProgress();
+}
+
+function completeTask(task) {
+  state.completedTasks.add(task);
+  const navBtn = document.querySelector(`[data-task="${task}"]`);
+  if(navBtn) navBtn.classList.add('done');
+  const badge = document.getElementById(`badge-${task}`);
+  if(badge) badge.style.display = 'block';
+  const bar = document.getElementById(`p-${task}`);
+  if(bar) bar.style.width = '100%';
+  saveProgress();
+}
+
+// ── INSTRUCTOR GUIDE TOGGLE ──
+function toggleIG(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.instructor-guide-toggle');
+  if (!body) return;
+  const open = body.classList.toggle('open');
+  header.setAttribute('aria-expanded', open ? 'true' : 'false');
+  body.setAttribute('aria-hidden', open ? 'false' : 'true');
+  if (arrow) arrow.textContent = open ? '▴ 접기' : '▾ 펼치기';
+}
+
+// ── CHECKLIST ──
+function toggleCheck(li) {
+  li.classList.toggle('checked');
+  if(li.classList.contains('checked')) li.querySelector('.cb').textContent = '✓';
+  else li.querySelector('.cb').textContent = '';
+}
+
+// ── COPY PROMPT ──
+function copyPrompt(btn, taskId) {
+  const text = document.getElementById('prompt-' + taskId).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'COPIED!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'COPY'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// ── TASK 1: AGENDA GENERATOR ──
+function generateAgenda() {
+  const name = document.getElementById('t1-name').value || '팀원';
+  const issue = document.getElementById('t1-issue').value || '업무 이슈';
+  const goal = document.getElementById('t1-goal').value;
+
+  const goalMap = {
+    'check-in': ['이번 주 전반적으로 어떻게 지냈나요?', '요즘 가장 에너지가 넘치는 업무는 무엇인가요?'],
+    'performance': ['최근 성과 중 가장 자랑스러운 것은 무엇인가요?', '목표 달성에 어려움이 있다면 어떤 지원이 필요한가요?'],
+    'growth': ['6개월 후 어떤 역량을 키우고 싶나요?', '지금 가장 배우고 싶은 것은 무엇인가요?'],
+    'problem': ['현재 가장 큰 장애물은 무엇인가요?', '내가 어떤 방식으로 도움이 되면 좋겠나요?']
+  };
+
+  const qs = goalMap[goal];
+  const html = `
+    <div style="font-size:13px;color:var(--accent);margin-bottom:16px;font-family:'DM Mono',monospace;">📅 ${name}님과의 1on1 어젠다</div>
+    <div style="display:grid;gap:12px;">
+      ${[
+        {t:'🧊 아이스브레이크', time:'2분', q:`${name}님, 요즘 업무 외에 어떤 것에 관심 가지고 계세요?`},
+        {t:'📋 업무 현황', time:'10분', q:`${issue}와 관련해서 현재 어떤 상황인지 말씀해주세요. 진행 중인 것 중 막히는 부분이 있나요?`},
+        {t:'💬 피드백 & 성장', time:'10분', q:`${qs[0]}<br><small style="color:var(--muted)">${qs[1]}</small>`},
+        {t:'✅ 다음 액션', time:'3분', q:`오늘 대화를 바탕으로 ${name}님이 다음 1주일 안에 할 한 가지 액션을 정해봅시다.`}
+      ].map(s => `
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <span style="font-size:14px;font-weight:600;">${s.t}</span>
+            <span style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;">${s.time}</span>
+          </div>
+          <div style="font-size:13px;color:var(--muted);">${s.q}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+  const out = document.getElementById('t1-output');
+  out.innerHTML = html;
+  out.classList.add('visible');
+}
+
+// ── TASK 2: ROLE IDEAS ──
+const roleIdeas = {
+  '생산기술': [
+    {t:'공정 이상 자동 감지',d:'센서 데이터를 AI로 분석해 이상 패턴 사전 감지',l:'Advanced'},
+    {t:'작업 지시서 자동 생성',d:'조건 입력 시 작업 절차서를 AI가 초안 작성',l:'Medium'},
+    {t:'생산성 리포트 자동화',d:'일일 생산 데이터를 요약 보고서로 자동 변환',l:'Easy'},
+    {t:'불량 원인 분석 어시스트',d:'불량 데이터와 공정 파라미터 상관 분석',l:'Advanced'},
+    {t:'기술 문서 검색 AI',d:'방대한 기술 문서를 자연어로 검색',l:'Easy'},
+    {t:'교육 훈련 콘텐츠 생성',d:'신규 공정 투입 시 온보딩 자료 자동 제작',l:'Medium'},
+    {t:'시뮬레이션 결과 해석',d:'CAE 시뮬레이션 결과를 비전문가 언어로 요약',l:'Medium'},
+    {t:'특허 선행조사 자동화',d:'키워드 기반 특허 검색 및 유사도 분석',l:'Advanced'},
+    {t:'설비 메뉴얼 Q&A 봇',d:'설비 매뉴얼을 학습한 AI에게 질문',l:'Easy'},
+    {t:'개선 아이디어 수집 플랫폼',d:'현장 개선 제안을 AI가 카테고리화 및 우선순위화',l:'Easy'}
+  ],
+  '품질관리': [
+    {t:'외관 불량 자동 검사',d:'카메라 + Vision AI로 불량품 자동 선별',l:'Advanced'},
+    {t:'검사 성적서 자동 생성',d:'측정 데이터 입력 시 성적서 자동 완성',l:'Easy'},
+    {t:'고객 클레임 패턴 분석',d:'누적 클레임 데이터에서 반복 패턴 추출',l:'Medium'},
+    {t:'SPC 이상 신호 알림',d:'관리도 이상 신호를 AI가 자동 분류 및 알림',l:'Medium'},
+    {t:'규격서 변경 영향 분석',d:'규격 변경 시 영향 받는 공정 자동 파악',l:'Advanced'},
+    {t:'불량률 예측 모델',d:'과거 데이터 기반 다음 달 불량률 예측',l:'Advanced'},
+    {t:'검사 기준서 자동 번역',d:'글로벌 납품용 품질 문서 다국어 자동 번역',l:'Easy'},
+    {t:'측정 데이터 이상값 탐지',d:'수기 입력 데이터의 오류 자동 플래깅',l:'Easy'},
+    {t:'공급업체 품질 리포트',d:'협력사별 품질 트렌드 자동 분석 및 보고',l:'Medium'},
+    {t:'품질 교육 퀴즈 생성',d:'품질 매뉴얼 기반 교육 테스트 자동 출제',l:'Easy'}
+  ],
+  '설비/유지보수': [
+    {t:'예지보전 알고리즘',d:'진동/온도 데이터로 고장 시점 사전 예측',l:'Advanced'},
+    {t:'고장 원인 진단 봇',d:'증상 입력 시 원인 후보 및 해결책 제시',l:'Medium'},
+    {t:'정비 이력 자동 정리',d:'정비 완료 후 보고서를 자동 구조화',l:'Easy'},
+    {t:'부품 재고 최적화',d:'소모품 교체 주기 기반 자동 발주 추천',l:'Medium'},
+    {t:'설비 가동률 대시보드',d:'OEE 데이터를 실시간 시각화',l:'Easy'},
+    {t:'작업자 안전 체크 AI',d:'정비 전 안전 수칙 체크리스트 AI 생성',l:'Easy'},
+    {t:'설비 도면 검색 시스템',d:'자연어로 설비 도면 및 사양 검색',l:'Medium'},
+    {t:'에너지 사용 최적화',d:'설비별 전력 소비 패턴 분석 및 절감 제안',l:'Advanced'},
+    {t:'유지보수 일정 자동 수립',d:'생산 계획과 연동한 PM 스케줄 자동화',l:'Medium'},
+    {t:'기술 노하우 디지털화',d:'숙련자 경험을 AI 인터뷰로 구조화 저장',l:'Advanced'}
+  ],
+  'HR/교육': [
+    {t:'교육 자료 자동 생성',d:'주제 입력 시 슬라이드 초안 및 스크립트 생성',l:'Easy'},
+    {t:'역량 평가 자동 분석',d:'평가 결과 데이터를 패턴 분석하여 인사이트 도출',l:'Medium'},
+    {t:'1on1 어젠다 생성기',d:'팀원 정보 기반 맞춤형 미팅 어젠다 자동 생성',l:'Easy'},
+    {t:'AX 역량 자가진단',d:'5문항으로 AI 활용 레벨 즉시 판정',l:'Easy'},
+    {t:'채용 공고 최적화',d:'직무 분석 기반 채용 공고 자동 작성',l:'Medium'},
+    {t:'조직 건강도 분석',d:'Pulse Check 데이터를 AI가 인사이트로 변환',l:'Advanced'},
+    {t:'교육 수요 조사 분석',d:'수요 조사 응답을 자동 분류 및 우선순위화',l:'Easy'},
+    {t:'인터뷰 질문 생성',d:'직무 및 역량 기반 면접 질문 자동 생성',l:'Easy'},
+    {t:'교육 효과 예측 모델',d:'수강 이력 기반 과정 추천 및 효과 예측',l:'Advanced'},
+    {t:'HR 리포트 자동화',d:'주요 HR 지표를 자동 집계하여 경영진 보고',l:'Medium'}
+  ],
+  '구매/조달': [
+    {t:'견적서 자동 비교 분석',d:'다수 업체 견적을 AI가 항목별 비교 정리',l:'Easy'},
+    {t:'계약서 리스크 탐지',d:'계약서 텍스트에서 불리한 조항 자동 하이라이트',l:'Advanced'},
+    {t:'공급업체 평가 자동화',d:'납기/품질/가격 데이터 기반 자동 스코어링',l:'Medium'},
+    {t:'발주 수요 예측',d:'과거 구매 이력으로 다음 분기 소요량 예측',l:'Advanced'},
+    {t:'구매 요청서 자동 작성',d:'품목 코드 입력 시 구매 요청서 자동 완성',l:'Easy'},
+    {t:'시장 가격 모니터링',d:'원자재 가격 변동을 자동 수집 및 알림',l:'Medium'},
+    {t:'납품 지연 예측',d:'공급망 데이터로 납기 리스크 사전 감지',l:'Advanced'},
+    {t:'카탈로그 검색 AI',d:'자연어로 구매 가능 품목 검색',l:'Easy'},
+    {t:'협상 자료 자동 생성',d:'업체별 거래 이력 분석 기반 협상 브리핑',l:'Medium'},
+    {t:'ESG 공급망 평가',d:'협력사 ESG 정보를 수집·분석하여 위험 평가',l:'Advanced'}
+  ],
+  '연구개발': [
+    {t:'논문·특허 자동 요약',d:'최신 논문/특허를 AI가 핵심만 추출해 요약',l:'Easy'},
+    {t:'실험 데이터 패턴 분석',d:'대규모 실험 결과에서 유의미한 패턴 자동 발굴',l:'Advanced'},
+    {t:'선행기술 조사 자동화',d:'키워드 기반 특허·논문 검색 및 유사도 분석',l:'Medium'},
+    {t:'연구 제안서 초안 생성',d:'연구 배경·목적·방법론 구조에 맞춰 초안 작성',l:'Easy'},
+    {t:'실험 설계 아이디어 도출',d:'연구 목적 입력 시 가설·변수 설계 제안',l:'Medium'},
+    {t:'다국어 기술 문서 번역',d:'영문 기술 문서를 한국어로 정확하게 자동 번역',l:'Easy'},
+    {t:'데이터 시각화 자동 생성',d:'실험 결과 데이터를 그래프·차트로 즉시 변환',l:'Easy'},
+    {t:'경쟁사 기술 동향 모니터링',d:'웹·논문 데이터 기반 경쟁사 R&D 트렌드 추적',l:'Advanced'},
+    {t:'연구 진행 보고서 자동화',d:'실험 기록을 기반으로 주간 진행 보고서 생성',l:'Medium'},
+    {t:'아이디어 유효성 검토 AI',d:'신규 아이디어의 기술적 실현 가능성 1차 검토',l:'Medium'}
+  ],
+  '안전관리': [
+    {t:'위험성 평가 자동 작성',d:'작업 조건 입력 시 위험 요인·대책 자동 작성',l:'Medium'},
+    {t:'사고 사례 분석 AI',d:'과거 사고 데이터에서 원인 패턴 및 예방책 추출',l:'Advanced'},
+    {t:'안전 교육 콘텐츠 생성',d:'직무별 맞춤 안전 교육 자료 자동 제작',l:'Easy'},
+    {t:'안전 점검표 자동 생성',d:'설비·공정 정보 기반 점검 체크리스트 자동화',l:'Easy'},
+    {t:'아차사고 패턴 탐지',d:'아차사고 보고 데이터에서 재발 위험 패턴 도출',l:'Advanced'},
+    {t:'법규 준수 여부 자동 확인',d:'산업안전보건법 기준 자동 비교 검토',l:'Medium'},
+    {t:'응급 대응 가이드 AI',d:'사고 유형 입력 시 즉각 대응 절차 안내',l:'Easy'},
+    {t:'CCTV 이상 행동 감지',d:'Vision AI로 안전모 미착용·위험 행동 실시간 감지',l:'Advanced'},
+    {t:'안전 개선 제안 수집',d:'현장 제안을 AI가 카테고리화 및 우선순위화',l:'Easy'},
+    {t:'유해물질 노출 리스크 분석',d:'작업 환경 데이터 기반 건강 위험도 자동 평가',l:'Advanced'}
+  ]
+};
+
+const diffColor = {Easy:'#47ff8a',Medium:'#e8ff47',Advanced:'#ff6b6b'};
+
+function showRoleIdeas(role) {
+  const ideas = roleIdeas[role];
+  if(!ideas) return;
+  document.getElementById('ideas-output').style.display = 'block';
+  document.getElementById('ideas-role-label').textContent = `${role} — AI 활용 아이디어 ${ideas.length}가지`;
+  const grid = document.getElementById('ideas-grid');
+  grid.innerHTML = ideas.map(i => `
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:14px;transition:all 0.2s;cursor:default;"
+         onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px;">${i.t}</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:10px;">${i.d}</div>
+      <span style="font-size:10px;font-weight:700;color:${diffColor[i.l]};border:1px solid ${diffColor[i.l]};padding:2px 8px;border-radius:2px;font-family:'DM Mono',monospace;">${i.l}</span>
+    </div>
+  `).join('');
+}
+
+// ── TASK 3: MOOD ──
+function selectMood(btn, emoji) {
+  document.querySelectorAll('#moodPicker .eval-item').forEach(b => {
+    b.classList.remove('selected');
+    b.setAttribute('aria-pressed', 'false');
+  });
+  btn.classList.add('selected');
+  btn.setAttribute('aria-pressed', 'true');
+  state.selectedMood = emoji;
+}
+
+function submitMood() {
+  if(!state.selectedMood) { alert('이모지를 선택해주세요!'); return; }
+  const comment = document.getElementById('mood-comment').value;
+  const moodLabel = {'😄':'최고에요','🙂':'괜찮아요','😐':'보통이에요','😔':'힘들어요','😤':'스트레스받아요'};
+  const out = document.getElementById('mood-output');
+  out.innerHTML = `
+    <div style="text-align:center;padding:16px 0;">
+      <div style="font-size:48px;margin-bottom:12px;">${state.selectedMood}</div>
+      <div style="font-size:16px;font-weight:600;margin-bottom:8px;">"${moodLabel[state.selectedMood]}"</div>
+      ${comment ? `<div style="font-size:13px;color:var(--muted);margin-bottom:16px;">"${comment}"</div>` : ''}
+      <div style="font-size:13px;color:var(--accent);">✓ 익명으로 제출되었습니다</div>
+      <hr style="border-color:var(--border);margin:20px 0;">
+      <div style="font-size:12px;color:var(--muted);text-align:left;margin-bottom:8px;">오늘 팀 감정 분포 (데모)</div>
+      <div style="display:flex;gap:8px;align-items:flex-end;height:60px;margin-bottom:8px;">
+        ${[['😄',65],['🙂',20],['😐',10],['😔',3],['😤',2]].map(([e,v])=>`
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;">
+            <div style="font-size:9px;color:var(--muted);">${v}%</div>
+            <div style="width:100%;background:var(--accent);border-radius:2px 2px 0 0;height:${v*0.55}px;opacity:0.7;transition:height 0.5s;"></div>
+            <div style="font-size:16px;">${e}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  out.classList.add('visible');
+}
+
+// ── TASK 4: QUIZ ──
+const quizData = [
+  {q:'AI 도구를 업무에 얼마나 자주 활용하나요?', opts:['거의 안 씀','한두 번 시도해봄','가끔 활용','매일 활용']},
+  {q:'프롬프트 엔지니어링 경험이 있나요?', opts:['개념 자체를 모름','들어는 봤음','기본 프롬프트 작성 가능','구조화된 고급 프롬프트 작성']},
+  {q:'AI로 업무를 자동화한 경험이 있나요?', opts:['없음','계획만 있음','1~2가지 부분 자동화','여러 워크플로우 자동화']},
+  {q:'AI 결과물의 품질을 팀원에게 설명할 수 있나요?', opts:['불가능','기본적인 설명만 가능','상세하게 피드백 가능','타인을 교육할 수 있음']},
+  {q:'AI 기반 도구를 직접 만들거나 기여한 경험이 있나요?', opts:['없음','기획에만 참여','구현에 일부 기여','프로젝트를 주도함']}
+];
+
+const levelMap = [
+  {score:[5,8], level:'Practitioner 🌱', desc:'AI 도구를 처음 접하는 단계입니다. 기본 도구 체험부터 시작해보세요.', next:['ChatGPT/Claude 기본 사용법 실습','업무에 AI 하나 적용해보기']},
+  {score:[9,12], level:'Developer 🔧', desc:'AI 활용을 업무에 적용하기 시작한 단계입니다. 프롬프트 품질을 높여보세요.', next:['프롬프트 엔지니어링 심화 학습','Lovable/No-code 툴로 간단한 앱 만들기']},
+  {score:[13,16], level:'Architect 🏗', desc:'AI 워크플로우를 설계할 수 있는 단계입니다. 자동화 범위를 넓혀보세요.', next:['AI Agent 설계 및 구현','업무 자동화 사례 발표 및 공유']},
+  {score:[17,20], level:'Expert 🚀', desc:'AI 시스템을 주도적으로 구축하는 단계입니다. 조직 내 AX 리더로 활동하세요.', next:['내부 AX 강사 활동','AI SaaS 프로토타입 기획 및 개발']}
+];
+
+function initQuiz() {
+  state.quizAnswers = [];
+  state.currentQ = 0;
+  renderQuestion();
+  document.getElementById('quiz-output').classList.remove('visible');
+  document.getElementById('quiz-output').innerHTML = '';
+}
+
+function renderQuestion() {
+  const container = document.getElementById('quiz-question-area');
+  if(state.currentQ >= quizData.length) { showQuizResult(); return; }
+  const q = quizData[state.currentQ];
+  container.innerHTML = `
+    <div style="margin-bottom:12px;">
+      <div style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:8px;">Q${state.currentQ+1} / ${quizData.length}</div>
+      <div style="background:var(--border);height:3px;border-radius:2px;margin-bottom:16px;overflow:hidden;">
+        <div style="width:${((state.currentQ)/quizData.length)*100}%;height:100%;background:var(--accent);transition:width 0.3s;"></div>
+      </div>
+      <div style="font-size:16px;font-weight:600;margin-bottom:16px;">${q.q}</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        ${q.opts.map((o,i) => `
+          <button onclick="answerQ(${i+1})" style="text-align:left;padding:12px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:14px;cursor:pointer;font-family:'Pretendard',sans-serif;transition:all 0.15s;"
+            onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'"
+            onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text)'">
+            <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-right:10px;">${String.fromCharCode(64+i+1)}</span>${o}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function answerQ(score) {
+  state.quizAnswers.push(score);
+  state.currentQ++;
+  renderQuestion();
+}
+
+function showQuizResult() {
+  const total = state.quizAnswers.reduce((a,b)=>a+b,0);
+  const lv = levelMap.find(l => total >= l.score[0] && total <= l.score[1]) || levelMap[levelMap.length-1];
+  document.getElementById('quiz-question-area').innerHTML = '';
+  const out = document.getElementById('quiz-output');
+  out.innerHTML = `
+    <div style="text-align:center;">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:4px;font-family:'DM Mono',monospace;">총점 ${total} / 20</div>
+      <div style="font-size:24px;font-weight:700;color:var(--accent);margin:12px 0;">${lv.level}</div>
+      <div style="font-size:14px;color:var(--muted);margin-bottom:20px;">${lv.desc}</div>
+      <hr style="border-color:var(--border);margin:16px 0;">
+      <div style="text-align:left;">
+        <div style="font-size:12px;color:var(--accent2);margin-bottom:8px;font-family:'DM Mono',monospace;">추천 다음 액션</div>
+        ${lv.next.map(n=>`<div style="font-size:13px;color:var(--muted);padding:8px 0;border-bottom:1px solid var(--border);">→ ${n}</div>`).join('')}
+      </div>
+      <button onclick="initQuiz()" style="margin-top:16px;background:transparent;border:1px solid var(--border);color:var(--muted);padding:8px 16px;border-radius:2px;cursor:pointer;font-family:'Pretendard',sans-serif;font-size:13px;">다시 진단하기</button>
+    </div>
+  `;
+  out.classList.add('visible');
+}
+
+// ── TASK 5: MINUTES ──
+const sampleMinutes = `[2026년 3월 6일 AX 추진팀 주간 미팅]
+참석: 김팀장, 이대리, 박사원, 최주임
+
+1. Vibe-Coding 교육 커리큘럼 관련
+- 이대리가 3월 14일까지 1차 초안 작성 예정
+- 박사원은 Lovable 실습 예제 5개 이번 주 금요일까지 준비
+- 최주임이 수강 신청 시스템 연동 여부 다음 주 수요일까지 확인
+
+2. Pulse Check 시스템
+- 김팀장이 3월 말까지 경영진 보고 자료 준비
+- 이대리가 설문 문항 초안 검토 후 이번 주 중 공유
+
+3. 기타
+- 팀 전체 AI 툴 체험 세션 일정 미정 (담당자 미정)`;
+
+function loadSampleMinutes() {
+  document.getElementById('minutes-input').value = sampleMinutes;
+}
+
+function extractActions() {
+  const text = document.getElementById('minutes-input').value;
+  if(!text.trim()) { alert('회의록을 입력해주세요.'); return; }
+
+  const actions = [];
+  const lines = text.split('\n');
+
+  // 소제목 패턴: "1.", "2.", "1)", "가.", "[..." 등으로 시작하는 섹션 제목
+  const isSectionHeading = (s) =>
+    /^\d+[\.\)]\s+\S/.test(s) ||   // 숫자 소제목 (예: "1. 주제")
+    /^[가-힣]+[\.\)]\s/.test(s) ||  // 한글 소제목 (예: "가. 주제")
+    s.startsWith('[') ||             // [날짜/회의명]
+    /^참석/.test(s) ||               // 참석자 라인
+    s.length < 6;                    // 너무 짧은 라인 (빈 제목 등)
+
+  lines.forEach(line => {
+    const trimmed = line.trim();
+    if(!trimmed || isSectionHeading(trimmed)) return;
+
+    // 액션아이템 키워드가 없으면 스킵
+    const actionKeywords = ['예정','준비','작성','확인','공유','검토','진행','완료','보고','수립','제출'];
+    if(!actionKeywords.some(k => trimmed.includes(k))) return;
+
+    let assignee = '미정';
+    let task = trimmed.replace(/^[-\*]\s*/, ''); // 불릿 기호 제거
+    let due = '미정';
+    let priority = 'Medium';
+
+    // 담당자 추출: "- 이대리가", "김팀장이" 등
+    const personMatch = trimmed.match(/([가-힣]{2,4})(팀장|대리|사원|주임|과장|차장|부장|책임|수석)?(?=이|가)/);
+    if(personMatch) assignee = personMatch[1] + (personMatch[2]||'');
+
+    // 기한 추출
+    const dueMatch = trimmed.match(/(\d+월\s*\d+일|이번\s*주\s*[가-힣]+요일?|다음\s*주\s*[가-힣]+요일?|[가-힣]+\s*말|[가-힣]+\s*중|[가-힣]+\s*까지)/);
+    if(dueMatch) due = dueMatch[0];
+
+    // 우선순위 판단
+    if(trimmed.includes('경영진') || trimmed.includes('보고') || trimmed.includes('즉시') || trimmed.includes('긴급')) priority = 'High';
+    else if(trimmed.includes('미정') || trimmed.includes('검토')) priority = 'Low';
+
+    actions.push({task: task.substring(0, 60), assignee, due, priority});
+  });
+
+  if(actions.length === 0) {
+    actions.push({task:'자동 추출 결과 없음 — 샘플 데이터를 사용해보세요', assignee:'미정', due:'미정', priority:'Low'});
+  }
+
+  const pColor = {High:'#ff6b6b',Medium:'#e8ff47',Low:'#47ff8a'};
+  const out = document.getElementById('minutes-output');
+  out.innerHTML = `
+    <div style="font-size:12px;color:var(--accent);margin-bottom:12px;font-family:'DM Mono',monospace;">✓ 액션아이템 ${actions.length}개 추출</div>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border);">
+            <th style="text-align:left;padding:8px 12px;color:var(--muted);font-weight:600;">할 일</th>
+            <th style="text-align:left;padding:8px 12px;color:var(--muted);font-weight:600;">담당자</th>
+            <th style="text-align:left;padding:8px 12px;color:var(--muted);font-weight:600;">기한</th>
+            <th style="text-align:left;padding:8px 12px;color:var(--muted);font-weight:600;">우선순위</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${actions.map(a => `
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:10px 12px;">${a.task}</td>
+              <td style="padding:10px 12px;${a.assignee==='미정'?'color:#ff6b6b':''}">${a.assignee}</td>
+              <td style="padding:10px 12px;color:var(--muted);">${a.due}</td>
+              <td style="padding:10px 12px;"><span style="font-size:11px;font-weight:700;color:${pColor[a.priority]};border:1px solid ${pColor[a.priority]};padding:2px 8px;border-radius:2px;font-family:'DM Mono',monospace;">${a.priority}</span></td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+  out.classList.add('visible');
+}
+
+// ── TASK 6: JOB POSTING ──
+function generateJobPosting() {
+  const role = document.getElementById('t6-role').value || '미입력 직무';
+  const skills = document.getElementById('t6-skills').value || '커뮤니케이션, 문제 해결, 협업';
+  const career = document.getElementById('t6-career').value;
+  const skillList = skills.split(',').map(s => s.trim()).filter(Boolean);
+  const out = document.getElementById('t6-output');
+  out.innerHTML = `
+    <div style="font-size:12px;color:var(--accent);margin-bottom:16px;font-family:'DM Mono',monospace;">📄 ${role} 채용 공고 초안</div>
+    <div style="display:grid;gap:14px;">
+      ${[
+        {title:'포지션 개요', content:`저희 팀은 <strong style="color:var(--text)">${role}</strong>를 모집합니다. ${skillList.slice(0,2).join('과 ')} 역량을 갖추고, 빠르게 변화하는 환경에서 주도적으로 성장할 인재를 찾습니다. 함께 더 나은 조직을 만들어갈 분을 기다립니다.`},
+        {title:'담당 업무', content: skillList.map(s=>`• ${s} 관련 업무 기획 및 실행`).join('<br>') + '<br>• 유관 부서와의 협업 및 프로젝트 관리<br>• 결과 분석 및 개선 방향 도출'},
+        {title:'자격 요건', content:`• 경력 ${career}<br>• ${skillList[0]||'관련 분야'} 실무 경험 보유자<br>• 데이터 기반 의사결정 가능자<br>• 원활한 대내외 커뮤니케이션 능력<br>• 주도적이고 책임감 있는 업무 태도`},
+        {title:'우대사항', content:`• ${skillList[1]||'관련 자격증'} 경험자<br>• AI/자동화 도구 활용 경험자<br>• 관련 프로젝트 성과 보유자`}
+      ].map(s=>`
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px;">
+          <div style="font-size:11px;color:var(--accent);font-family:'DM Mono',monospace;margin-bottom:8px;">${s.title}</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.8;">${s.content}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+  out.classList.add('visible');
+}
+
+// ── TASK 7: REVIEW ANALYSIS ──
+const sampleReviews = `강사님 설명이 너무 명확하고 이해가 잘 됐어요. 실습 위주라 좋았습니다.
+사례가 실무와 직결돼서 바로 쓸 수 있을 것 같아요. 만족합니다.
+시간이 너무 짧았어요. 내용은 좋은데 좀 더 깊게 다뤄줬으면 했습니다.
+강의 속도가 빨라서 따라가기 힘들었어요. 자료를 미리 줬으면 좋겠습니다.
+AI 활용법을 이렇게 쉽게 배울 수 있을지 몰랐어요. 정말 유익했습니다.
+실습 시간이 더 있었으면 좋겠어요. 이론보다 직접 해보는 게 훨씬 도움돼요.
+팀별 실습이 가장 인상 깊었습니다. 다음에도 이런 방식으로 진행해주세요.
+내용이 너무 기초적이었어요. 심화 과정도 개설해주시면 좋겠습니다.`;
+
+function loadSampleReviews() {
+  document.getElementById('t7-reviews').value = sampleReviews;
+}
+
+function analyzeReviews() {
+  const text = document.getElementById('t7-reviews').value;
+  if(!text.trim()) { alert('후기를 입력해주세요.'); return; }
+  const reviews = text.split('\n').map(r=>r.trim()).filter(Boolean);
+  const total = reviews.length;
+
+  const positiveKw = ['좋','만족','유익','명확','도움','인상','이해','최고','훌륭','감사'];
+  const negativeKw = ['짧','빠르','어렵','아쉽','부족','기초적','힘들','미흡'];
+
+  let pos=0, neg=0, neu=0;
+  const classified = reviews.map(r => {
+    const isPos = positiveKw.some(k=>r.includes(k));
+    const isNeg = negativeKw.some(k=>r.includes(k));
+    if(isPos && !isNeg) { pos++; return {r, label:'긍정', color:'#47ff8a'}; }
+    if(isNeg) { neg++; return {r, label:'개선요청', color:'#ff6b6b'}; }
+    neu++; return {r, label:'중립', color:'#e8ff47'};
+  });
+
+  const posP = Math.round(pos/total*100);
+  const negP = Math.round(neg/total*100);
+  const neuP = 100-posP-negP;
+
+  const out = document.getElementById('t7-output');
+  out.innerHTML = `
+    <div style="font-size:12px;color:var(--accent);margin-bottom:16px;font-family:'DM Mono',monospace;">✓ 후기 ${total}건 분석 완료</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;">
+      ${[['긍정','#47ff8a',posP],['중립','#e8ff47',neuP],['개선요청','#ff6b6b',negP]].map(([l,c,p])=>`
+        <div style="background:var(--surface);border:1px solid ${c}33;border-radius:4px;padding:14px;text-align:center;">
+          <div style="font-size:24px;font-weight:700;color:${c};">${p}%</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px;">${l}</div>
+        </div>
+      `).join('')}
+    </div>
+    <div style="display:grid;gap:10px;margin-bottom:16px;">
+      ${[
+        {title:'가장 많이 칭찬받은 점', color:'#47ff8a', text: pos>0 ? '실습 중심 구성과 강사 설명의 명확성이 반복적으로 언급되었습니다.' : '긍정 피드백이 부족합니다.'},
+        {title:'가장 많이 요청된 개선 사항', color:'#ff6b6b', text: neg>0 ? '교육 시간 연장 및 실습 비중 확대, 사전 자료 배포에 대한 요청이 많았습니다.' : '개선 요청이 없습니다.'},
+        {title:'다음 교육을 위한 추천 액션', color:'var(--accent2)', text:'① 실습 시간 20% 확대 ② 사전 자료 1주일 전 배포 ③ 수준별 트랙 분리 운영 검토'}
+      ].map(i=>`
+        <div style="background:var(--surface);border-left:3px solid ${i.color};border-radius:0 4px 4px 0;padding:14px;">
+          <div style="font-size:11px;font-weight:700;color:${i.color};font-family:'DM Mono',monospace;margin-bottom:6px;">${i.title}</div>
+          <div style="font-size:13px;color:var(--muted);">${i.text}</div>
+        </div>
+      `).join('')}
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:8px;font-family:'DM Mono',monospace;">후기별 분류 결과</div>
+    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <thead><tr style="border-bottom:1px solid var(--border);">
+        <th style="text-align:left;padding:6px 10px;color:var(--muted);">후기</th>
+        <th style="text-align:left;padding:6px 10px;color:var(--muted);width:80px;">분류</th>
+      </tr></thead>
+      <tbody>${classified.map(c=>`
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:8px 10px;color:var(--muted);font-size:12px;">${c.r.substring(0,60)}${c.r.length>60?'…':''}</td>
+          <td style="padding:8px 10px;"><span style="font-size:10px;font-weight:700;color:${c.color};border:1px solid ${c.color};padding:2px 6px;border-radius:2px;font-family:'DM Mono',monospace;">${c.label}</span></td>
+        </tr>
+      `).join('')}</tbody>
+    </table></div>
+  `;
+  out.classList.add('visible');
+}
+
+// ── INIT ──
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-task]').forEach(btn => {
+    btn.addEventListener('click', () => showTask(btn.dataset.task));
+  });
+
+  document.querySelectorAll('.output-area').forEach(el => {
+    el.setAttribute('aria-live', 'polite');
+    el.setAttribute('aria-atomic', 'true');
+  });
+
+  document.querySelectorAll('.overview-card').forEach(card => {
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    const title = card.querySelector('.card-title');
+    if (title) card.setAttribute('aria-label', title.innerText.replace(/\s+/g, ' ').trim());
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
+
+  document.querySelectorAll('#moodPicker .eval-item').forEach(btn => {
+    btn.setAttribute('aria-pressed', 'false');
+  });
+
+  document.querySelectorAll('.instructor-guide-header').forEach((header, idx) => {
+    const body = header.nextElementSibling;
+    header.setAttribute('role', 'button');
+    header.setAttribute('tabindex', '0');
+    header.setAttribute('aria-expanded', 'false');
+    if (body) {
+      if (!body.id) body.id = 'ig-' + (idx + 1);
+      body.setAttribute('aria-hidden', 'true');
+      header.setAttribute('aria-controls', body.id);
+    }
+    header.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleIG(header);
+      }
+    });
+  });
+
+  loadProgress();
+  const mobileNav = document.getElementById('mobileNavSelect');
+  if (mobileNav) mobileNav.value = state.currentTask;
+});
+</script>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav">
+  <span class="mobile-nav-label">과제</span>
+  <select class="mobile-nav-select" id="mobileNavSelect" onchange="showTask(this.value)">
+    <option value="overview">과제 목록</option>
+    <option value="t1">01 · 1on1 어젠다 생성기</option>
+    <option value="t2">02 · AI 활용 브레인스토머</option>
+    <option value="t3">03 · 팀 감정 온도계</option>
+    <option value="t4">04 · AX 레벨 자가진단</option>
+    <option value="t5">05 · 회의록 액션아이템 추출</option>
+    <option value="t6">06 · 채용 공고 자동 작성기</option>
+    <option value="t7">07 · 교육 만족도 분석</option>
+  </select>
+</div>
+
+</body></html>
+
+
+
+
+
+
+
+
+
+
+
+
