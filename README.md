@@ -28,6 +28,27 @@
 - 스타일 수정: 동일 파일의 `<style>` 영역 수정
 - 데이터/로직 수정: 동일 파일의 `<script>` 영역 수정
 
+
+## Vercel 배포로 현재 단계 확인하기
+현재 리포는 정적 파일(`index.html`) 기반이므로 Vercel에 바로 배포해 확인할 수 있습니다.
+
+### 방법 1) Vercel 웹 UI
+1. Git 저장소를 Vercel에 Import 합니다.
+2. Framework Preset은 `Other`(또는 자동 감지)로 둡니다.
+3. Build Command는 비워두고, Output Directory도 기본값(루트) 그대로 둡니다.
+4. Deploy 후 발급된 URL에서 과제 동작을 확인합니다.
+
+### 방법 2) Vercel CLI
+```bash
+npm i -g vercel
+vercel
+vercel --prod
+```
+
+### 포함된 설정
+- `vercel.json`을 추가해 `/` 요청이 `index.html`로 매핑되도록 했습니다.
+- 현재 구조를 바꾸지 않고도 배포 URL에서 즉시 확인 가능한 상태입니다.
+
 ## 라이선스
 별도 명시가 없으므로 내부 사용 목적에 맞게 관리하세요.
 
