@@ -379,6 +379,9 @@ function submitMood() {
     </div>
   `;
   out.classList.add('visible');
+  if (typeof mapPrompt === 'function') {
+    mapPrompt('task3', state.selectedMood, comment);
+  }
 }
 
 // ── TASK 4: JD GENERATOR ──
@@ -722,6 +725,10 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 
   mapPrompt(1, ['input', 'output', 'user', 'value']);
+  mapPrompt(2, ['roles', 'user']);
+  mapPrompt(3, ['appname', 'tone']);
   mapPrompt(4, ['role', 'team', 'skills']);
+  mapPrompt(5, ['rules', 'columns']);
+  mapPrompt(6, ['role', 'skills', 'career']);
   mapPrompt(7, ['name', 'role', 'team']);
 });
