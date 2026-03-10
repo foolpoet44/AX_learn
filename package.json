@@ -1,0 +1,17 @@
+{
+  "name": "ax_learn",
+  "version": "1.0.0",
+  "description": "HR AX Learning Materials",
+  "main": "assets/app.js",
+  "scripts": {
+    "lint": "eslint assets/app.js scripts/smoke-test.js",
+    "format": "prettier --write \"assets/app.js\" \"index.html\" \"assets/styles.css\" \"scripts/smoke-test.js\"",
+    "test": "node scripts/smoke-test.js"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "globals": "^17.4.0",
+    "prettier": "^3.0.0",
+    "puppeteer": "^24.38.0"
+  }
+}
