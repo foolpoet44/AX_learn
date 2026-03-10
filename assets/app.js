@@ -63,7 +63,6 @@ function showTask(taskId, skipSave) {
       window.scrollTo(0, 0);
     }
   });
-  if (taskId === 't4') initQuiz();
   if (!skipSave) saveProgress();
 }
 
@@ -382,125 +381,49 @@ function submitMood() {
   out.classList.add('visible');
 }
 
-// ── TASK 4: QUIZ ──
-const quizData = [
-  {
-    q: 'AI 도구를 업무에 얼마나 자주 활용하나요?',
-    opts: ['거의 안 씀', '한두 번 시도해봄', '가끔 활용', '매일 활용'],
-  },
-  {
-    q: '프롬프트 엔지니어링 경험이 있나요?',
-    opts: [
-      '개념 자체를 모름',
-      '들어는 봤음',
-      '기본 프롬프트 작성 가능',
-      '구조화된 고급 프롬프트 작성',
-    ],
-  },
-  {
-    q: 'AI로 업무를 자동화한 경험이 있나요?',
-    opts: ['없음', '계획만 있음', '1~2가지 부분 자동화', '여러 워크플로우 자동화'],
-  },
-  {
-    q: 'AI 결과물의 품질을 팀원에게 설명할 수 있나요?',
-    opts: ['불가능', '기본적인 설명만 가능', '상세하게 피드백 가능', '타인을 교육할 수 있음'],
-  },
-  {
-    q: 'AI 기반 도구를 직접 만들거나 기여한 경험이 있나요?',
-    opts: ['없음', '기획에만 참여', '구현에 일부 기여', '프로젝트를 주도함'],
-  },
-];
+// ── TASK 4: JD GENERATOR ──
+function generateJobDescription() {
+  const role = document.getElementById('t4-p-role').value || '직무 미입력';
+  const skills = document.getElementById('t4-p-skills').value || '핵심 역량 미입력';
+  const career = document.getElementById('t4-career').value;
+  const skillList = skills
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
 
-const levelMap = [
-  {
-    score: [5, 8],
-    level: 'Practitioner 🌱',
-    desc: 'AI 도구를 처음 접하는 단계입니다. 기본 도구 체험부터 시작해보세요.',
-    next: ['ChatGPT/Claude 기본 사용법 실습', '업무에 AI 하나 적용해보기'],
-  },
-  {
-    score: [9, 12],
-    level: 'Developer 🔧',
-    desc: 'AI 활용을 업무에 적용하기 시작한 단계입니다. 프롬프트 품질을 높여보세요.',
-    next: ['프롬프트 엔지니어링 심화 학습', 'Lovable/No-code 툴로 간단한 앱 만들기'],
-  },
-  {
-    score: [13, 16],
-    level: 'Architect 🏗',
-    desc: 'AI 워크플로우를 설계할 수 있는 단계입니다. 자동화 범위를 넓혀보세요.',
-    next: ['AI Agent 설계 및 구현', '업무 자동화 사례 발표 및 공유'],
-  },
-  {
-    score: [17, 20],
-    level: 'Expert 🚀',
-    desc: 'AI 시스템을 주도적으로 구축하는 단계입니다. 조직 내 AX 리더로 활동하세요.',
-    next: ['내부 AX 강사 활동', 'AI SaaS 프로토타입 기획 및 개발'],
-  },
-];
-
-function initQuiz() {
-  state.quizAnswers = [];
-  state.currentQ = 0;
-  renderQuestion();
-  document.getElementById('quiz-output').classList.remove('visible');
-  document.getElementById('quiz-output').innerHTML = '';
-}
-
-function renderQuestion() {
-  const container = document.getElementById('quiz-question-area');
-  if (state.currentQ >= quizData.length) {
-    showQuizResult();
-    return;
-  }
-  const q = quizData[state.currentQ];
-  container.innerHTML = `
-    <div style="margin-bottom:12px;">
-      <div style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:8px;">Q${state.currentQ + 1} / ${quizData.length}</div>
-      <div style="background:var(--border);height:3px;border-radius:2px;margin-bottom:16px;overflow:hidden;">
-        <div style="width:${(state.currentQ / quizData.length) * 100}%;height:100%;background:var(--accent);transition:width 0.3s;"></div>
-      </div>
-      <div style="font-size:16px;font-weight:600;margin-bottom:16px;">${q.q}</div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        ${q.opts
+  const out = document.getElementById('t4-output');
+  out.innerHTML = `
+    <div style="font-size:12px;color:var(--accent);margin-bottom:16px;font-family:'DM Mono',monospace;">📄 ${role} 채용 JD 초안</div>
+    <div style="display:grid;gap:14px;">
+      ${[
+      {
+        title: '포지션 개요',
+        content: `저희 팀은 비즈니스 성장을 이끌어갈 전문성 있는 <strong style="color:var(--text)">${role}</strong> 포지션을 모집합니다. 본 포지션은 팀 내 핵심 역할을 수행하며, 주어진 목표를 달성하기 위해 주도적으로 업무를 리드합니다.`,
+      },
+      {
+        title: '담당 업무',
+        content:
+          skillList.map((s) => `• ${s} 관련 전략 수립 및 실행`).join('<br>') +
+          '<br>• 유관 부서와의 긴밀한 커뮤니케이션 및 협업<br>• 성과 지표(KPI) 및 데이터 기반 인사이트 도출',
+      },
+      {
+        title: '자격 요건',
+        content: `• 해당 직무 경력 ${career}<br>• ${skillList[0] || '관련 분야'} 실무 경험 2년 이상<br>• 논리적 사고 및 문제 해결 능력<br>• 원활한 대내외 커뮤니케이션 능력`,
+      },
+      {
+        title: '우대사항',
+        content: '• 관련 산업군(IT/스타트업) 경험자<br>• 업무 자동화 및 AI 툴(ChatGPT 등) 활용 능통자<br>• 자기주도적 학습 및 성장 지향적인 분',
+      },
+    ]
       .map(
-        (o, i) => `
-          <button onclick="answerQ(${i + 1})" style="text-align:left;padding:12px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:14px;cursor:pointer;font-family:'Pretendard',sans-serif;transition:all 0.15s;"
-            onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'"
-            onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text)'">
-            <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-right:10px;">${String.fromCharCode(64 + i + 1)}</span>${o}
-          </button>
-        `,
+        (s) => `
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px;">
+          <div style="font-size:11px;color:var(--accent);font-family:'DM Mono',monospace;margin-bottom:8px;">${s.title}</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.8;">${s.content}</div>
+        </div>
+      `,
       )
       .join('')}
-      </div>
-    </div>
-  `;
-}
-
-function answerQ(score) {
-  state.quizAnswers.push(score);
-  state.currentQ++;
-  renderQuestion();
-}
-
-function showQuizResult() {
-  const total = state.quizAnswers.reduce((a, b) => a + b, 0);
-  const lv =
-    levelMap.find((l) => total >= l.score[0] && total <= l.score[1]) ||
-    levelMap[levelMap.length - 1];
-  document.getElementById('quiz-question-area').innerHTML = '';
-  const out = document.getElementById('quiz-output');
-  out.innerHTML = `
-    <div style="text-align:center;">
-      <div style="font-size:11px;color:var(--muted);margin-bottom:4px;font-family:'DM Mono',monospace;">총점 ${total} / 20</div>
-      <div style="font-size:24px;font-weight:700;color:var(--accent);margin:12px 0;">${lv.level}</div>
-      <div style="font-size:14px;color:var(--muted);margin-bottom:20px;">${lv.desc}</div>
-      <hr style="border-color:var(--border);margin:16px 0;">
-      <div style="text-align:left;">
-        <div style="font-size:12px;color:var(--accent2);margin-bottom:8px;font-family:'DM Mono',monospace;">추천 다음 액션</div>
-        ${lv.next.map((n) => `<div style="font-size:13px;color:var(--muted);padding:8px 0;border-bottom:1px solid var(--border);">→ ${n}</div>`).join('')}
-      </div>
-      <button onclick="initQuiz()" style="margin-top:16px;background:transparent;border:1px solid var(--border);color:var(--muted);padding:8px 16px;border-radius:2px;cursor:pointer;font-family:'Pretendard',sans-serif;font-size:13px;">다시 진단하기</button>
     </div>
   `;
   out.classList.add('visible');
@@ -684,127 +607,46 @@ function generateJobPosting() {
   out.classList.add('visible');
 }
 
-// ── TASK 7: REVIEW ANALYSIS ──
-const sampleReviews = `강사님 설명이 너무 명확하고 이해가 잘 됐어요. 실습 위주라 좋았습니다.
-사례가 실무와 직결돼서 바로 쓸 수 있을 것 같아요. 만족합니다.
-시간이 너무 짧았어요. 내용은 좋은데 좀 더 깊게 다뤄줬으면 했습니다.
-강의 속도가 빨라서 따라가기 힘들었어요. 자료를 미리 줬으면 좋겠습니다.
-AI 활용법을 이렇게 쉽게 배울 수 있을지 몰랐어요. 정말 유익했습니다.
-실습 시간이 더 있었으면 좋겠어요. 이론보다 직접 해보는 게 훨씬 도움돼요.
-팀별 실습이 가장 인상 깊었습니다. 다음에도 이런 방식으로 진행해주세요.
-내용이 너무 기초적이었어요. 심화 과정도 개설해주시면 좋겠습니다.`;
-
-function loadSampleReviews() {
-  document.getElementById('t7-reviews').value = sampleReviews;
-}
-
-function analyzeReviews() {
-  const text = document.getElementById('t7-reviews').value;
-  if (!text.trim()) {
-    alert('후기를 입력해주세요.');
-    return;
-  }
-  const reviews = text
-    .split('\n')
-    .map((r) => r.trim())
-    .filter(Boolean);
-  const total = reviews.length;
-
-  const positiveKw = ['좋', '만족', '유익', '명확', '도움', '인상', '이해', '최고', '훌륭', '감사'];
-  const negativeKw = ['짧', '빠르', '어렵', '아쉽', '부족', '기초적', '힘들', '미흡'];
-
-  let pos = 0,
-    neg = 0,
-    neu = 0;
-  const classified = reviews.map((r) => {
-    const isPos = positiveKw.some((k) => r.includes(k));
-    const isNeg = negativeKw.some((k) => r.includes(k));
-    if (isPos && !isNeg) {
-      pos++;
-      return { r, label: '긍정', color: '#47ff8a' };
-    }
-    if (isNeg) {
-      neg++;
-      return { r, label: '개선요청', color: '#ff6b6b' };
-    }
-    neu++;
-    return { r, label: '중립', color: '#e8ff47' };
-  });
-
-  const posP = Math.round((pos / total) * 100);
-  const negP = Math.round((neg / total) * 100);
-  const neuP = 100 - posP - negP;
+// ── TASK 7: ONBOARDING GUIDE ──
+function generateOnboardingGuide() {
+  const name = document.getElementById('t7-p-name').value || '신규 입사자';
+  const role = document.getElementById('t7-p-role').value || '직무 미상';
+  const teamInfo = document.getElementById('t7-p-team').value || '우리 팀에 오신 것을 환영합니다.';
+  const startDate = document.getElementById('t7-start-date').value || '출근 예정일';
 
   const out = document.getElementById('t7-output');
   out.innerHTML = `
-    <div style="font-size:12px;color:var(--accent);margin-bottom:16px;font-family:'DM Mono',monospace;">✓ 후기 ${total}건 분석 완료</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;">
+    <div style="font-size:12px;color:var(--accent);margin-bottom:16px;font-family:'DM Mono',monospace;">🌱 ${name}님 맞춤형 온보딩 가이드</div>
+    <div style="display:grid;gap:14px;">
       ${[
-      ['긍정', '#47ff8a', posP],
-      ['중립', '#e8ff47', neuP],
-      ['개선요청', '#ff6b6b', negP],
+      {
+        title: '🎉 환영 메시지',
+        content: `안녕하세요, <strong style="color:var(--text)">${name}</strong>님! ${role} 포지션으로 우리 팀에 합류하신 것을 진심으로 환영합니다. ${startDate}부터 함께하게 되어 기쁩니다.`,
+      },
+      {
+        title: '📋 첫 주 할 일',
+        content:
+          '• 인사팀 신규 입사자 오리엔테이션 참석<br>• 업무 계정 세팅 및 보안 서약서 작성<br>• 온보딩 버디(Buddy)와의 점심 식사<br>• 사내 위키 및 팀 내 컨플루언스 문서 열람 권한 확인<br>• 개발/디자인/기획 팀별 초기 환경 구축(Set-up)',
+      },
+      {
+        title: '👨‍👩‍👧‍👦 팀 소개',
+        content: `${teamInfo}<br><br>우리 팀은 수평적이고 자유로운 의견 교환을 중시합니다. 메신저 채널의 #team-general 에 가입해서 인사말을 남겨주시면 모두가 반겨줄거에요!`,
+      },
+      {
+        title: '🔗 유용한 링크 서랍',
+        content: '• <a href="#" style="color:var(--accent2)">사내 인트라넷 (포털)</a><br>• <a href="#" style="color:var(--accent2)">복리후생 및 휴가 규정 안내서</a><br>• <a href="#" style="color:var(--accent2)">IT 헬프데스크 및 장비 신청</a>',
+      },
     ]
       .map(
-        ([l, c, p]) => `
-        <div style="background:var(--surface);border:1px solid ${c}33;border-radius:4px;padding:14px;text-align:center;">
-          <div style="font-size:24px;font-weight:700;color:${c};">${p}%</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:4px;">${l}</div>
+        (s) => `
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px;">
+          <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;">${s.title}</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.8;">${s.content}</div>
         </div>
       `,
       )
       .join('')}
     </div>
-    <div style="display:grid;gap:10px;margin-bottom:16px;">
-      ${[
-      {
-        title: '가장 많이 칭찬받은 점',
-        color: '#47ff8a',
-        text:
-          pos > 0
-            ? '실습 중심 구성과 강사 설명의 명확성이 반복적으로 언급되었습니다.'
-            : '긍정 피드백이 부족합니다.',
-      },
-      {
-        title: '가장 많이 요청된 개선 사항',
-        color: '#ff6b6b',
-        text:
-          neg > 0
-            ? '교육 시간 연장 및 실습 비중 확대, 사전 자료 배포에 대한 요청이 많았습니다.'
-            : '개선 요청이 없습니다.',
-      },
-      {
-        title: '다음 교육을 위한 추천 액션',
-        color: 'var(--accent2)',
-        text: '① 실습 시간 20% 확대 ② 사전 자료 1주일 전 배포 ③ 수준별 트랙 분리 운영 검토',
-      },
-    ]
-      .map(
-        (i) => `
-        <div style="background:var(--surface);border-left:3px solid ${i.color};border-radius:0 4px 4px 0;padding:14px;">
-          <div style="font-size:11px;font-weight:700;color:${i.color};font-family:'DM Mono',monospace;margin-bottom:6px;">${i.title}</div>
-          <div style="font-size:13px;color:var(--muted);">${i.text}</div>
-        </div>
-      `,
-      )
-      .join('')}
-    </div>
-    <div style="font-size:11px;color:var(--muted);margin-bottom:8px;font-family:'DM Mono',monospace;">후기별 분류 결과</div>
-    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
-      <thead><tr style="border-bottom:1px solid var(--border);">
-        <th style="text-align:left;padding:6px 10px;color:var(--muted);">후기</th>
-        <th style="text-align:left;padding:6px 10px;color:var(--muted);width:80px;">분류</th>
-      </tr></thead>
-      <tbody>${classified
-      .map(
-        (c) => `
-        <tr style="border-bottom:1px solid var(--border);">
-          <td style="padding:8px 10px;color:var(--muted);font-size:12px;">${c.r.substring(0, 60)}${c.r.length > 60 ? '…' : ''}</td>
-          <td style="padding:8px 10px;"><span style="font-size:10px;font-weight:700;color:${c.color};border:1px solid ${c.color};padding:2px 6px;border-radius:2px;font-family:'DM Mono',monospace;">${c.label}</span></td>
-        </tr>
-      `,
-      )
-      .join('')}</tbody>
-    </table></div>
   `;
   out.classList.add('visible');
 }
@@ -860,21 +702,26 @@ window.addEventListener('DOMContentLoaded', () => {
   if (mobileNav) mobileNav.value = state.currentTask;
 
   // ── DYNAMIC PROMPT BUILDER: TASK 01 ──
-  const t1Inputs = ['input', 'output', 'user', 'value'];
-  const updatePromptT1 = () => {
-    t1Inputs.forEach(key => {
-      const inputEl = document.getElementById(`t1-p-${key}`);
-      const dispEl = document.getElementById(`t1-disp-${key}`);
-      if (inputEl && dispEl) {
-        dispEl.textContent = inputEl.value;
+  const mapPrompt = (taskId, inputKeys) => {
+    const updatePrompt = () => {
+      inputKeys.forEach(key => {
+        const inputEl = document.getElementById(`t${taskId}-p-${key}`);
+        const dispEl = document.getElementById(`t${taskId}-disp-${key}`);
+        if (inputEl && dispEl) {
+          dispEl.textContent = inputEl.value;
+        }
+      });
+    };
+
+    inputKeys.forEach(key => {
+      const inputEl = document.getElementById(`t${taskId}-p-${key}`);
+      if (inputEl) {
+        inputEl.addEventListener('input', updatePrompt);
       }
     });
   };
 
-  t1Inputs.forEach(key => {
-    const inputEl = document.getElementById(`t1-p-${key}`);
-    if (inputEl) {
-      inputEl.addEventListener('input', updatePromptT1);
-    }
-  });
+  mapPrompt(1, ['input', 'output', 'user', 'value']);
+  mapPrompt(4, ['role', 'team', 'skills']);
+  mapPrompt(7, ['name', 'role', 'team']);
 });
