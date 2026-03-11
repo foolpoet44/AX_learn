@@ -41,11 +41,11 @@
       </div>
       <div class="sidebar-label">과제 목록</div>
       <div class="task-nav" id="taskNav">
-        <button class="task-btn" data-task="overview">
+        <button class="task-btn active" data-task="overview">
           <span class="num">00</span> 과제 선택
           <span class="check">✓</span>
         </button>
-        <button class="task-btn active" data-task="t1">
+        <button class="task-btn" data-task="t1">
           <span class="num">01</span> 1on1 어젠다 생성기
           <span class="check">✓</span>
         </button>
@@ -75,7 +75,7 @@
     <!-- CONTENT -->
     <div class="content" id="mainContent">
       <!-- ════════ OVERVIEW ════════ -->
-      <div id="view-overview" class="task-selector">
+      <div id="view-overview" class="task-selector active">
         <div style="margin-bottom: 12px; font-size: 13px; color: var(--muted)">
           실습할 과제를 선택하세요. 각 과제는 기획 → 프롬프트 작성 → Lovable 구현 → 결과 체험의
           4단계로 구성됩니다.
@@ -97,31 +97,26 @@
             <div class="card-emoji">🗣</div>
             <div class="card-num">TASK 01</div>
             <div class="card-title">1on1 미팅<br />어젠다 생성기</div>
-            <div class="card-time">⏱ 약 15분</div>
           </div>
           <div class="overview-card" onclick="showTask(&#39;t2&#39;)">
             <div class="card-emoji">💡</div>
             <div class="card-num">TASK 02</div>
             <div class="card-title">역할별 AI 활용<br />브레인스토머</div>
-            <div class="card-time">⏱ 약 12분 · 추천</div>
           </div>
           <div class="overview-card" onclick="showTask('t3')">
             <div class="card-emoji">📝</div>
             <div class="card-num">TASK 03</div>
             <div class="card-title">JD(직무기술서)<br />자동 생성기</div>
-            <div class="card-time">⏱ 약 15분</div>
           </div>
           <div class="overview-card" onclick="showTask(&#39;t4&#39;)">
             <div class="card-emoji">📝</div>
             <div class="card-num">TASK 04</div>
             <div class="card-title">채용 공고<br />자동 작성기</div>
-            <div class="card-time">⏱ 약 15분</div>
           </div>
           <div class="overview-card" onclick="showTask('t5')">
             <div class="card-emoji">🌱</div>
             <div class="card-num">TASK 05</div>
             <div class="card-title">신입사원<br />온보딩 가이드 앱</div>
-            <div class="card-time">⏱ 약 15분</div>
           </div>
         </div>
 
@@ -135,7 +130,7 @@
       </div>
 
       <!-- ════════ TASK 1 ════════ -->
-      <div id="view-t1" class="task-selector active">
+      <div id="view-t1" class="task-selector">
         <div class="task-header">
           <button class="back-btn" onclick="showTask(&#39;overview&#39;)">← 과제 목록으로</button>
           <div class="task-badge">TASK 01</div>
@@ -144,6 +139,9 @@
             팀원 정보를 입력하면 구조화된 1on1 어젠다를 자동으로 만들어주는 앱 — 리더십 교육과
             직결되는 실전 도구
           </p>
+          <div class="learning-goal">
+            <span class="lg-label">학습 목표</span> 이 과제를 마치면 <strong>사용자 입력값이 AI 프롬프트에 동적으로 반영되는 구조</strong>를 설계하고 Lovable로 구현할 수 있습니다.
+          </div>
           <div class="tag-row">
             <span class="tag">리더십개발</span>
             <span class="tag">HR자동화</span>
@@ -214,13 +212,6 @@
               <label class="input-label" style="margin-top: 12px">핵심 가치</label>
               <input type="text" id="t1-p-value" class="input-field prompt-input"
                 placeholder="예: 팀원 이름과 이슈 내용이 질문에 동적으로 반영" style="min-height: 0; height: 44px; resize: none" />
-            </div>
-            <div class="info-box">
-              <div class="info-label">HR 관점 TIP</div>
-              <p>
-                좋은 1on1은 어젠다가 있어야 가능합니다. 대부분의 리더가 준비 없이 들어가는 이유는
-                "만드는 게 번거로워서"입니다. 이 앱 하나가 그 장벽을 제거합니다.
-              </p>
             </div>
             <ul class="checklist" id="cl-t1-1">
               <li onclick="toggleCheck(this)">
@@ -331,14 +322,6 @@
                   id="t1-disp-user" class="highlight-keyword">전문적인 디자인 / 한국어 UI</span><br>- <span id="t1-disp-value"
                   class="highlight-keyword">팀원 이름과 이슈 내용이 질문에 동적으로 반영</span>되어야 함
               </div>
-            </div>
-            <div class="info-box">
-              <div class="info-label">작성 팁</div>
-              <p>
-                위 프롬프트를 그대로 사용해도 되고, 원하는 기능을 자유롭게 추가·수정해도 됩니다.
-                영어로 작성하면 Lovable의 이해도가 높아지는 경향이 있지만, 한국어로도 충분히 잘
-                동작합니다.
-              </p>
             </div>
             <ul class="checklist" id="cl-t1-2">
               <li onclick="toggleCheck(this)">
@@ -561,6 +544,9 @@
             직무를 선택하면 그 역할에서 AI를 활용할 수 있는 아이디어 10가지를 카드로 보여주는 앱 —
             AX 교육 오프닝 5분을 바꿔버린다
           </p>
+          <div class="learning-goal">
+            <span class="lg-label">학습 목표</span> 이 과제를 마치면 <strong>직무별 분기 로직과 카드 UI</strong>를 프롬프트 하나로 설계하고, 조직 전체 대상 AX 교육 도구를 직접 만들 수 있습니다.
+          </div>
           <div class="tag-row">
             <span class="tag">AX내재화</span><span class="tag">교육설계</span><span class="tag">Lovable</span>
           </div>
@@ -629,13 +615,6 @@
               <label class="input-label" style="margin-top: 12px">핵심 가치</label>
               <input type="text" class="input-field prompt-input" id="t2-p-value" placeholder="예: AI와 내 업무의 연결점 즉각 체감"
                 style="min-height: 0; height: 44px; resize: none" />
-            </div>
-            <div class="info-box">
-              <div class="info-label">교육 설계 포인트</div>
-              <p>
-                이 앱을 교육 시작 5분에 참가자 스스로 돌려보게 하세요. "내 직무가 있다"는
-                것만으로도 몰입도가 3배 올라갑니다.
-              </p>
             </div>
             <ul class="checklist" id="cl-t2-1">
               <li onclick="toggleCheck(this)">
@@ -763,7 +742,7 @@
           </div>
           <div class="step-nav">
             <button class="btn-prev" onclick="goStep(&#39;t2&#39;,1)">← 이전</button>
-            <button class="btn-next" onclick="goStep(&#39;t2&#39;,3)">다음 →</button>
+            <button class="btn-next" onclick="goStep(&#39;t2&#39;,3)">다음 단계 →</button>
           </div>
         </div>
         <div class="step-content" id="t2-s3">
@@ -949,6 +928,9 @@
           <p>
             직무명과 핵심 역량 키워드를 입력하면 완성된 JD 초안을 즉시 생성 — 채용 업무의 가장 번거로운 첫 단계를 AI가 해결한다
           </p>
+          <div class="learning-goal">
+            <span class="lg-label">학습 목표</span> 이 과제를 마치면 <strong>구조화된 여러 섹션을 AI로 자동 생성하는 폼-출력 패턴</strong>을 익히고 채용 문서 자동화 앱을 만들 수 있습니다.
+          </div>
           <div class="tag-row">
             <span class="tag">채용</span><span class="tag">리크루팅</span><span class="tag">Lovable</span>
           </div>
@@ -1022,8 +1004,19 @@
               </select>
             </div>
           </div>
+          <ul class="checklist" id="cl-t3-1">
+            <li onclick="toggleCheck(this)">
+              <span class="cb"></span> 앱의 목적과 기대 효과가 이해되었다
+            </li>
+            <li onclick="toggleCheck(this)">
+              <span class="cb"></span> 입력(직무 정보)/출력(JD 초안) 구조가 파악되었다
+            </li>
+            <li onclick="toggleCheck(this)">
+              <span class="cb"></span> Lovable을 열어 새 프로젝트를 준비했다
+            </li>
+          </ul>
           <div class="step-nav">
-            <button class="btn-next" onclick="goStep(&#39;t3&#39;,2)">다음 →</button>
+            <button class="btn-next" onclick="goStep(&#39;t3&#39;,2)">다음 단계 →</button>
           </div>
         </div>
         <div class="step-content" id="t3-s2">
@@ -1134,7 +1127,7 @@
           </div>
           <div class="step-nav">
             <button class="btn-prev" onclick="goStep(&#39;t3&#39;,1)">← 이전</button>
-            <button class="btn-next" onclick="goStep(&#39;t3&#39;,3)">다음 →</button>
+            <button class="btn-next" onclick="goStep(&#39;t3&#39;,3)">다음 단계 →</button>
           </div>
         </div>
         <div class="step-content" id="t3-s3">
@@ -1179,6 +1172,24 @@
                 </div>
                 <div style="font-size: 12px; color: var(--muted)">
                   → 한/영 전환 버튼으로 글로벌 채용 지원
+                </div>
+              </div>
+              <div style="
+                    background: var(--surface2);
+                    border: 1px solid var(--border);
+                    border-radius: 4px;
+                    padding: 16px;
+                  ">
+                <div
+                  style="font-size:10px;font-weight:700;color:var(--accent3);padding:2px 8px;border:1px solid var(--accent3);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">
+                  수정 3 · PDF 내보내기
+                </div>
+                <div
+                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">
+                  "PDF로 저장" 버튼을 추가해서 생성된 JD를 PDF 파일로 다운받을 수 있게 해줘. 파일 이름은 직무명-JD.pdf 형식으로 자동 설정해줘.
+                </div>
+                <div style="font-size: 12px; color: var(--muted)">
+                  → 팀장·인사위원회 공유용 문서 즉시 생성
                 </div>
               </div>
             </div>
@@ -1242,6 +1253,9 @@
             직무명과 핵심 역량 키워드를 입력하면 완성된 채용 공고 초안을 즉시 생성 — 채용 업무의
             가장 번거로운 첫 단계를 AI가 해결한다
           </p>
+          <div class="learning-goal">
+            <span class="lg-label">학습 목표</span> 이 과제를 마치면 <strong>JD(내부 문서)와 채용 공고(외부 발행)의 차이를 프롬프트 설계로 제어</strong>하는 방법을 이해하고, 두 문서를 자동 생성하는 앱을 만들 수 있습니다.
+          </div>
           <div class="tag-row">
             <span class="tag">채용</span><span class="tag">리크루팅</span><span class="tag">Lovable</span>
           </div>
@@ -1316,13 +1330,6 @@
                 </select>
               </div>
             </div>
-            <div class="info-box">
-              <div class="info-label">HR 관점 TIP</div>
-              <p>
-                좋은 채용 공고는 지원자를 거르는 것이 아니라 끌어당깁니다. AI 초안을 기반으로
-                "우리 팀 문화"를 덧입히는 것이 HR의 역할입니다.
-              </p>
-            </div>
             <ul class="checklist" id="cl-t4-1">
               <li onclick="toggleCheck(this)">
                 <span class="cb"></span> 앱의 목적과 절약 효과가 이해되었다
@@ -1375,7 +1382,7 @@
                 <tr>
                   <td class="cell-label">INPUT</td>
                   <td class="cell-value">직무명 · 팀 설명 · 역량 키워드</td>
-                  <td class="arrow-arrow">→</td>
+                  <td class="arrow-cell">→</td>
                   <td>
                     <span class="cell-prompt">텍스트 입력창: 직무명, 팀/조직 소개 (2~3문장), 핵심 역량 3~5개 (쉼표 구분),
                       우대사항</span>
@@ -1384,7 +1391,7 @@
                 <tr>
                   <td class="cell-label">OUTPUT</td>
                   <td class="cell-value">4개 섹션 채용 공고</td>
-                  <td class="arrow-arrow">→</td>
+                  <td class="arrow-cell">→</td>
                   <td>
                     <span class="cell-prompt">포지션 개요 / 담당 업무 5~7개 / 자격 요건 5개 / 우대사항 3개 — 섹션별 구분
                       출력</span>
@@ -1393,7 +1400,7 @@
                 <tr>
                   <td class="cell-label">사용자</td>
                   <td class="cell-value">채용 담당자 (비개발자)</td>
-                  <td class="arrow-arrow">→</td>
+                  <td class="arrow-cell">→</td>
                   <td>
                     <span class="cell-prompt">한국어 UI / "공고 복사" + "다시 생성" 버튼</span>
                   </td>
@@ -1401,7 +1408,7 @@
                 <tr>
                   <td class="cell-label">핵심 가치</td>
                   <td class="cell-value">작성 시간 단축 + 일관된 품질</td>
-                  <td class="arrow-arrow">→</td>
+                  <td class="arrow-cell">→</td>
                   <td>
                     <span class="cell-prompt">입력 키워드가 공고 전체에 자연스럽게 반영됨 / 전문적인 HR 문체</span>
                   </td>
@@ -1411,7 +1418,7 @@
             <div class="prompt-box">
               <div class="prompt-box-header">
                 <span class="label">Lovable Prompt — Copy &amp; Paste</span>
-                <button class="copy-btn" onclick="copyPrompt(this, &#39;t6&#39;)">COPY</button>
+                <button class="copy-btn" onclick="copyPrompt(this, &#39;t4&#39;)">COPY</button>
               </div>
               <div class="prompt-text" style="line-height: 1.8;" id="prompt-t4">
                 채용 공고 자동 작성 웹앱을 만들어줘. <br><br>기능 요구사항:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 입력 항목:<br>&nbsp;&nbsp;&nbsp;&nbsp;·
@@ -1439,7 +1446,7 @@
           </div>
           <div class="step-nav">
             <button class="btn-prev" onclick="goStep('t4',1)">← 이전</button>
-            <button class="btn-next" onclick="goStep('t4',3)">다음 →</button>
+            <button class="btn-next" onclick="goStep('t4',3)">다음 단계 →</button>
           </div>
         </div>
 
@@ -1566,6 +1573,9 @@
           <p>
             신입사원 정보를 입력하면 개인화된 온보딩 가이드를 자동으로 생성 — HR 담당자의 반복 업무를 줄이고 신입사원의 빠른 적응을 돕는다
           </p>
+          <div class="learning-goal">
+            <span class="lg-label">학습 목표</span> 이 과제를 마치면 <strong>날짜 연산·개인화 변수를 활용한 멀티섹션 가이드 앱</strong>을 설계하고, 반복 HR 업무를 앱 하나로 자동화할 수 있습니다.
+          </div>
           <div class="tag-row">
             <span class="tag">온보딩</span><span class="tag">신입사원</span><span class="tag">Lovable</span>
           </div>
@@ -1635,12 +1645,6 @@
                 style="min-height: 0; height: 44px; resize: none" />
             </div>
 
-            <div class="info-box" style="margin-top: 20px;">
-              <div class="info-label">HR 관점 TIP</div>
-              <p>
-                개인화된 온보딩은 신입사원의 회사 적응을 돕고 이탈률을 낮춥니다. AI가 생성한 초안을 바탕으로 HR이 더욱 풍부한 경험을 제공할 수 있습니다.
-              </p>
-            </div>
             <ul class="checklist" id="cl-t5-1">
               <li onclick="toggleCheck(this)">
                 <span class="cb"></span> 앱의 목적과 절약 효과가 이해되었다
@@ -1693,7 +1697,7 @@
                 <tr>
                   <td class="cell-label">INPUT</td>
                   <td class="cell-value">신입사원 이름 · 직무 · 팀 정보 · 입사일</td>
-                  <td class="arrow-arrow">→</td>
+                  <td class="arrow-cell">→</td>
                   <td>
                     <span class="cell-prompt">텍스트 입력창: 신입사원 이름, 직무, 팀 정보, 입사일</span>
                   </td>
@@ -1701,7 +1705,7 @@
                 <tr>
                   <td class="cell-label">OUTPUT</td>
                   <td class="cell-value">개인화된 온보딩 가이드 (4개 섹션)</td>
-                  <td class="arrow-arrow">→</td>
+                  <td class="arrow-cell">→</td>
                   <td>
                     <span class="cell-prompt">환영 메시지 / 첫 주 할 일 / 팀 소개 / 유용한 링크 — 섹션별 구분 출력</span>
                   </td>
@@ -1709,7 +1713,7 @@
                 <tr>
                   <td class="cell-label">사용자</td>
                   <td class="cell-value">HR 담당자 / 신입사원</td>
-                  <td class="arrow-arrow">→</td>
+                  <td class="arrow-cell">→</td>
                   <td>
                     <span class="cell-prompt">한국어 UI / "가이드 복사" + "다시 생성" 버튼</span>
                   </td>
@@ -1717,7 +1721,7 @@
                 <tr>
                   <td class="cell-label">핵심 가치</td>
                   <td class="cell-value">온보딩 효율성 증대 + 신입사원 만족도 향상</td>
-                  <td class="arrow-arrow">→</td>
+                  <td class="arrow-cell">→</td>
                   <td>
                     <span class="cell-prompt">입력 정보가 가이드 전체에 자연스럽게 반영됨 / 친근하고 환영하는 문체</span>
                   </td>
@@ -1727,7 +1731,7 @@
             <div class="prompt-box">
               <div class="prompt-box-header">
                 <span class="label">Lovable Prompt — Copy &amp; Paste</span>
-                <button class="copy-btn" onclick="copyPrompt(this, &#39;t7&#39;)">COPY</button>
+                <button class="copy-btn" onclick="copyPrompt(this, &#39;t5&#39;)">COPY</button>
               </div>
               <div class="prompt-text" style="line-height: 1.8;" id="prompt-t5">
                 신입사원 온보딩 가이드 자동 생성 웹앱을 만들어줘. <br><br>기능 요구사항:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 입력
@@ -1757,7 +1761,7 @@
           </div>
           <div class="step-nav">
             <button class="btn-prev" onclick="goStep('t5',1)">← 이전</button>
-            <button class="btn-next" onclick="goStep('t5',3)">다음 →</button>
+            <button class="btn-next" onclick="goStep('t5',3)">다음 단계 →</button>
           </div>
         </div>
 
@@ -1801,6 +1805,24 @@
                 </div>
                 <div style="font-size: 12px; color: var(--muted)">
                   → 멘토 정보 연동
+                </div>
+              </div>
+              <div style="
+                    background: var(--surface2);
+                    border: 1px solid var(--border);
+                    border-radius: 4px;
+                    padding: 16px;
+                  ">
+                <div
+                  style="font-size:10px;font-weight:700;color:var(--accent3);padding:2px 8px;border:1px solid var(--accent3);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">
+                  수정 3 · 30/60/90일 체크리스트
+                </div>
+                <div
+                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">
+                  "30일/60일/90일 목표" 탭을 추가해서 신입사원이 단계별 목표를 체크할 수 있는 인터랙티브 체크리스트를 만들어줘.
+                </div>
+                <div style="font-size: 12px; color: var(--muted)">
+                  → 성장 로드맵 시각화로 조기 전력화 지원
                 </div>
               </div>
             </div>
