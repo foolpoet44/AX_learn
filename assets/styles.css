@@ -38,7 +38,6 @@ body {
 .generate-btn:focus-visible,
 .mobile-nav-select:focus-visible,
 .overview-card:focus-visible,
-.instructor-guide-header:focus-visible,
 .eval-item:focus-visible,
 .input-field:focus-visible {
   outline: 2px solid var(--accent);
@@ -982,78 +981,6 @@ body {
 }
 .mapping-intro strong {
   color: var(--accent);
-}
-
-/* ── INSTRUCTOR GUIDE ── */
-.instructor-guide {
-  border: 1px solid rgba(71, 200, 255, 0.3);
-  background: rgba(71, 200, 255, 0.03);
-  border-radius: 4px;
-  margin-bottom: 24px;
-  overflow: hidden;
-}
-.instructor-guide-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 16px;
-  cursor: pointer;
-  user-select: none;
-}
-.instructor-guide-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent2);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-}
-.instructor-guide-toggle {
-  font-size: 11px;
-  color: var(--muted);
-  font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-}
-.instructor-guide-body {
-  display: none;
-  padding: 16px;
-  border-top: 1px solid rgba(71, 200, 255, 0.15);
-}
-.instructor-guide-body.open {
-  display: block;
-}
-.ig-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 14px;
-}
-.ig-item {
-  font-size: 12px;
-}
-.ig-label {
-  font-size: 10px;
-  color: var(--accent2);
-  font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.ig-item p {
-  color: var(--muted);
-  line-height: 1.6;
-  margin: 0;
-}
-.ig-trouble {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.8;
-  border-top: 1px solid rgba(71, 200, 255, 0.15);
-  padding-top: 12px;
-}
-.ig-trouble strong {
-  color: var(--accent2);
-  display: block;
-  margin-bottom: 4px;
 }
 
 /* ── PROMPT BUILDER INPUTS ── */
