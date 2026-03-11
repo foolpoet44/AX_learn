@@ -216,7 +216,7 @@
                   value="4개 섹션 어젠다: 아이스브레이크, 업무 현황, 성장&amp;피드백, 마무리">
               </div>
               <div class="eval-item">
-                <div class="eval-label">사용자</div>
+                <div class="eval-label">디자인 무드</div>
                 <input type="text" id="t1-p-user" class="prompt-input" value="전문적인 디자인 / 한국어 UI">
               </div>
               <div class="eval-item">
@@ -623,8 +623,8 @@
               </div>
               <div class="eval-item">
                 <div class="eval-label">OUTPUT</div>
-                <input type="text" class="input-field prompt-input"
-                  value="AI 활용 아이디어 카드 10개 / 각 카드: 제목 + 한 줄 설명 + 난이도 배지" readonly />
+                <input type="text" class="input-field prompt-input" id="t2-p-output"
+                  value="AI 활용 아이디어 카드 10개 / 각 카드: 제목 + 한 줄 설명 + 난이도 배지" />
               </div>
               <div class="eval-item">
                 <div class="eval-label">사용자</div>
@@ -633,7 +633,7 @@
               </div>
               <div class="eval-item">
                 <div class="eval-label">핵심 가치</div>
-                AI와 내 업무의 연결점 즉각 체감
+                <input type="text" class="input-field prompt-input" id="t2-p-value" value="AI와 내 업무의 연결점 즉각 체감" />
               </div>
             </div>
             <div class="info-box">
@@ -729,9 +729,10 @@
                 <span id="t2-disp-user" class="highlight-keyword">제조업 HR 담당자</span>를 위한 AI 활용 아이디어 브레인스토밍 웹앱을 만들어줘.
                 <br><br>기능 요구사항:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 직무 선택 버튼: <span id="t2-disp-roles"
                   class="highlight-keyword">생산기술, 품질관리, 설비/유지보수, HR &amp; 교육, 구매/조달, 연구개발, 안전관리</span><br>- 직무 선택 시 해당
-                직무에
-                맞는 AI 활용 아이디어 카드 10개 표시<br>- 각 카드 구성: 짧은 제목, 한 줄 설명, 난이도 배지 (쉬움/보통/심화)<br>- 카드는 2열 그리드, 마우스 오버 시 애니메이션
-                효과<br>- "아이디어 섞기" 버튼으로 다른 조합 표시<br>- 난이도별 필터/검색 바<br>- 노란색 포인트 컬러의 모던 다크 UI<br>- 전체 한국어 인터페이스
+                직무에 맞는 <span id="t2-disp-output" class="highlight-keyword">AI 활용 아이디어 카드 10개 표시 / 각 카드 구성: 짧은 제목, 한 줄
+                  설명, 난이도 배지 (쉬움/보통/심화)</span><br>- 카드는 2열 그리드, 마우스 오버 시 애니메이션 효과<br>- <span id="t2-disp-value"
+                  class="highlight-keyword">AI와 내 업무의 연결점 즉각 체감</span>을 위한 "아이디어 섞기" 버튼 및 난이도별 필터/검색 바<br>- 노란색 포인트 컬러의
+                모던 다크 UI<br>- 전체 한국어 인터페이스
               </div>
             </div>
             <div class="warn-box">
@@ -1350,7 +1351,8 @@
               <input type="text" class="input-field prompt-input" id="t4-p-skills"
                 placeholder="예: 교육과정 설계, 데이터 분석, 이해관계자 소통" style="min-height: 0; height: 44px; resize: none" />
               <label class="input-label" style="margin-top: 12px">경력 조건</label>
-              <select class="input-field prompt-input" id="t4-career" style="min-height: 0; height: 44px; resize: none">
+              <select class="input-field prompt-input" id="t4-p-career"
+                style="min-height: 0; height: 44px; resize: none">
                 <option value="신입">신입</option>
                 <option value="3년 이상" selected>3년 이상</option>
                 <option value="5년 이상">5년 이상</option>
@@ -1434,8 +1436,8 @@
                 항목:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 직무명 (텍스트, 예: "<span id="t4-disp-role" class="highlight-keyword">HRD
                   기획자</span>")<br>- 팀/조직 소개 (텍스트 영역, 2~3문장: "<span id="t4-disp-team" class="highlight-keyword">입력
                   내용</span>")<br>- 핵심 역량 키워드 (텍스트, 쉼표로 구분 입력: "<span id="t4-disp-skills" class="highlight-keyword">키워드
-                  입력</span>")<br>- 우대사항 키워드 (텍스트, 선택 입력)<br>- 경력 조건 (드롭다운: 신입 / 3년 이상 / 5년 이상 / 경력무관)<br>- "JD 생성"
-                버튼<br>-
+                  입력</span>")<br>- 우대사항 키워드 (텍스트, 선택 입력)<br>- 경력 조건 (드롭다운: <span id="t4-disp-career"
+                  class="highlight-keyword">3년 이상</span>)<br>- "JD 생성" 버튼<br>-
                 출력 영역: 4개 섹션으로 구성된 JD<br>- 포지션 개요 (2~3문장, 입력 키워드 반영)<br>- 담당 업무 (불릿 포인트 5~7개)<br>- 자격 요건 (불릿 포인트 5개, 경력
                 조건
                 포함)<br>- 우대사항 (불릿 포인트 3개)<br>- "JD 복사" 버튼, "다시 생성" 버튼<br>- 전문적이고 신뢰감 있는 다크 UI, 한국어 인터페이스<br>- 입력된 키워드가
@@ -1951,7 +1953,7 @@
                   placeholder="예: 교육과정 설계, 데이터 분석, 이해관계자 소통" />
 
                 <label class="input-label" style="margin-top: 12px">경력 조건</label>
-                <select class="input-field prompt-input" id="t6-career">
+                <select class="input-field prompt-input" id="t6-p-career">
                   <option value="신입">신입</option>
                   <option value="3년 이상" selected>3년 이상</option>
                   <option value="5년 이상">5년 이상</option>
@@ -2283,7 +2285,7 @@
               <textarea class="input-field prompt-input" id="t7-p-team" placeholder="예: 저희 팀은 사용자 경험을 최우선으로 생각합니다."
                 style="min-height: 100px"></textarea>
               <label class="input-label" style="margin-top: 12px">입사일</label>
-              <input type="date" class="input-field prompt-input" id="t7-start-date"
+              <input type="date" class="input-field prompt-input" id="t7-p-date"
                 style="min-height: 0; height: 44px; resize: none" />
             </div>
 
@@ -2373,7 +2375,8 @@
                 항목:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 신입사원 이름 (텍스트: "<span id="t7-disp-name"
                   class="highlight-keyword">김러블리</span>")<br>- 직무 (텍스트, 예: "<span id="t7-disp-role"
                   class="highlight-keyword">주니어 프론트엔드 개발자</span>")<br>- 팀 정보 (텍스트 영역, 2~3문장, 예: "<span id="t7-disp-team"
-                  class="highlight-keyword">저희 팀은 사용자 경험을 최우선으로 생각하며...</span>")<br>- 입사일 (날짜 선택)<br>- "가이드 생성" 버튼<br>-
+                  class="highlight-keyword">저희 팀은 사용자 경험을 최우선으로 생각하며...</span>")<br>- 입사일 (입력값 반영: <span
+                  id="t7-disp-date" class="highlight-keyword">YYYY-MM-DD</span>)<br>- "가이드 생성" 버튼<br>-
                 출력
                 영역: 4개 섹션으로 구성된 온보딩 가이드<br>- 환영 메시지 (신입사원 이름, 직무, 팀 정보, 입사일 반영)<br>- 첫 주 할 일 (불릿 포인트 5~7개, 직무 특성
                 반영)<br>-

@@ -537,8 +537,8 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 
   mapPrompt(1, ['input', 'output', 'user', 'value']);
-  mapPrompt(2, ['roles', 'user']);
-  mapPrompt(4, ['role', 'team', 'skills']);
+  mapPrompt(2, ['roles', 'output', 'user', 'value']);
+  mapPrompt(4, ['role', 'team', 'skills', 'career']);
   mapPrompt(6, ['role', 'skills', 'career']);
-  mapPrompt(7, ['name', 'role', 'team']);
+  mapPrompt(7, ['name', 'role', 'team', 'date']);
 });
