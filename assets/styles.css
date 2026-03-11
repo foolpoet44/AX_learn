@@ -809,6 +809,31 @@ body {
   transition: width 0.4s ease;
 }
 
+.learning-goal {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface2));
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin: 14px 0 8px;
+  font-size: 13px;
+  color: var(--fg);
+  line-height: 1.6;
+  flex-wrap: wrap;
+}
+.lg-label {
+  font-size: 10px;
+  font-weight: 700;
+  font-family: 'DM Mono', monospace;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 1px 6px;
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
 .tag-row {
   display: flex;
   gap: 8px;

@@ -11,12 +11,22 @@ const state = {
 // ── PERSIST ──
 function saveProgress() {
   try {
+    const checks = {};
+    document.querySelectorAll('ul.checklist').forEach((ul) => {
+      if (!ul.id) return;
+      const idxs = [];
+      ul.querySelectorAll('li').forEach((li, i) => {
+        if (li.classList.contains('checked')) idxs.push(i);
+      });
+      if (idxs.length) checks[ul.id] = idxs;
+    });
     localStorage.setItem(
       'hrax_progress',
       JSON.stringify({
         currentTask: state.currentTask,
         taskSteps: state.taskSteps,
         completedTasks: [...state.completedTasks],
+        checks,
       }),
     );
   } catch (e) { }
@@ -36,6 +46,19 @@ function loadProgress() {
       });
     }
     if (saved.taskSteps) Object.assign(state.taskSteps, saved.taskSteps);
+    if (saved.checks) {
+      Object.entries(saved.checks).forEach(([ulId, idxs]) => {
+        const ul = document.getElementById(ulId);
+        if (!ul) return;
+        const items = ul.querySelectorAll('li');
+        idxs.forEach((i) => {
+          if (items[i]) {
+            items[i].classList.add('checked');
+            items[i].querySelector('.cb').textContent = '✓';
+          }
+        });
+      });
+    }
     const taskToShow = saved.currentTask || 'overview';
     showTask(taskToShow, true);
     if (taskToShow !== 'overview' && saved.taskSteps && saved.taskSteps[taskToShow] > 1) {
@@ -103,6 +126,7 @@ function toggleCheck(li) {
   li.classList.toggle('checked');
   if (li.classList.contains('checked')) li.querySelector('.cb').textContent = '✓';
   else li.querySelector('.cb').textContent = '';
+  saveProgress();
 }
 
 // ── COPY PROMPT ──
