@@ -207,21 +207,21 @@
             <div class="eval-grid">
               <div class="eval-item">
                 <div class="eval-label">INPUT</div>
-                <input type="text" id="t1-p-input" class="prompt-input" value="팀원 이름, 최근 이슈 (텍스트 영역), 미팅 목적 (드롭다운)"
-                  placeholder="예: 팀원 이름 · 최근 이슈 키워드">
+                <input type="text" id="t1-p-input" class="prompt-input"
+                  placeholder="예: 팀원 이름, 최근 이슈 (텍스트 영역), 미팅 목적 (드롭다운)">
               </div>
               <div class="eval-item">
                 <div class="eval-label">OUTPUT</div>
                 <input type="text" id="t1-p-output" class="prompt-input"
-                  value="4개 섹션 어젠다: 아이스브레이크, 업무 현황, 성장&amp;피드백, 마무리">
+                  placeholder="예: 4개 섹션 어젠다: 아이스브레이크, 업무 현황, 성장&amp;피드백, 마무리">
               </div>
               <div class="eval-item">
                 <div class="eval-label">디자인 무드</div>
-                <input type="text" id="t1-p-user" class="prompt-input" value="전문적인 디자인 / 한국어 UI">
+                <input type="text" id="t1-p-user" class="prompt-input" placeholder="예: 전문적인 디자인 / 한국어 UI">
               </div>
               <div class="eval-item">
                 <div class="eval-label">핵심 가치</div>
-                <input type="text" id="t1-p-value" class="prompt-input" value="팀원 이름과 이슈 내용이 질문에 동적으로 반영">
+                <input type="text" id="t1-p-value" class="prompt-input" placeholder="예: 팀원 이름과 이슈 내용이 질문에 동적으로 반영">
               </div>
             </div>
             <div class="info-box">
@@ -619,21 +619,22 @@
               <div class="eval-item">
                 <div class="eval-label">INPUT</div>
                 <input type="text" class="input-field prompt-input" id="t2-p-roles"
-                  value="생산기술, 품질관리, 설비/유지보수, HR &amp; 교육, 구매/조달, 연구개발, 안전관리" placeholder="예: 생산기술, 품질, HR 등" />
+                  placeholder="예: 생산기술, 품질관리, 설비/유지보수, HR &amp; 교육 등" />
               </div>
               <div class="eval-item">
                 <div class="eval-label">OUTPUT</div>
                 <input type="text" class="input-field prompt-input" id="t2-p-output"
-                  value="AI 활용 아이디어 카드 10개 / 각 카드: 제목 + 한 줄 설명 + 난이도 배지" />
+                  placeholder="예: AI 활용 아이디어 카드 10개 (제목 + 한 줄 설명 + 난이도 배지)" />
               </div>
               <div class="eval-item">
                 <div class="eval-label">사용자</div>
-                <input type="text" class="input-field prompt-input" id="t2-p-user" value="제조업 HR 담당자"
+                <input type="text" class="input-field prompt-input" id="t2-p-user"
                   placeholder="예: 제조업 HR 담당자, 신입사원 등" />
               </div>
               <div class="eval-item">
                 <div class="eval-label">핵심 가치</div>
-                <input type="text" class="input-field prompt-input" id="t2-p-value" value="AI와 내 업무의 연결점 즉각 체감" />
+                <input type="text" class="input-field prompt-input" id="t2-p-value"
+                  placeholder="예: AI와 내 업무의 연결점 즉각 체감" />
               </div>
             </div>
             <div class="info-box">
@@ -1020,19 +1021,19 @@
             <!-- 동적 폼 (Step 1 기획 단계에서 입력) -->
             <div style="margin-top: 24px;">
               <label class="input-label">직무명</label>
-              <input type="text" class="input-field prompt-input" id="t3-p-role" value="HRD 기획자"
-                placeholder="예: HRD 기획자, 생산기술 엔지니어" style="min-height: 0; height: 44px; resize: none" />
+              <input type="text" class="input-field prompt-input" id="t3-p-role" placeholder="예: HRD 기획자, 생산기술 엔지니어"
+                style="min-height: 0; height: 44px; resize: none" />
               <label class="input-label" style="margin-top: 12px">팀/조직 소개</label>
               <textarea class="input-field prompt-input" id="t3-p-team" placeholder="예: 저희 팀은 채용 프로세스를 혁신합니다."
-                style="min-height: 80px">저희 팀은 채용 프로세스를 혁신합니다.</textarea>
+                style="min-height: 80px"></textarea>
               <label class="input-label" style="margin-top: 12px">핵심 역량 키워드 (쉼표로 구분)</label>
-              <input type="text" class="input-field prompt-input" id="t3-p-skills" value="교육과정 설계, 데이터 분석, 이해관계자 소통"
+              <input type="text" class="input-field prompt-input" id="t3-p-skills"
                 placeholder="예: 교육과정 설계, 데이터 분석, 이해관계자 소통" style="min-height: 0; height: 44px; resize: none" />
               <label class="input-label" style="margin-top: 12px">경력 조건</label>
               <select class="input-field prompt-input" id="t3-p-career"
                 style="min-height: 0; height: 44px; resize: none">
                 <option value="신입">신입</option>
-                <option value="3년 이상" selected>3년 이상</option>
+                <option value="3년 이상">3년 이상</option>
                 <option value="5년 이상">5년 이상</option>
                 <option value="경력무관">경력무관</option>
               </select>
@@ -1327,21 +1328,21 @@
               </div>
               <div class="eval-item" style="grid-column: 1 / -1; display:flex; flex-direction:column; gap:8px;">
                 <label class="input-label">직무명</label>
-                <input type="text" class="input-field prompt-input" id="t4-p-role" value="HRD 기획자"
+                <input type="text" class="input-field prompt-input" id="t4-p-role"
                   placeholder="예: HRD 기획자, 생산기술 엔지니어" />
 
                 <label class="input-label" style="margin-top: 12px">팀/조직 소개</label>
                 <textarea class="input-field prompt-input" id="t4-p-team" style="min-height: 80px"
-                  placeholder="예: 저희 팀은 채용 프로세스를 혁신합니다.">저희 팀은 채용 프로세스를 혁신합니다.</textarea>
+                  placeholder="예: 저희 팀은 채용 프로세스를 혁신합니다."></textarea>
 
                 <label class="input-label" style="margin-top: 12px">핵심 역량 키워드 (쉼표로 구분)</label>
-                <input type="text" class="input-field prompt-input" id="t4-p-skills" value="교육과정 설계, 데이터 분석, 이해관계자 소통"
+                <input type="text" class="input-field prompt-input" id="t4-p-skills"
                   placeholder="예: 교육과정 설계, 데이터 분석, 이해관계자 소통" />
 
                 <label class="input-label" style="margin-top: 12px">경력 조건</label>
                 <select class="input-field prompt-input" id="t4-p-career">
                   <option value="신입">신입</option>
-                  <option value="3년 이상" selected>3년 이상</option>
+                  <option value="3년 이상">3년 이상</option>
                   <option value="5년 이상">5년 이상</option>
                   <option value="경력무관">경력무관</option>
                 </select>
@@ -1663,16 +1664,16 @@
             <!-- 동적 폼 (Step 1 기획 단계에서 입력) -->
             <div style="margin-top: 24px;">
               <label class="input-label">신입사원 이름</label>
-              <input type="text" class="input-field prompt-input" id="t5-p-name" value="김러블리" placeholder="예: 김러블리"
+              <input type="text" class="input-field prompt-input" id="t5-p-name" placeholder="예: 김러블리"
                 style="min-height: 0; height: 44px; resize: none" />
               <label class="input-label" style="margin-top: 12px">직무</label>
-              <input type="text" class="input-field prompt-input" id="t5-p-role" value="주니어 프론트엔드 개발자"
-                placeholder="예: 주니어 프론트엔드 개발자" style="min-height: 0; height: 44px; resize: none" />
+              <input type="text" class="input-field prompt-input" id="t5-p-role" placeholder="예: 주니어 프론트엔드 개발자"
+                style="min-height: 0; height: 44px; resize: none" />
               <label class="input-label" style="margin-top: 12px">팀 정보</label>
               <textarea class="input-field prompt-input" id="t5-p-team" placeholder="예: 저희 팀은 사용자 경험을 최우선으로 생각합니다."
-                style="min-height: 100px">저희 팀은 사용자 경험을 최우선으로 생각합니다.</textarea>
+                style="min-height: 100px"></textarea>
               <label class="input-label" style="margin-top: 12px">입사일</label>
-              <input type="date" class="input-field prompt-input" id="t5-p-date" value="2026-04-01"
+              <input type="date" class="input-field prompt-input" id="t5-p-date" placeholder="예: 2026-04-01"
                 style="min-height: 0; height: 44px; resize: none" />
             </div>
 
