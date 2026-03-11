@@ -207,22 +207,38 @@
             <div class="eval-grid">
               <div class="eval-item">
                 <div class="eval-label">INPUT</div>
-                <input type="text" id="t1-p-input" class="prompt-input"
-                  placeholder="예: 팀원 이름, 최근 이슈 (텍스트 영역), 미팅 목적 (드롭다운)">
+                팀원 이름 · 최근 이슈 (텍스트) · 미팅 목적
               </div>
               <div class="eval-item">
                 <div class="eval-label">OUTPUT</div>
-                <input type="text" id="t1-p-output" class="prompt-input"
-                  placeholder="예: 4개 섹션 어젠다: 아이스브레이크, 업무 현황, 성장&amp;피드백, 마무리">
+                4개 섹션 어젠다 (아이스브레이크 등)
               </div>
               <div class="eval-item">
                 <div class="eval-label">디자인 무드</div>
-                <input type="text" id="t1-p-user" class="prompt-input" placeholder="예: 전문적인 디자인 / 한국어 UI">
+                전문적인 디자인 / 한국어 UI
               </div>
               <div class="eval-item">
                 <div class="eval-label">핵심 가치</div>
-                <input type="text" id="t1-p-value" class="prompt-input" placeholder="예: 팀원 이름과 이슈 내용이 질문에 동적으로 반영">
+                동적 데이터 반영 및 개인화 질문 생성
               </div>
+            </div>
+
+            <!-- 동적 폼 (Step 1 기획 단계에서 입력) -->
+            <div style="margin-top: 24px;">
+              <label class="input-label">INPUT</label>
+              <input type="text" id="t1-p-input" class="input-field prompt-input"
+                placeholder="예: 팀원 이름, 최근 이슈 (텍스트 영역), 미팅 목적 (드롭다운)"
+                style="min-height: 0; height: 44px; resize: none" />
+              <label class="input-label" style="margin-top: 12px">OUTPUT</label>
+              <input type="text" id="t1-p-output" class="input-field prompt-input"
+                placeholder="예: 4개 섹션 어젠다: 아이스브레이크, 업무 현황, 성장&amp;피드백, 마무리"
+                style="min-height: 0; height: 44px; resize: none" />
+              <label class="input-label" style="margin-top: 12px">디자인 무드</label>
+              <input type="text" id="t1-p-user" class="input-field prompt-input" placeholder="예: 전문적인 디자인 / 한국어 UI"
+                style="min-height: 0; height: 44px; resize: none" />
+              <label class="input-label" style="margin-top: 12px">핵심 가치</label>
+              <input type="text" id="t1-p-value" class="input-field prompt-input"
+                placeholder="예: 팀원 이름과 이슈 내용이 질문에 동적으로 반영" style="min-height: 0; height: 44px; resize: none" />
             </div>
             <div class="info-box">
               <div class="info-label">HR 관점 TIP</div>
@@ -618,24 +634,37 @@
             <div class="eval-grid">
               <div class="eval-item">
                 <div class="eval-label">INPUT</div>
-                <input type="text" class="input-field prompt-input" id="t2-p-roles"
-                  placeholder="예: 생산기술, 품질관리, 설비/유지보수, HR &amp; 교육 등" />
+                사용자 직무 그룹 대분류
               </div>
               <div class="eval-item">
                 <div class="eval-label">OUTPUT</div>
-                <input type="text" class="input-field prompt-input" id="t2-p-output"
-                  placeholder="예: AI 활용 아이디어 카드 10개 (제목 + 한 줄 설명 + 난이도 배지)" />
+                역할별 맞춤형 AI 활용 아이디어 카드
               </div>
               <div class="eval-item">
                 <div class="eval-label">사용자</div>
-                <input type="text" class="input-field prompt-input" id="t2-p-user"
-                  placeholder="예: 제조업 HR 담당자, 신입사원 등" />
+                앱을 직접 조작할 교육 대상자 명시
               </div>
               <div class="eval-item">
                 <div class="eval-label">핵심 가치</div>
-                <input type="text" class="input-field prompt-input" id="t2-p-value"
-                  placeholder="예: AI와 내 업무의 연결점 즉각 체감" />
+                업무와 AI 기술의 연결성 즉각 체감
               </div>
+            </div>
+
+            <!-- 동적 폼 (Step 1 기획 단계에서 입력) -->
+            <div style="margin-top: 24px;">
+              <label class="input-label">INPUT</label>
+              <input type="text" class="input-field prompt-input" id="t2-p-roles"
+                placeholder="예: 생산기술, 품질관리, 설비/유지보수, HR &amp; 교육 등" style="min-height: 0; height: 44px; resize: none" />
+              <label class="input-label" style="margin-top: 12px">OUTPUT</label>
+              <input type="text" class="input-field prompt-input" id="t2-p-output"
+                placeholder="예: AI 활용 아이디어 카드 10개 (제목 + 한 줄 설명 + 난이도 배지)"
+                style="min-height: 0; height: 44px; resize: none" />
+              <label class="input-label" style="margin-top: 12px">사용자</label>
+              <input type="text" class="input-field prompt-input" id="t2-p-user" placeholder="예: 제조업 HR 담당자, 신입사원 등"
+                style="min-height: 0; height: 44px; resize: none" />
+              <label class="input-label" style="margin-top: 12px">핵심 가치</label>
+              <input type="text" class="input-field prompt-input" id="t2-p-value" placeholder="예: AI와 내 업무의 연결점 즉각 체감"
+                style="min-height: 0; height: 44px; resize: none" />
             </div>
             <div class="info-box">
               <div class="info-label">교육 설계 포인트</div>
