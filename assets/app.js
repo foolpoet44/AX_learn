@@ -324,65 +324,6 @@ function showRoleIdeas(role) {
     .join('');
 }
 
-// ── TASK 3: MOOD ──
-function selectMood(btn, emoji) {
-  document.querySelectorAll('#moodPicker .eval-item').forEach((b) => {
-    b.classList.remove('selected');
-    b.setAttribute('aria-pressed', 'false');
-  });
-  btn.classList.add('selected');
-  btn.setAttribute('aria-pressed', 'true');
-  state.selectedMood = emoji;
-}
-
-function submitMood() {
-  if (!state.selectedMood) {
-    alert('이모지를 선택해주세요!');
-    return;
-  }
-  const comment = document.getElementById('mood-comment').value;
-  const moodLabel = {
-    '😄': '최고에요',
-    '🙂': '괜찮아요',
-    '😐': '보통이에요',
-    '😔': '힘들어요',
-    '😤': '스트레스받아요',
-  };
-  const out = document.getElementById('mood-output');
-  out.innerHTML = `
-    <div style="text-align:center;padding:16px 0;">
-      <div style="font-size:48px;margin-bottom:12px;">${state.selectedMood}</div>
-      <div style="font-size:16px;font-weight:600;margin-bottom:8px;">"${moodLabel[state.selectedMood]}"</div>
-      ${comment ? `<div style="font-size:13px;color:var(--muted);margin-bottom:16px;">"${comment}"</div>` : ''}
-      <div style="font-size:13px;color:var(--accent);">✓ 익명으로 제출되었습니다</div>
-      <hr style="border-color:var(--border);margin:20px 0;">
-      <div style="font-size:12px;color:var(--muted);text-align:left;margin-bottom:8px;">오늘 팀 감정 분포 (데모)</div>
-      <div style="display:flex;gap:8px;align-items:flex-end;height:60px;margin-bottom:8px;">
-        ${[
-      ['😄', 65],
-      ['🙂', 20],
-      ['😐', 10],
-      ['😔', 3],
-      ['😤', 2],
-    ]
-      .map(
-        ([e, v]) => `
-          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;">
-            <div style="font-size:9px;color:var(--muted);">${v}%</div>
-            <div style="width:100%;background:var(--accent);border-radius:2px 2px 0 0;height:${v * 0.55}px;opacity:0.7;transition:height 0.5s;"></div>
-            <div style="font-size:16px;">${e}</div>
-          </div>
-        `,
-      )
-      .join('')}
-      </div>
-    </div>
-  `;
-  out.classList.add('visible');
-  if (typeof mapPrompt === 'function') {
-    mapPrompt('task3', state.selectedMood, comment);
-  }
-}
 
 // ── TASK 4: JD GENERATOR ──
 function generateJobDescription() {
@@ -432,136 +373,7 @@ function generateJobDescription() {
   out.classList.add('visible');
 }
 
-// ── TASK 5: MINUTES ──
-const sampleMinutes = `[2026년 3월 6일 AX 추진팀 주간 미팅]
-참석: 김팀장, 이대리, 박사원, 최주임
 
-1. Vibe-Coding 교육 커리큘럼 관련
-- 이대리가 3월 14일까지 1차 초안 작성 예정
-- 박사원은 Lovable 실습 예제 5개 이번 주 금요일까지 준비
-- 최주임이 수강 신청 시스템 연동 여부 다음 주 수요일까지 확인
-
-2. Pulse Check 시스템
-- 김팀장이 3월 말까지 경영진 보고 자료 준비
-- 이대리가 설문 문항 초안 검토 후 이번 주 중 공유
-
-3. 기타
-- 팀 전체 AI 툴 체험 세션 일정 미정 (담당자 미정)`;
-
-function loadSampleMinutes() {
-  document.getElementById('minutes-input').value = sampleMinutes;
-}
-
-function extractActions() {
-  const text = document.getElementById('minutes-input').value;
-  if (!text.trim()) {
-    alert('회의록을 입력해주세요.');
-    return;
-  }
-
-  const actions = [];
-  const lines = text.split('\n');
-
-  // 소제목 패턴: "1.", "2.", "1)", "가.", "[..." 등으로 시작하는 섹션 제목
-  const isSectionHeading = (s) =>
-    /^\d+[\.\)]\s+\S/.test(s) || // 숫자 소제목 (예: "1. 주제")
-    /^[가-힣]+[\.\)]\s/.test(s) || // 한글 소제목 (예: "가. 주제")
-    s.startsWith('[') || // [날짜/회의명]
-    /^참석/.test(s) || // 참석자 라인
-    s.length < 6; // 너무 짧은 라인 (빈 제목 등)
-
-  lines.forEach((line) => {
-    const trimmed = line.trim();
-    if (!trimmed || isSectionHeading(trimmed)) return;
-
-    // 액션아이템 키워드가 없으면 스킵
-    const actionKeywords = [
-      '예정',
-      '준비',
-      '작성',
-      '확인',
-      '공유',
-      '검토',
-      '진행',
-      '완료',
-      '보고',
-      '수립',
-      '제출',
-    ];
-    if (!actionKeywords.some((k) => trimmed.includes(k))) return;
-
-    let assignee = '미정';
-    let task = trimmed.replace(/^[-\*]\s*/, ''); // 불릿 기호 제거
-    let due = '미정';
-    let priority = 'Medium';
-
-    // 담당자 추출: "- 이대리가", "김팀장이" 등
-    const personMatch = trimmed.match(
-      /([가-힣]{2,4})(팀장|대리|사원|주임|과장|차장|부장|책임|수석)?(?=이|가)/,
-    );
-    if (personMatch) assignee = personMatch[1] + (personMatch[2] || '');
-
-    // 기한 추출
-    const dueMatch = trimmed.match(
-      /(\d+월\s*\d+일|이번\s*주\s*[가-힣]+요일?|다음\s*주\s*[가-힣]+요일?|[가-힣]+\s*말|[가-힣]+\s*중|[가-힣]+\s*까지)/,
-    );
-    if (dueMatch) due = dueMatch[0];
-
-    // 우선순위 판단
-    if (
-      trimmed.includes('경영진') ||
-      trimmed.includes('보고') ||
-      trimmed.includes('즉시') ||
-      trimmed.includes('긴급')
-    )
-      priority = 'High';
-    else if (trimmed.includes('미정') || trimmed.includes('검토')) priority = 'Low';
-
-    actions.push({ task: task.substring(0, 60), assignee, due, priority });
-  });
-
-  if (actions.length === 0) {
-    actions.push({
-      task: '자동 추출 결과 없음 — 샘플 데이터를 사용해보세요',
-      assignee: '미정',
-      due: '미정',
-      priority: 'Low',
-    });
-  }
-
-  const pColor = { High: '#ff6b6b', Medium: '#e8ff47', Low: '#47ff8a' };
-  const out = document.getElementById('minutes-output');
-  out.innerHTML = `
-    <div style="font-size:12px;color:var(--accent);margin-bottom:12px;font-family:'DM Mono',monospace;">✓ 액션아이템 ${actions.length}개 추출</div>
-    <div style="overflow-x:auto;">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
-        <thead>
-          <tr style="border-bottom:1px solid var(--border);">
-            <th style="text-align:left;padding:8px 12px;color:var(--muted);font-weight:600;">할 일</th>
-            <th style="text-align:left;padding:8px 12px;color:var(--muted);font-weight:600;">담당자</th>
-            <th style="text-align:left;padding:8px 12px;color:var(--muted);font-weight:600;">기한</th>
-            <th style="text-align:left;padding:8px 12px;color:var(--muted);font-weight:600;">우선순위</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${actions
-      .map(
-        (a) => `
-            <tr style="border-bottom:1px solid var(--border);">
-              <td style="padding:10px 12px;">${a.task}</td>
-              <td style="padding:10px 12px;${a.assignee === '미정' ? 'color:#ff6b6b' : ''}">${a.assignee}</td>
-              <td style="padding:10px 12px;color:var(--muted);">${a.due}</td>
-              <td style="padding:10px 12px;"><span style="font-size:11px;font-weight:700;color:${pColor[a.priority]};border:1px solid ${pColor[a.priority]};padding:2px 8px;border-radius:2px;font-family:'DM Mono',monospace;">${a.priority}</span></td>
-            </tr>
-          `,
-      )
-      .join('')}
-        </tbody>
-      </table>
-    </div>
-  `;
-  out.classList.add('visible');
-}
 
 // ── TASK 6: JOB POSTING ──
 function generateJobPosting() {
@@ -726,9 +538,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   mapPrompt(1, ['input', 'output', 'user', 'value']);
   mapPrompt(2, ['roles', 'user']);
-  mapPrompt(3, ['appname', 'tone']);
   mapPrompt(4, ['role', 'team', 'skills']);
-  mapPrompt(5, ['rules', 'columns']);
   mapPrompt(6, ['role', 'skills', 'career']);
   mapPrompt(7, ['name', 'role', 'team']);
 });
