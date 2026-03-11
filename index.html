@@ -53,16 +53,16 @@
           <span class="num">02</span> AI 활용 브레인스토머
           <span class="check">✓</span>
         </button>
+        <button class="task-btn" data-task="t3">
+          <span class="num">03</span> JD(Job Description) 생성기
+          <span class="check">✓</span>
+        </button>
         <button class="task-btn" data-task="t4">
-          <span class="num">04</span> JD(Job Description) 생성기
+          <span class="num">04</span> 채용 공고 자동 작성기
           <span class="check">✓</span>
         </button>
-        <button class="task-btn" data-task="t6">
-          <span class="num">06</span> 채용 공고 자동 작성기
-          <span class="check">✓</span>
-        </button>
-        <button class="task-btn" data-task="t7">
-          <span class="num">07</span> 신입사원 온보딩 가이드
+        <button class="task-btn" data-task="t5">
+          <span class="num">05</span> 신입사원 온보딩 가이드
           <span class="check">✓</span>
         </button>
       </div>
@@ -101,21 +101,21 @@
             <div class="card-title">역할별 AI 활용<br />브레인스토머</div>
             <div class="card-time">⏱ ~3분 · 추천</div>
           </div>
-          <div class="overview-card" onclick="showTask('t4')">
+          <div class="overview-card" onclick="showTask('t3')">
             <div class="card-emoji">📝</div>
-            <div class="card-num">TASK 04</div>
+            <div class="card-num">TASK 03</div>
             <div class="card-title">JD(직무기술서)<br />자동 생성기</div>
             <div class="card-time">⏱ ~3분</div>
           </div>
           <div class="overview-card" onclick="showTask(&#39;t6&#39;)">
             <div class="card-emoji">📝</div>
-            <div class="card-num">TASK 06</div>
+            <div class="card-num">TASK 04</div>
             <div class="card-title">채용 공고<br />자동 작성기</div>
             <div class="card-time">⏱ ~3분</div>
           </div>
-          <div class="overview-card" onclick="showTask('t7')">
+          <div class="overview-card" onclick="showTask('t5')">
             <div class="card-emoji">🌱</div>
-            <div class="card-num">TASK 07</div>
+            <div class="card-num">TASK 05</div>
             <div class="card-title">신입사원<br />온보딩 가이드 앱</div>
             <div class="card-time">⏱ ~3분</div>
           </div>
@@ -1251,11 +1251,11 @@
         </div>
       </div>
 
-      <!-- ════════ TASK 4 ════════ -->
-      <div id="view-t4" class="task-selector">
+      <!-- ════════ TASK 03 ════════ -->
+      <div id="view-t3" class="task-selector">
         <div class="task-header">
           <button class="back-btn" onclick="showTask(&#39;overview&#39;)">← 과제 목록으로</button>
-          <div class="task-badge">TASK 04</div>
+          <div class="task-badge">TASK 03</div>
           <h2>📝 JD(Job Description) 생성기</h2>
           <p>
             직무명과 핵심 역량 키워드를 입력하면 완성된 JD 초안을 즉시 생성 — 채용 업무의 가장 번거로운 첫 단계를 AI가 해결한다
@@ -1293,9 +1293,9 @@
         </div>
 
         <div class="progress-bar-wrap">
-          <div class="progress-bar-fill" id="p-t4" style="width: 0%"></div>
+          <div class="progress-bar-fill" id="p-t3" style="width: 0%"></div>
         </div>
-        <div class="step-flow" id="flow-t4">
+        <div class="step-flow" id="flow-t3">
           <div class="step-pill active" data-step="1" onclick="goStep(&#39;t4&#39;,1)">
             <span>1</span> 기획
           </div>
@@ -1312,7 +1312,7 @@
             <span>4</span> 배포
           </div>
         </div>
-        <div class="step-content active" id="t4-s1">
+        <div class="step-content active" id="t3-s1">
           <div class="step-block">
             <div class="step-num">STEP 01 / 기획</div>
             <h3>JD 작성의 어디서 시간이 낭비되는가?</h3>
@@ -1342,16 +1342,16 @@
             <!-- 동적 폼 (Step 1 기획 단계에서 입력) -->
             <div style="margin-top: 24px;">
               <label class="input-label">직무명</label>
-              <input type="text" class="input-field prompt-input" id="t4-p-role" placeholder="예: HRD 기획자, 생산기술 엔지니어"
+              <input type="text" class="input-field prompt-input" id="t3-p-role" placeholder="예: HRD 기획자, 생산기술 엔지니어"
                 style="min-height: 0; height: 44px; resize: none" />
               <label class="input-label" style="margin-top: 12px">팀/조직 소개</label>
-              <textarea class="input-field prompt-input" id="t4-p-team" placeholder="예: 저희 팀은 채용 프로세스를 혁신합니다."
+              <textarea class="input-field prompt-input" id="t3-p-team" placeholder="예: 저희 팀은 채용 프로세스를 혁신합니다."
                 style="min-height: 80px"></textarea>
               <label class="input-label" style="margin-top: 12px">핵심 역량 키워드 (쉼표로 구분)</label>
-              <input type="text" class="input-field prompt-input" id="t4-p-skills"
+              <input type="text" class="input-field prompt-input" id="t3-p-skills"
                 placeholder="예: 교육과정 설계, 데이터 분석, 이해관계자 소통" style="min-height: 0; height: 44px; resize: none" />
               <label class="input-label" style="margin-top: 12px">경력 조건</label>
-              <select class="input-field prompt-input" id="t4-p-career"
+              <select class="input-field prompt-input" id="t3-p-career"
                 style="min-height: 0; height: 44px; resize: none">
                 <option value="신입">신입</option>
                 <option value="3년 이상" selected>3년 이상</option>
@@ -1364,7 +1364,7 @@
             <button class="btn-next" onclick="goStep(&#39;t4&#39;,2)">다음 →</button>
           </div>
         </div>
-        <div class="step-content" id="t4-s2">
+        <div class="step-content" id="t3-s2">
           <div class="step-block">
             <div class="step-num">STEP 02 / 프롬프트 작성</div>
             <h3>기획 결과를 프롬프트 언어로 번역하기</h3>
@@ -1431,12 +1431,12 @@
                 <span class="label">Lovable Prompt</span>
                 <button class="copy-btn" onclick="copyPrompt(this, &#39;t4&#39;)">COPY</button>
               </div>
-              <div class="prompt-text" style="line-height: 1.8;" id="prompt-t4">
+              <div class="prompt-text" style="line-height: 1.8;" id="prompt-t3">
                 JD(직무기술서) 자동 작성 웹앱을 만들어줘. <br><br>기능 요구사항:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 입력
-                항목:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 직무명 (텍스트, 예: "<span id="t4-disp-role" class="highlight-keyword">HRD
-                  기획자</span>")<br>- 팀/조직 소개 (텍스트 영역, 2~3문장: "<span id="t4-disp-team" class="highlight-keyword">입력
-                  내용</span>")<br>- 핵심 역량 키워드 (텍스트, 쉼표로 구분 입력: "<span id="t4-disp-skills" class="highlight-keyword">키워드
-                  입력</span>")<br>- 우대사항 키워드 (텍스트, 선택 입력)<br>- 경력 조건 (드롭다운: <span id="t4-disp-career"
+                항목:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 직무명 (텍스트, 예: "<span id="t3-disp-role" class="highlight-keyword">HRD
+                  기획자</span>")<br>- 팀/조직 소개 (텍스트 영역, 2~3문장: "<span id="t3-disp-team" class="highlight-keyword">입력
+                  내용</span>")<br>- 핵심 역량 키워드 (텍스트, 쉼표로 구분 입력: "<span id="t3-disp-skills" class="highlight-keyword">키워드
+                  입력</span>")<br>- 우대사항 키워드 (텍스트, 선택 입력)<br>- 경력 조건 (드롭다운: <span id="t3-disp-career"
                   class="highlight-keyword">3년 이상</span>)<br>- "JD 생성" 버튼<br>-
                 출력 영역: 4개 섹션으로 구성된 JD<br>- 포지션 개요 (2~3문장, 입력 키워드 반영)<br>- 담당 업무 (불릿 포인트 5~7개)<br>- 자격 요건 (불릿 포인트 5개, 경력
                 조건
@@ -1445,7 +1445,7 @@
                 전체에 자연스럽게 녹아드는 HR 전문 문체
               </div>
             </div>
-            <ul class="checklist" id="cl-t4-2">
+            <ul class="checklist" id="cl-t3-2">
               <li onclick="toggleCheck(this)">
                 <span class="cb"></span> 구조적 문서일수록 프롬프트 번역이 쉬운 이유를 이해했다
               </li>
@@ -1462,7 +1462,7 @@
             <button class="btn-next" onclick="goStep(&#39;t4&#39;,3)">다음 →</button>
           </div>
         </div>
-        <div class="step-content" id="t4-s3">
+        <div class="step-content" id="t3-s3">
           <div class="step-block">
             <div class="step-num">STEP 03 / 수정 실습</div>
             <h3>JD를 우리 회사 버전으로 고도화</h3>
@@ -1507,7 +1507,7 @@
                 </div>
               </div>
             </div>
-            <ul class="checklist" id="cl-t4-3">
+            <ul class="checklist" id="cl-t3-3">
               <li onclick="toggleCheck(this)">
                 <span class="cb"></span> JD 4개 섹션이 모두 생성된다
               </li>
@@ -1524,7 +1524,7 @@
             <button class="btn-next" onclick="goStep(&#39;t4&#39;,4)">배포 &amp; 체험 →</button>
           </div>
         </div>
-        <div class="step-content" id="t4-s4">
+        <div class="step-content" id="t3-s4">
           <div class="step-block">
             <div class="step-num">STEP 04 / 배포 &amp; 체험</div>
             <div class="info-box" style="margin-bottom: 20px">
@@ -1540,12 +1540,12 @@
             </div>
             <button class="generate-btn" style="margin-top:16px;" onclick="generateJobDescription()">JD 초안 생성
               시뮬레이션</button>
-            <div class="output-area" id="t4-output"></div>
+            <div class="output-area" id="t3-output"></div>
           </div>
-          <div class="badge-area" id="badge-t4" style="display: none">
+          <div class="badge-area" id="badge-t3" style="display: none">
             <div class="badge-icon">📝</div>
             <div class="stars">★★★</div>
-            <div class="badge-title">TASK 04 완료!</div>
+            <div class="badge-title">TASK 03 완료!</div>
             <div class="badge-sub">JD 자동 작성기를 직접 만들고 체험했습니다</div>
             <button class="btn-next" style="margin-top: 20px" onclick="showTask(&#39;overview&#39;)">
               다른 과제 선택하기
@@ -1854,11 +1854,11 @@
         </div>
       </div>
 
-      <!-- ════════ TASK 6 ════════ -->
-      <div id="view-t6" class="task-selector">
+      <!-- ════════ TASK 04 ════════ -->
+      <div id="view-t4" class="task-selector">
         <div class="task-header">
           <button class="back-btn" onclick="showTask(&#39;overview&#39;)">← 과제 목록으로</button>
-          <div class="task-badge">TASK 06</div>
+          <div class="task-badge">TASK 04</div>
           <h2>📝 채용 공고 자동 작성기</h2>
           <p>
             직무명과 핵심 역량 키워드를 입력하면 완성된 채용 공고 초안을 즉시 생성 — 채용 업무의
@@ -1897,9 +1897,9 @@
         </div>
 
         <div class="progress-bar-wrap">
-          <div class="progress-bar-fill" id="p-t6" style="width: 0%"></div>
+          <div class="progress-bar-fill" id="p-t4" style="width: 0%"></div>
         </div>
-        <div class="step-flow" id="flow-t6">
+        <div class="step-flow" id="flow-t4">
           <div class="step-pill active" data-step="1" onclick="goStep(&#39;t6&#39;,1)">
             <span>1</span> 기획
           </div>
@@ -1918,7 +1918,7 @@
         </div>
 
         <!-- Step 1 -->
-        <div class="step-content active" id="t6-s1">
+        <div class="step-content active" id="t4-s1">
           <div class="step-block">
             <div class="step-num">STEP 01 / 기획</div>
             <h3>채용 공고 작성의 어디서 시간이 낭비되는가?</h3>
@@ -1945,15 +1945,15 @@
               </div>
               <div class="eval-item" style="grid-column: 1 / -1; display:flex; flex-direction:column; gap:8px;">
                 <label class="input-label">직무명</label>
-                <input type="text" class="input-field prompt-input" id="t6-p-role" value="HRD 기획자"
+                <input type="text" class="input-field prompt-input" id="t4-p-role" value="HRD 기획자"
                   placeholder="예: HRD 기획자, 생산기술 엔지니어" />
 
                 <label class="input-label" style="margin-top: 12px">핵심 역량 키워드 (쉼표로 구분)</label>
-                <input type="text" class="input-field prompt-input" id="t6-p-skills" value="교육과정 설계, 데이터 분석, 이해관계자 소통"
+                <input type="text" class="input-field prompt-input" id="t4-p-skills" value="교육과정 설계, 데이터 분석, 이해관계자 소통"
                   placeholder="예: 교육과정 설계, 데이터 분석, 이해관계자 소통" />
 
                 <label class="input-label" style="margin-top: 12px">경력 조건</label>
-                <select class="input-field prompt-input" id="t6-p-career">
+                <select class="input-field prompt-input" id="t4-p-career">
                   <option value="신입">신입</option>
                   <option value="3년 이상" selected>3년 이상</option>
                   <option value="5년 이상">5년 이상</option>
@@ -1968,7 +1968,7 @@
                 "우리 팀 문화"를 덧입히는 것이 HR의 역할입니다.
               </p>
             </div>
-            <ul class="checklist" id="cl-t6-1">
+            <ul class="checklist" id="cl-t4-1">
               <li onclick="toggleCheck(this)">
                 <span class="cb"></span> 앱의 목적과 절약 효과가 이해되었다
               </li>
@@ -1986,7 +1986,7 @@
         </div>
 
         <!-- Step 2 -->
-        <div class="step-content" id="t6-s2">
+        <div class="step-content" id="t4-s2">
           <div class="step-block">
             <div class="step-num">STEP 02 / 프롬프트 작성</div>
             <h3>기획 결과를 프롬프트 언어로 번역하기</h3>
@@ -2045,18 +2045,18 @@
                 <span class="label">Lovable Prompt — Copy &amp; Paste</span>
                 <button class="copy-btn" onclick="copyPrompt(this, &#39;t6&#39;)">COPY</button>
               </div>
-              <div class="prompt-text" style="line-height: 1.8;" id="prompt-t6">
+              <div class="prompt-text" style="line-height: 1.8;" id="prompt-t4">
                 채용 공고 자동 작성 웹앱을 만들어줘. <br><br>기능 요구사항:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 입력 항목:<br>&nbsp;&nbsp;&nbsp;&nbsp;·
-                직무명 (텍스트, 예: "<span id="t6-disp-role" class="highlight-keyword">HRD 기획자</span>")<br>- 팀/조직 소개 (텍스트 영역,
-                2~3문장)<br>- 핵심 역량 키워드 (텍스트, 쉼표로 구분 입력: "<span id="t6-disp-skills" class="highlight-keyword">교육과정 설계, 데이터
-                  분석, 이해관계자 소통</span>")<br>- 우대사항 키워드 (텍스트, 선택 입력)<br>- 경력 조건 (드롭다운: <span id="t6-disp-career"
+                직무명 (텍스트, 예: "<span id="t4-disp-role" class="highlight-keyword">HRD 기획자</span>")<br>- 팀/조직 소개 (텍스트 영역,
+                2~3문장)<br>- 핵심 역량 키워드 (텍스트, 쉼표로 구분 입력: "<span id="t4-disp-skills" class="highlight-keyword">교육과정 설계, 데이터
+                  분석, 이해관계자 소통</span>")<br>- 우대사항 키워드 (텍스트, 선택 입력)<br>- 경력 조건 (드롭다운: <span id="t4-disp-career"
                   class="highlight-keyword">3년 이상</span> 포함 여부 등)<br>- "공고 생성" 버튼<br>- 출력 영역: 4개 섹션으로 구성된 채용 공고<br>- 포지션
                 개요 (2~3문장, 입력 키워드 반영)<br>- 담당 업무 (불릿 포인트 5~7개)<br>- 자격 요건 (불릿 포인트 5개, 경력 조건 포함)<br>- 우대사항 (불릿 포인트
                 3개)<br>-
                 "공고 복사" 버튼, "다시 생성" 버튼<br>- 전문적이고 신뢰감 있는 다크 UI, 한국어 인터페이스<br>- 입력된 키워드가 공고 전체에 자연스럽게 녹아드는 HR 전문 문체
               </div>
             </div>
-            <ul class="checklist" id="cl-t6-2">
+            <ul class="checklist" id="cl-t4-2">
               <li onclick="toggleCheck(this)">
                 <span class="cb"></span> 구조적 문서일수록 프롬프트 번역이 쉬운 이유를 이해했다
               </li>
@@ -2075,7 +2075,7 @@
         </div>
 
         <!-- Step 3 -->
-        <div class="step-content" id="t6-s3">
+        <div class="step-content" id="t4-s3">
           <div class="step-block">
             <div class="step-num">STEP 03 / 수정 실습</div>
             <h3>채용 공고를 우리 회사 버전으로 고도화</h3>
@@ -2136,7 +2136,7 @@
                 <div style="font-size: 12px; color: var(--muted)">→ 과거 공고 이력 관리</div>
               </div>
             </div>
-            <ul class="checklist" id="cl-t6-3">
+            <ul class="checklist" id="cl-t4-3">
               <li onclick="toggleCheck(this)">
                 <span class="cb"></span> 공고 4개 섹션이 모두 생성된다
               </li>
@@ -2155,7 +2155,7 @@
         </div>
 
         <!-- Step 4 -->
-        <div class="step-content" id="t6-s4">
+        <div class="step-content" id="t4-s4">
           <div class="step-block">
             <div class="step-num">STEP 04 / 배포 &amp; 체험</div>
             <h3>지금 바로 공고 초안을 만들어보세요</h3>
@@ -2166,12 +2166,12 @@
               </p>
             </div>
             <button class="generate-btn" onclick="generateJobPosting()">공고 초안 생성</button>
-            <div class="output-area" id="t6-output"></div>
+            <div class="output-area" id="t4-output"></div>
           </div>
-          <div class="badge-area" id="badge-t6" style="display: none">
+          <div class="badge-area" id="badge-t4" style="display: none">
             <div class="badge-icon">📝</div>
             <div class="stars">★★★</div>
-            <div class="badge-title">TASK 06 완료!</div>
+            <div class="badge-title">TASK 04 완료!</div>
             <div class="badge-sub">채용 공고 자동 작성기를 직접 만들고 체험했습니다</div>
             <button class="btn-next" style="margin-top: 20px" onclick="showTask(&#39;overview&#39;)">
               다른 과제 선택하기
@@ -2184,11 +2184,11 @@
         </div>
       </div>
 
-      <!-- ════════ TASK 7 ════════ -->
-      <div id="view-t7" class="task-selector">
+      <!-- ════════ TASK 05 ════════ -->
+      <div id="view-t5" class="task-selector">
         <div class="task-header">
           <button class="back-btn" onclick="showTask(&#39;overview&#39;)">← 과제 목록으로</button>
-          <div class="task-badge">TASK 07</div>
+          <div class="task-badge">TASK 05</div>
           <h2>🌱 신입사원 온보딩 가이드</h2>
           <p>
             신입사원 정보를 입력하면 개인화된 온보딩 가이드를 자동으로 생성 — HR 담당자의 반복 업무를 줄이고 신입사원의 빠른 적응을 돕는다
@@ -2226,9 +2226,9 @@
         </div>
 
         <div class="progress-bar-wrap">
-          <div class="progress-bar-fill" id="p-t7" style="width: 0%"></div>
+          <div class="progress-bar-fill" id="p-t5" style="width: 0%"></div>
         </div>
-        <div class="step-flow" id="flow-t7">
+        <div class="step-flow" id="flow-t5">
           <div class="step-pill active" data-step="1" onclick="goStep(&#39;t7&#39;,1)">
             <span>1</span> 기획
           </div>
@@ -2247,7 +2247,7 @@
         </div>
 
         <!-- Step 1 -->
-        <div class="step-content active" id="t7-s1">
+        <div class="step-content active" id="t5-s1">
           <div class="step-block">
             <div class="step-num">STEP 01 / 기획</div>
             <h3>신입사원 온보딩의 어디서 시간이 낭비되는가?</h3>
@@ -2276,16 +2276,16 @@
             <!-- 동적 폼 (Step 1 기획 단계에서 입력) -->
             <div style="margin-top: 24px;">
               <label class="input-label">신입사원 이름</label>
-              <input type="text" class="input-field prompt-input" id="t7-p-name" placeholder="예: 김러블리"
+              <input type="text" class="input-field prompt-input" id="t5-p-name" placeholder="예: 김러블리"
                 style="min-height: 0; height: 44px; resize: none" />
               <label class="input-label" style="margin-top: 12px">직무</label>
-              <input type="text" class="input-field prompt-input" id="t7-p-role" placeholder="예: 주니어 프론트엔드 개발자"
+              <input type="text" class="input-field prompt-input" id="t5-p-role" placeholder="예: 주니어 프론트엔드 개발자"
                 style="min-height: 0; height: 44px; resize: none" />
               <label class="input-label" style="margin-top: 12px">팀 정보</label>
-              <textarea class="input-field prompt-input" id="t7-p-team" placeholder="예: 저희 팀은 사용자 경험을 최우선으로 생각합니다."
+              <textarea class="input-field prompt-input" id="t5-p-team" placeholder="예: 저희 팀은 사용자 경험을 최우선으로 생각합니다."
                 style="min-height: 100px"></textarea>
               <label class="input-label" style="margin-top: 12px">입사일</label>
-              <input type="date" class="input-field prompt-input" id="t7-p-date"
+              <input type="date" class="input-field prompt-input" id="t5-p-date"
                 style="min-height: 0; height: 44px; resize: none" />
             </div>
 
@@ -2295,7 +2295,7 @@
                 개인화된 온보딩은 신입사원의 회사 적응을 돕고 이탈률을 낮춥니다. AI가 생성한 초안을 바탕으로 HR이 더욱 풍부한 경험을 제공할 수 있습니다.
               </p>
             </div>
-            <ul class="checklist" id="cl-t7-1">
+            <ul class="checklist" id="cl-t5-1">
               <li onclick="toggleCheck(this)">
                 <span class="cb"></span> 앱의 목적과 절약 효과가 이해되었다
               </li>
@@ -2313,7 +2313,7 @@
         </div>
 
         <!-- Step 2 -->
-        <div class="step-content" id="t7-s2">
+        <div class="step-content" id="t5-s2">
           <div class="step-block">
             <div class="step-num">STEP 02 / 프롬프트 작성</div>
             <h3>기획 결과를 프롬프트 언어로 번역하기</h3>
@@ -2370,13 +2370,13 @@
                 <span class="label">Lovable Prompt — Copy &amp; Paste</span>
                 <button class="copy-btn" onclick="copyPrompt(this, &#39;t7&#39;)">COPY</button>
               </div>
-              <div class="prompt-text" style="line-height: 1.8;" id="prompt-t7">
+              <div class="prompt-text" style="line-height: 1.8;" id="prompt-t5">
                 신입사원 온보딩 가이드 자동 생성 웹앱을 만들어줘. <br><br>기능 요구사항:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 입력
-                항목:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 신입사원 이름 (텍스트: "<span id="t7-disp-name"
-                  class="highlight-keyword">김러블리</span>")<br>- 직무 (텍스트, 예: "<span id="t7-disp-role"
-                  class="highlight-keyword">주니어 프론트엔드 개발자</span>")<br>- 팀 정보 (텍스트 영역, 2~3문장, 예: "<span id="t7-disp-team"
+                항목:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 신입사원 이름 (텍스트: "<span id="t5-disp-name"
+                  class="highlight-keyword">김러블리</span>")<br>- 직무 (텍스트, 예: "<span id="t5-disp-role"
+                  class="highlight-keyword">주니어 프론트엔드 개발자</span>")<br>- 팀 정보 (텍스트 영역, 2~3문장, 예: "<span id="t5-disp-team"
                   class="highlight-keyword">저희 팀은 사용자 경험을 최우선으로 생각하며...</span>")<br>- 입사일 (입력값 반영: <span
-                  id="t7-disp-date" class="highlight-keyword">YYYY-MM-DD</span>)<br>- "가이드 생성" 버튼<br>-
+                  id="t5-disp-date" class="highlight-keyword">YYYY-MM-DD</span>)<br>- "가이드 생성" 버튼<br>-
                 출력
                 영역: 4개 섹션으로 구성된 온보딩 가이드<br>- 환영 메시지 (신입사원 이름, 직무, 팀 정보, 입사일 반영)<br>- 첫 주 할 일 (불릿 포인트 5~7개, 직무 특성
                 반영)<br>-
@@ -2384,7 +2384,7 @@
                 UI, 한국어 인터페이스<br>- 입력된 정보가 가이드 전체에 자연스럽게 녹아드는 개인화된 문체
               </div>
             </div>
-            <ul class="checklist" id="cl-t7-2">
+            <ul class="checklist" id="cl-t5-2">
               <li onclick="toggleCheck(this)">
                 <span class="cb"></span> 구조적 문서일수록 프롬프트 번역이 쉬운 이유를 이해했다
               </li>
@@ -2403,7 +2403,7 @@
         </div>
 
         <!-- Step 3 -->
-        <div class="step-content" id="t7-s3">
+        <div class="step-content" id="t5-s3">
           <div class="step-block">
             <div class="step-num">STEP 03 / 수정 실습</div>
             <h3>온보딩 가이드를 우리 회사 버전으로 고도화</h3>
@@ -2445,7 +2445,7 @@
                 </div>
               </div>
             </div>
-            <ul class="checklist" id="cl-t7-3">
+            <ul class="checklist" id="cl-t5-3">
               <li onclick="toggleCheck(this)">
                 <span class="cb"></span> 가이드 4개 섹션이 모두 생성된다
               </li>
@@ -2464,7 +2464,7 @@
         </div>
 
         <!-- Step 4 -->
-        <div class="step-content" id="t7-s4">
+        <div class="step-content" id="t5-s4">
           <div class="step-block">
             <div class="step-num">STEP 04 / 배포 &amp; 체험</div>
             <h3>신입사원 온보딩 가이드를 지금 바로 만들어보세요</h3>
@@ -2480,12 +2480,12 @@
             </div>
             <button class="generate-btn" style="margin-top:16px;" onclick="generateOnboardingGuide()">가이드 생성
               시뮬레이션</button>
-            <div class="output-area" id="t7-output"></div>
+            <div class="output-area" id="t5-output"></div>
           </div>
-          <div class="badge-area" id="badge-t7" style="display: none">
+          <div class="badge-area" id="badge-t5" style="display: none">
             <div class="badge-icon">🌱</div>
             <div class="stars">★★★</div>
-            <div class="badge-title">TASK 07 완료!</div>
+            <div class="badge-title">TASK 05 완료!</div>
             <div class="badge-sub">신입사원 온보딩 가이드를 직접 만들고 체험했습니다</div>
             <button class="btn-next" style="margin-top: 20px" onclick="showTask(&#39;overview&#39;)">
               다른 과제 선택하기
@@ -2512,10 +2512,10 @@
       <option value="t1">01 · 1on1 어젠다 생성기</option>
       <option value="t2">02 · AI 활용 브레인스토머</option>
       <option value="t3">03 · 팀 감정 온도계</option>
-      <option value="t4">04 · JD 생성기</option>
+      <option value="t3">04 · JD 생성기</option>
       <option value="t5">05 · 회의록 액션아이템 추출</option>
-      <option value="t6">06 · 채용 공고 자동 작성</option>
-      <option value="t7">07 · 신입사원 온보딩 가이드</option>
+      <option value="t4">06 · 채용 공고 자동 작성</option>
+      <option value="t5">07 · 신입사원 온보딩 가이드</option>
     </select>
   </div>
 </body>

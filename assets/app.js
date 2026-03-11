@@ -325,17 +325,17 @@ function showRoleIdeas(role) {
 }
 
 
-// ── TASK 4: JD GENERATOR ──
+// ── TASK 03: JD GENERATOR ──
 function generateJobDescription() {
-  const role = document.getElementById('t4-p-role').value || '직무 미입력';
-  const skills = document.getElementById('t4-p-skills').value || '핵심 역량 미입력';
-  const career = document.getElementById('t4-career').value;
+  const role = document.getElementById('t3-p-role').value || '직무 미입력';
+  const skills = document.getElementById('t3-p-skills').value || '핵심 역량 미입력';
+  const career = document.getElementById('t3-career').value;
   const skillList = skills
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean);
 
-  const out = document.getElementById('t4-output');
+  const out = document.getElementById('t3-output');
   out.innerHTML = `
     <div style="font-size:12px;color:var(--accent);margin-bottom:16px;font-family:'DM Mono',monospace;">📄 ${role} 채용 JD 초안</div>
     <div style="display:grid;gap:14px;">
@@ -375,16 +375,16 @@ function generateJobDescription() {
 
 
 
-// ── TASK 6: JOB POSTING ──
+// ── TASK 04: JOB POSTING ──
 function generateJobPosting() {
-  const role = document.getElementById('t6-role').value || '미입력 직무';
-  const skills = document.getElementById('t6-skills').value || '커뮤니케이션, 문제 해결, 협업';
-  const career = document.getElementById('t6-career').value;
+  const role = document.getElementById('t4-role').value || '미입력 직무';
+  const skills = document.getElementById('t4-skills').value || '커뮤니케이션, 문제 해결, 협업';
+  const career = document.getElementById('t4-career').value;
   const skillList = skills
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean);
-  const out = document.getElementById('t6-output');
+  const out = document.getElementById('t4-output');
   out.innerHTML = `
     <div style="font-size:12px;color:var(--accent);margin-bottom:16px;font-family:'DM Mono',monospace;">📄 ${role} 채용 공고 초안</div>
     <div style="display:grid;gap:14px;">
@@ -422,14 +422,14 @@ function generateJobPosting() {
   out.classList.add('visible');
 }
 
-// ── TASK 7: ONBOARDING GUIDE ──
+// ── TASK 05: ONBOARDING GUIDE ──
 function generateOnboardingGuide() {
-  const name = document.getElementById('t7-p-name').value || '신규 입사자';
-  const role = document.getElementById('t7-p-role').value || '직무 미상';
-  const teamInfo = document.getElementById('t7-p-team').value || '우리 팀에 오신 것을 환영합니다.';
-  const startDate = document.getElementById('t7-start-date').value || '출근 예정일';
+  const name = document.getElementById('t5-p-name').value || '신규 입사자';
+  const role = document.getElementById('t5-p-role').value || '직무 미상';
+  const teamInfo = document.getElementById('t5-p-team').value || '우리 팀에 오신 것을 환영합니다.';
+  const startDate = document.getElementById('t5-start-date').value || '출근 예정일';
 
-  const out = document.getElementById('t7-output');
+  const out = document.getElementById('t5-output');
   out.innerHTML = `
     <div style="font-size:12px;color:var(--accent);margin-bottom:16px;font-family:'DM Mono',monospace;">🌱 ${name}님 맞춤형 온보딩 가이드</div>
     <div style="display:grid;gap:14px;">
@@ -538,7 +538,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   mapPrompt(1, ['input', 'output', 'user', 'value']);
   mapPrompt(2, ['roles', 'output', 'user', 'value']);
-  mapPrompt(4, ['role', 'team', 'skills', 'career']);
-  mapPrompt(6, ['role', 'skills', 'career']);
-  mapPrompt(7, ['name', 'role', 'team', 'date']);
+  mapPrompt(3, ['role', 'team', 'skills', 'career']);
+  mapPrompt(4, ['role', 'skills', 'career']);
+  mapPrompt(5, ['name', 'role', 'team', 'date']);
 });
