@@ -38,7 +38,6 @@ body {
 .generate-btn:focus-visible,
 .mobile-nav-select:focus-visible,
 .overview-card:focus-visible,
-.instructor-guide-header:focus-visible,
 .eval-item:focus-visible,
 .input-field:focus-visible {
   outline: 2px solid var(--accent);
@@ -984,76 +983,75 @@ body {
   color: var(--accent);
 }
 
-/* ── INSTRUCTOR GUIDE ── */
-.instructor-guide {
-  border: 1px solid rgba(71, 200, 255, 0.3);
-  background: rgba(71, 200, 255, 0.03);
+/* ── CONTEXT SWITCH BANNER ── */
+.context-switch-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(255, 199, 71, 0.07);
+  border: 1px solid rgba(255, 199, 71, 0.35);
   border-radius: 4px;
-  margin-bottom: 24px;
-  overflow: hidden;
+  padding: 14px 16px;
+  margin-bottom: 20px;
 }
-.instructor-guide-header {
+.context-switch-banner .csb-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.context-switch-banner .csb-body {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.context-switch-banner .csb-body strong {
+  color: #ffc747;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'DM Mono', monospace;
+}
+.context-switch-banner .csb-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.context-switch-banner .csb-step {
+  background: rgba(255, 199, 71, 0.12);
+  border: 1px solid rgba(255, 199, 71, 0.3);
+  border-radius: 3px;
+  padding: 3px 10px;
+  font-size: 11px;
+  color: #ffc747;
+  font-family: 'DM Mono', monospace;
+  white-space: nowrap;
+}
+
+/* ── SIMULATION NOTICE ── */
+.sim-notice {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 16px;
-  cursor: pointer;
-  user-select: none;
-}
-.instructor-guide-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent2);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-}
-.instructor-guide-toggle {
+  gap: 8px;
   font-size: 11px;
   color: var(--muted);
-  font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed rgba(255,255,255,0.12);
+  border-radius: 3px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  font-family: 'DM Mono', monospace;
 }
-.instructor-guide-body {
-  display: none;
-  padding: 16px;
-  border-top: 1px solid rgba(71, 200, 255, 0.15);
-}
-.instructor-guide-body.open {
-  display: block;
-}
-.ig-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 14px;
-}
-.ig-item {
-  font-size: 12px;
-}
-.ig-label {
+.sim-notice .sim-badge {
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  padding: 1px 7px;
   font-size: 10px;
-  color: var(--accent2);
-  font-family: 'DM Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.ig-item p {
   color: var(--muted);
-  line-height: 1.6;
-  margin: 0;
-}
-.ig-trouble {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.8;
-  border-top: 1px solid rgba(71, 200, 255, 0.15);
-  padding-top: 12px;
-}
-.ig-trouble strong {
-  color: var(--accent2);
-  display: block;
-  margin-bottom: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* ── PROMPT BUILDER INPUTS ── */

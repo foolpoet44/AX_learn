@@ -1,7 +1,7 @@
 // ── STATE ──
 const state = {
   currentTask: 'overview',
-  taskSteps: { t1: 1, t2: 1, t3: 1, t4: 1, t5: 1, t6: 1, t7: 1 },
+  taskSteps: { t1: 1, t2: 1, t3: 1, t4: 1, t5: 1 },
   completedTasks: new Set(),
   quizAnswers: [],
   currentQ: 0,
@@ -96,17 +96,6 @@ function completeTask(task) {
   const bar = document.getElementById(`p-${task}`);
   if (bar) bar.style.width = '100%';
   saveProgress();
-}
-
-// ── INSTRUCTOR GUIDE TOGGLE ──
-function toggleIG(header) {
-  const body = header.nextElementSibling;
-  const arrow = header.querySelector('.instructor-guide-toggle');
-  if (!body) return;
-  const open = body.classList.toggle('open');
-  header.setAttribute('aria-expanded', open ? 'true' : 'false');
-  body.setAttribute('aria-hidden', open ? 'false' : 'true');
-  if (arrow) arrow.textContent = open ? '▴ 접기' : '▾ 펼치기';
 }
 
 // ── CHECKLIST ──
@@ -492,24 +481,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('#moodPicker .eval-item').forEach((btn) => {
     btn.setAttribute('aria-pressed', 'false');
-  });
-
-  document.querySelectorAll('.instructor-guide-header').forEach((header, idx) => {
-    const body = header.nextElementSibling;
-    header.setAttribute('role', 'button');
-    header.setAttribute('tabindex', '0');
-    header.setAttribute('aria-expanded', 'false');
-    if (body) {
-      if (!body.id) body.id = 'ig-' + (idx + 1);
-      body.setAttribute('aria-hidden', 'true');
-      header.setAttribute('aria-controls', body.id);
-    }
-    header.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleIG(header);
-      }
-    });
   });
 
   loadProgress();
