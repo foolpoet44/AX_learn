@@ -974,19 +974,19 @@
           <div class="progress-bar-fill" id="p-t3" style="width: 0%"></div>
         </div>
         <div class="step-flow" id="flow-t3">
-          <div class="step-pill active" data-step="1" onclick="goStep(&#39;t4&#39;,1)">
+          <div class="step-pill active" data-step="1" onclick="goStep(&#39;t3&#39;,1)">
             <span>1</span> 기획
           </div>
           <div class="step-arrow">›</div>
-          <div class="step-pill" data-step="2" onclick="goStep(&#39;t4&#39;,2)">
+          <div class="step-pill" data-step="2" onclick="goStep(&#39;t3&#39;,2)">
             <span>2</span> 프롬프트
           </div>
           <div class="step-arrow">›</div>
-          <div class="step-pill" data-step="3" onclick="goStep(&#39;t4&#39;,3)">
+          <div class="step-pill" data-step="3" onclick="goStep(&#39;t3&#39;,3)">
             <span>3</span> 수정
           </div>
           <div class="step-arrow">›</div>
-          <div class="step-pill" data-step="4" onclick="goStep(&#39;t4&#39;,4)">
+          <div class="step-pill" data-step="4" onclick="goStep(&#39;t3&#39;,4)">
             <span>4</span> 배포
           </div>
         </div>
@@ -1020,13 +1020,13 @@
             <!-- 동적 폼 (Step 1 기획 단계에서 입력) -->
             <div style="margin-top: 24px;">
               <label class="input-label">직무명</label>
-              <input type="text" class="input-field prompt-input" id="t3-p-role" placeholder="예: HRD 기획자, 생산기술 엔지니어"
-                style="min-height: 0; height: 44px; resize: none" />
+              <input type="text" class="input-field prompt-input" id="t3-p-role" value="HRD 기획자"
+                placeholder="예: HRD 기획자, 생산기술 엔지니어" style="min-height: 0; height: 44px; resize: none" />
               <label class="input-label" style="margin-top: 12px">팀/조직 소개</label>
               <textarea class="input-field prompt-input" id="t3-p-team" placeholder="예: 저희 팀은 채용 프로세스를 혁신합니다."
-                style="min-height: 80px"></textarea>
+                style="min-height: 80px">저희 팀은 채용 프로세스를 혁신합니다.</textarea>
               <label class="input-label" style="margin-top: 12px">핵심 역량 키워드 (쉼표로 구분)</label>
-              <input type="text" class="input-field prompt-input" id="t3-p-skills"
+              <input type="text" class="input-field prompt-input" id="t3-p-skills" value="교육과정 설계, 데이터 분석, 이해관계자 소통"
                 placeholder="예: 교육과정 설계, 데이터 분석, 이해관계자 소통" style="min-height: 0; height: 44px; resize: none" />
               <label class="input-label" style="margin-top: 12px">경력 조건</label>
               <select class="input-field prompt-input" id="t3-p-career"
@@ -1039,7 +1039,7 @@
             </div>
           </div>
           <div class="step-nav">
-            <button class="btn-next" onclick="goStep(&#39;t4&#39;,2)">다음 →</button>
+            <button class="btn-next" onclick="goStep(&#39;t3&#39;,2)">다음 →</button>
           </div>
         </div>
         <div class="step-content" id="t3-s2">
@@ -1107,7 +1107,7 @@
             <div class="prompt-box">
               <div class="prompt-box-header">
                 <span class="label">Lovable Prompt</span>
-                <button class="copy-btn" onclick="copyPrompt(this, &#39;t4&#39;)">COPY</button>
+                <button class="copy-btn" onclick="copyPrompt(this, &#39;t3&#39;)">COPY</button>
               </div>
               <div class="prompt-text" style="line-height: 1.8;" id="prompt-t3">
                 JD(직무기술서) 자동 작성 웹앱을 만들어줘. <br><br>기능 요구사항:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 입력
@@ -1136,8 +1136,8 @@
             </ul>
           </div>
           <div class="step-nav">
-            <button class="btn-prev" onclick="goStep(&#39;t4&#39;,1)">← 이전</button>
-            <button class="btn-next" onclick="goStep(&#39;t4&#39;,3)">다음 →</button>
+            <button class="btn-prev" onclick="goStep(&#39;t3&#39;,1)">← 이전</button>
+            <button class="btn-next" onclick="goStep(&#39;t3&#39;,3)">다음 →</button>
           </div>
         </div>
         <div class="step-content" id="t3-s3">
@@ -1198,8 +1198,8 @@
             </ul>
           </div>
           <div class="step-nav">
-            <button class="btn-prev" onclick="goStep(&#39;t4&#39;,2)">← 이전</button>
-            <button class="btn-next" onclick="goStep(&#39;t4&#39;,4)">배포 &amp; 체험 →</button>
+            <button class="btn-prev" onclick="goStep(&#39;t3&#39;,2)">← 이전</button>
+            <button class="btn-next" onclick="goStep(&#39;t3&#39;,4)">배포 &amp; 체험 →</button>
           </div>
         </div>
         <div class="step-content" id="t3-s4">
@@ -1230,8 +1230,8 @@
             </button>
           </div>
           <div class="step-nav">
-            <button class="btn-prev" onclick="goStep(&#39;t4&#39;,3)">← 이전</button>
-            <button class="btn-next" onclick="completeTask(&#39;t4&#39;)">완료 ✓</button>
+            <button class="btn-prev" onclick="goStep(&#39;t3&#39;,3)">← 이전</button>
+            <button class="btn-next" onclick="completeTask(&#39;t3&#39;)">완료 ✓</button>
           </div>
         </div>
       </div>
@@ -1282,19 +1282,19 @@
           <div class="progress-bar-fill" id="p-t4" style="width: 0%"></div>
         </div>
         <div class="step-flow" id="flow-t4">
-          <div class="step-pill active" data-step="1" onclick="goStep(&#39;t6&#39;,1)">
+          <div class="step-pill active" data-step="1" onclick="goStep('t4',1)">
             <span>1</span> 기획
           </div>
           <div class="step-arrow">›</div>
-          <div class="step-pill" data-step="2" onclick="goStep(&#39;t6&#39;,2)">
+          <div class="step-pill" data-step="2" onclick="goStep('t4',2)">
             <span>2</span> 프롬프트
           </div>
           <div class="step-arrow">›</div>
-          <div class="step-pill" data-step="3" onclick="goStep(&#39;t6&#39;,3)">
+          <div class="step-pill" data-step="3" onclick="goStep('t4',3)">
             <span>3</span> 수정
           </div>
           <div class="step-arrow">›</div>
-          <div class="step-pill" data-step="4" onclick="goStep(&#39;t6&#39;,4)">
+          <div class="step-pill" data-step="4" onclick="goStep('t4',4)">
             <span>4</span> 배포
           </div>
         </div>
@@ -1330,6 +1330,10 @@
                 <input type="text" class="input-field prompt-input" id="t4-p-role" value="HRD 기획자"
                   placeholder="예: HRD 기획자, 생산기술 엔지니어" />
 
+                <label class="input-label" style="margin-top: 12px">팀/조직 소개</label>
+                <textarea class="input-field prompt-input" id="t4-p-team" style="min-height: 80px"
+                  placeholder="예: 저희 팀은 채용 프로세스를 혁신합니다.">저희 팀은 채용 프로세스를 혁신합니다.</textarea>
+
                 <label class="input-label" style="margin-top: 12px">핵심 역량 키워드 (쉼표로 구분)</label>
                 <input type="text" class="input-field prompt-input" id="t4-p-skills" value="교육과정 설계, 데이터 분석, 이해관계자 소통"
                   placeholder="예: 교육과정 설계, 데이터 분석, 이해관계자 소통" />
@@ -1363,7 +1367,7 @@
             </ul>
           </div>
           <div class="step-nav">
-            <button class="btn-next" onclick="goStep(&#39;t6&#39;,2)">다음 단계 →</button>
+            <button class="btn-next" onclick="goStep('t4',2)">다음 단계 →</button>
           </div>
         </div>
 
@@ -1430,7 +1434,8 @@
               <div class="prompt-text" style="line-height: 1.8;" id="prompt-t4">
                 채용 공고 자동 작성 웹앱을 만들어줘. <br><br>기능 요구사항:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 입력 항목:<br>&nbsp;&nbsp;&nbsp;&nbsp;·
                 직무명 (텍스트, 예: "<span id="t4-disp-role" class="highlight-keyword">HRD 기획자</span>")<br>- 팀/조직 소개 (텍스트 영역,
-                2~3문장)<br>- 핵심 역량 키워드 (텍스트, 쉼표로 구분 입력: "<span id="t4-disp-skills" class="highlight-keyword">교육과정 설계, 데이터
+                2~3문장: "<span id="t4-disp-team" class="highlight-keyword">저희 팀은 채용 프로세스를 혁신합니다.</span>")<br>- 핵심 역량 키워드
+                (텍스트, 쉼표로 구분 입력: "<span id="t4-disp-skills" class="highlight-keyword">교육과정 설계, 데이터
                   분석, 이해관계자 소통</span>")<br>- 우대사항 키워드 (텍스트, 선택 입력)<br>- 경력 조건 (드롭다운: <span id="t4-disp-career"
                   class="highlight-keyword">3년 이상</span> 포함 여부 등)<br>- "공고 생성" 버튼<br>- 출력 영역: 4개 섹션으로 구성된 채용 공고<br>- 포지션
                 개요 (2~3문장, 입력 키워드 반영)<br>- 담당 업무 (불릿 포인트 5~7개)<br>- 자격 요건 (불릿 포인트 5개, 경력 조건 포함)<br>- 우대사항 (불릿 포인트
@@ -1451,8 +1456,8 @@
             </ul>
           </div>
           <div class="step-nav">
-            <button class="btn-prev" onclick="goStep(&#39;t6&#39;,1)">← 이전</button>
-            <button class="btn-next" onclick="goStep(&#39;t6&#39;,3)">다음 →</button>
+            <button class="btn-prev" onclick="goStep('t4',1)">← 이전</button>
+            <button class="btn-next" onclick="goStep('t4',3)">다음 →</button>
           </div>
         </div>
 
@@ -1531,8 +1536,8 @@
             </ul>
           </div>
           <div class="step-nav">
-            <button class="btn-prev" onclick="goStep(&#39;t6&#39;,2)">← 이전</button>
-            <button class="btn-next" onclick="goStep(&#39;t6&#39;,4)">배포 &amp; 체험 →</button>
+            <button class="btn-prev" onclick="goStep('t4',2)">← 이전</button>
+            <button class="btn-next" onclick="goStep('t4',4)">배포 &amp; 체험 →</button>
           </div>
         </div>
 
@@ -1560,8 +1565,8 @@
             </button>
           </div>
           <div class="step-nav">
-            <button class="btn-prev" onclick="goStep(&#39;t6&#39;,3)">← 이전</button>
-            <button class="btn-next" onclick="completeTask(&#39;t6&#39;)">완료 ✓</button>
+            <button class="btn-prev" onclick="goStep('t4',3)">← 이전</button>
+            <button class="btn-next" onclick="completeTask('t4')">완료 ✓</button>
           </div>
         </div>
       </div>
@@ -1611,19 +1616,19 @@
           <div class="progress-bar-fill" id="p-t5" style="width: 0%"></div>
         </div>
         <div class="step-flow" id="flow-t5">
-          <div class="step-pill active" data-step="1" onclick="goStep(&#39;t7&#39;,1)">
+          <div class="step-pill active" data-step="1" onclick="goStep('t5',1)">
             <span>1</span> 기획
           </div>
           <div class="step-arrow">›</div>
-          <div class="step-pill" data-step="2" onclick="goStep(&#39;t7&#39;,2)">
+          <div class="step-pill" data-step="2" onclick="goStep('t5',2)">
             <span>2</span> 프롬프트
           </div>
           <div class="step-arrow">›</div>
-          <div class="step-pill" data-step="3" onclick="goStep(&#39;t7&#39;,3)">
+          <div class="step-pill" data-step="3" onclick="goStep('t5',3)">
             <span>3</span> 수정
           </div>
           <div class="step-arrow">›</div>
-          <div class="step-pill" data-step="4" onclick="goStep(&#39;t7&#39;,4)">
+          <div class="step-pill" data-step="4" onclick="goStep('t5',4)">
             <span>4</span> 배포
           </div>
         </div>
@@ -1658,16 +1663,16 @@
             <!-- 동적 폼 (Step 1 기획 단계에서 입력) -->
             <div style="margin-top: 24px;">
               <label class="input-label">신입사원 이름</label>
-              <input type="text" class="input-field prompt-input" id="t5-p-name" placeholder="예: 김러블리"
+              <input type="text" class="input-field prompt-input" id="t5-p-name" value="김러블리" placeholder="예: 김러블리"
                 style="min-height: 0; height: 44px; resize: none" />
               <label class="input-label" style="margin-top: 12px">직무</label>
-              <input type="text" class="input-field prompt-input" id="t5-p-role" placeholder="예: 주니어 프론트엔드 개발자"
-                style="min-height: 0; height: 44px; resize: none" />
+              <input type="text" class="input-field prompt-input" id="t5-p-role" value="주니어 프론트엔드 개발자"
+                placeholder="예: 주니어 프론트엔드 개발자" style="min-height: 0; height: 44px; resize: none" />
               <label class="input-label" style="margin-top: 12px">팀 정보</label>
               <textarea class="input-field prompt-input" id="t5-p-team" placeholder="예: 저희 팀은 사용자 경험을 최우선으로 생각합니다."
-                style="min-height: 100px"></textarea>
+                style="min-height: 100px">저희 팀은 사용자 경험을 최우선으로 생각합니다.</textarea>
               <label class="input-label" style="margin-top: 12px">입사일</label>
-              <input type="date" class="input-field prompt-input" id="t5-p-date"
+              <input type="date" class="input-field prompt-input" id="t5-p-date" value="2026-04-01"
                 style="min-height: 0; height: 44px; resize: none" />
             </div>
 
@@ -1690,7 +1695,7 @@
             </ul>
           </div>
           <div class="step-nav">
-            <button class="btn-next" onclick="goStep(&#39;t7&#39;,2)">다음 단계 →</button>
+            <button class="btn-next" onclick="goStep('t5',2)">다음 단계 →</button>
           </div>
         </div>
 
@@ -1779,8 +1784,8 @@
             </ul>
           </div>
           <div class="step-nav">
-            <button class="btn-prev" onclick="goStep(&#39;t7&#39;,1)">← 이전</button>
-            <button class="btn-next" onclick="goStep(&#39;t7&#39;,3)">다음 →</button>
+            <button class="btn-prev" onclick="goStep('t5',1)">← 이전</button>
+            <button class="btn-next" onclick="goStep('t5',3)">다음 →</button>
           </div>
         </div>
 
@@ -1840,8 +1845,8 @@
             </ul>
           </div>
           <div class="step-nav">
-            <button class="btn-prev" onclick="goStep(&#39;t7&#39;,2)">← 이전</button>
-            <button class="btn-next" onclick="goStep(&#39;t7&#39;,4)">배포 &amp; 체험 →</button>
+            <button class="btn-prev" onclick="goStep('t5',2)">← 이전</button>
+            <button class="btn-next" onclick="goStep('t5',4)">배포 &amp; 체험 →</button>
           </div>
         </div>
 
@@ -1874,8 +1879,8 @@
             </button>
           </div>
           <div class="step-nav">
-            <button class="btn-prev" onclick="goStep(&#39;t7&#39;,3)">← 이전</button>
-            <button class="btn-next" onclick="completeTask(&#39;t7&#39;)">완료 ✓</button>
+            <button class="btn-prev" onclick="goStep('t5',3)">← 이전</button>
+            <button class="btn-next" onclick="completeTask('t5')">완료 ✓</button>
           </div>
         </div>
       </div>
@@ -1893,11 +1898,9 @@
       <option value="overview">과제 목록</option>
       <option value="t1">01 · 1on1 어젠다 생성기</option>
       <option value="t2">02 · AI 활용 브레인스토머</option>
-      <option value="t3">03 · 팀 감정 온도계</option>
-      <option value="t3">04 · JD 생성기</option>
-      <option value="t5">05 · 회의록 액션아이템 추출</option>
-      <option value="t4">06 · 채용 공고 자동 작성</option>
-      <option value="t5">07 · 신입사원 온보딩 가이드</option>
+      <option value="t3">03 · JD 생성기</option>
+      <option value="t4">04 · 채용 공고 자동 작성기</option>
+      <option value="t5">05 · 신입사원 온보딩 가이드</option>
     </select>
   </div>
 </body>

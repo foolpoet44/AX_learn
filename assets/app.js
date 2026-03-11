@@ -377,9 +377,9 @@ function generateJobDescription() {
 
 // ── TASK 04: JOB POSTING ──
 function generateJobPosting() {
-  const role = document.getElementById('t4-role').value || '미입력 직무';
-  const skills = document.getElementById('t4-skills').value || '커뮤니케이션, 문제 해결, 협업';
-  const career = document.getElementById('t4-career').value;
+  const role = document.getElementById('t4-p-role').value || '미입력 직무';
+  const skills = document.getElementById('t4-p-skills').value || '커뮤니케이션, 문제 해결, 협업';
+  const career = document.getElementById('t4-p-career').value;
   const skillList = skills
     .split(',')
     .map((s) => s.trim())
@@ -427,7 +427,7 @@ function generateOnboardingGuide() {
   const name = document.getElementById('t5-p-name').value || '신규 입사자';
   const role = document.getElementById('t5-p-role').value || '직무 미상';
   const teamInfo = document.getElementById('t5-p-team').value || '우리 팀에 오신 것을 환영합니다.';
-  const startDate = document.getElementById('t5-start-date').value || '출근 예정일';
+  const startDate = document.getElementById('t5-p-date').value || '출근 예정일';
 
   const out = document.getElementById('t5-output');
   out.innerHTML = `
@@ -516,14 +516,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const mobileNav = document.getElementById('mobileNavSelect');
   if (mobileNav) mobileNav.value = state.currentTask;
 
-  // ── DYNAMIC PROMPT BUILDER: TASK 01 ──
+  // ── DYNAMIC PROMPT BUILDER: ALL TASKS ──
   const mapPrompt = (taskId, inputKeys) => {
     const updatePrompt = () => {
       inputKeys.forEach(key => {
         const inputEl = document.getElementById(`t${taskId}-p-${key}`);
         const dispEl = document.getElementById(`t${taskId}-disp-${key}`);
         if (inputEl && dispEl) {
-          dispEl.textContent = inputEl.value;
+          dispEl.textContent = inputEl.value || (inputEl.placeholder ? inputEl.placeholder.replace('예: ', '') : '[입력 내용]');
         }
       });
     };
@@ -532,13 +532,16 @@ window.addEventListener('DOMContentLoaded', () => {
       const inputEl = document.getElementById(`t${taskId}-p-${key}`);
       if (inputEl) {
         inputEl.addEventListener('input', updatePrompt);
+        inputEl.addEventListener('change', updatePrompt); // For select/date inputs
       }
     });
+
+    updatePrompt(); // Initialize on page load
   };
 
   mapPrompt(1, ['input', 'output', 'user', 'value']);
   mapPrompt(2, ['roles', 'output', 'user', 'value']);
   mapPrompt(3, ['role', 'team', 'skills', 'career']);
-  mapPrompt(4, ['role', 'skills', 'career']);
+  mapPrompt(4, ['role', 'team', 'skills', 'career']);
   mapPrompt(5, ['name', 'role', 'team', 'date']);
 });
