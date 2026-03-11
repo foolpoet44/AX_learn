@@ -41,11 +41,11 @@
       </div>
       <div class="sidebar-label">과제 목록</div>
       <div class="task-nav" id="taskNav">
-        <button class="task-btn" data-task="overview">
+        <button class="task-btn active" data-task="overview">
           <span class="num">00</span> 과제 선택
           <span class="check">✓</span>
         </button>
-        <button class="task-btn active" data-task="t1">
+        <button class="task-btn" data-task="t1">
           <span class="num">01</span> 1on1 어젠다 생성기
           <span class="check">✓</span>
         </button>
@@ -75,7 +75,7 @@
     <!-- CONTENT -->
     <div class="content" id="mainContent">
       <!-- ════════ OVERVIEW ════════ -->
-      <div id="view-overview" class="task-selector">
+      <div id="view-overview" class="task-selector active">
         <div style="margin-bottom: 12px; font-size: 13px; color: var(--muted)">
           실습할 과제를 선택하세요. 각 과제는 기획 → 프롬프트 작성 → Lovable 구현 → 결과 체험의
           4단계로 구성됩니다.
@@ -135,7 +135,7 @@
       </div>
 
       <!-- ════════ TASK 1 ════════ -->
-      <div id="view-t1" class="task-selector active">
+      <div id="view-t1" class="task-selector">
         <div class="task-header">
           <button class="back-btn" onclick="showTask(&#39;overview&#39;)">← 과제 목록으로</button>
           <div class="task-badge">TASK 01</div>
