@@ -983,6 +983,77 @@ body {
   color: var(--accent);
 }
 
+/* ── CONTEXT SWITCH BANNER ── */
+.context-switch-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(255, 199, 71, 0.07);
+  border: 1px solid rgba(255, 199, 71, 0.35);
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+.context-switch-banner .csb-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.context-switch-banner .csb-body {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.context-switch-banner .csb-body strong {
+  color: #ffc747;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'DM Mono', monospace;
+}
+.context-switch-banner .csb-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.context-switch-banner .csb-step {
+  background: rgba(255, 199, 71, 0.12);
+  border: 1px solid rgba(255, 199, 71, 0.3);
+  border-radius: 3px;
+  padding: 3px 10px;
+  font-size: 11px;
+  color: #ffc747;
+  font-family: 'DM Mono', monospace;
+  white-space: nowrap;
+}
+
+/* ── SIMULATION NOTICE ── */
+.sim-notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--muted);
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed rgba(255,255,255,0.12);
+  border-radius: 3px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  font-family: 'DM Mono', monospace;
+}
+.sim-notice .sim-badge {
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  padding: 1px 7px;
+  font-size: 10px;
+  color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 /* ── PROMPT BUILDER INPUTS ── */
 .prompt-input {
   width: 100%;

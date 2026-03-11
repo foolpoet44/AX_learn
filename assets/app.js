@@ -1,7 +1,7 @@
 // ── STATE ──
 const state = {
   currentTask: 'overview',
-  taskSteps: { t1: 1, t2: 1, t3: 1, t4: 1, t5: 1, t6: 1, t7: 1 },
+  taskSteps: { t1: 1, t2: 1, t3: 1, t4: 1, t5: 1 },
   completedTasks: new Set(),
   quizAnswers: [],
   currentQ: 0,
