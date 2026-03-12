@@ -145,6 +145,19 @@ function toggleCheck(li) {
   saveProgress();
 }
 
+// ── COPY MOD PROMPT ──
+function copyModPrompt(btn) {
+  const code = btn.closest('.mod-card').querySelector('.mod-code').textContent.trim();
+  navigator.clipboard.writeText(code).then(() => {
+    btn.textContent = 'COPIED!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'COPY';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
 // ── COPY PROMPT ──
 function copyPrompt(btn, taskId) {
   const text = document.getElementById('prompt-' + taskId).textContent;

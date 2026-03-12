@@ -310,13 +310,16 @@
                 <span class="label">Lovable Prompt — Copy &amp; Paste</span>
                 <button class="copy-btn" onclick="copyPrompt(this, &#39;t1&#39;)">COPY</button>
               </div>
-              <div class="prompt-text" style="line-height: 1.8;" id="prompt-t1">
-                깔끔하고 전문적인 1on1 미팅 어젠다 자동 생성 웹앱을 만들어줘. <br><br>기능 요구사항:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 입력 항목: <span
-                  id="t1-disp-input" class="highlight-keyword">팀원 이름, 최근 이슈 (텍스트 영역), 미팅 목적 (드롭다운)</span><br>- "어젠다 생성"
-                버튼<br>- 출력 영역: <span id="t1-disp-output" class="highlight-keyword">4개 섹션 어젠다: 아이스브레이크, 업무 현황,
-                  성장&amp;피드백, 마무리</span><br>- 각 섹션마다 입력 내용을 반영한 구체적인 질문 2~3개 자동 생성<br>- 출력 결과에 "어젠다 복사" 버튼 포함<br>- <span
-                  id="t1-disp-user" class="highlight-keyword">전문적인 디자인 / 한국어 UI</span><br>- <span id="t1-disp-value"
-                  class="highlight-keyword">팀원 이름과 이슈 내용이 질문에 동적으로 반영</span>되어야 함
+              <div class="prompt-text" id="prompt-t1">
+                <span class="prompt-intro">깔끔하고 전문적인 1on1 미팅 어젠다 자동 생성 웹앱을 만들어줘.</span>
+                <span class="prompt-section">기능 요구사항</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 입력 항목: <span id="t1-disp-input" class="highlight-keyword">팀원 이름, 최근 이슈 (텍스트 영역), 미팅 목적 (드롭다운)</span></span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> "어젠다 생성" 버튼</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 출력 영역: <span id="t1-disp-output" class="highlight-keyword">4개 섹션 어젠다: 아이스브레이크, 업무 현황, 성장&amp;피드백, 마무리</span></span>
+                <span class="prompt-item prompt-sub"><span class="prompt-dot">·</span> 각 섹션마다 입력 내용을 반영한 구체적인 질문 2~3개 자동 생성</span>
+                <span class="prompt-item prompt-sub"><span class="prompt-dot">·</span> 출력 결과에 "어젠다 복사" 버튼 포함</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> UI: <span id="t1-disp-user" class="highlight-keyword">전문적인 디자인 / 한국어 UI</span></span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> <span id="t1-disp-value" class="highlight-keyword">팀원 이름과 이슈 내용이 질문에 동적으로 반영</span>되어야 함</span>
               </div>
             </div>
             <ul class="checklist" id="cl-t1-2">
@@ -345,63 +348,30 @@
               처음 생성된 앱은 70점짜리입니다. 추가 프롬프트로 30점을 더 올리는 것이 이 단계의
               목표입니다. 아래 수정 프롬프트를 순서대로 적용해보세요.
             </p>
-            <div style="display: grid; gap: 12px; margin: 20px 0">
-              <div style="
-                    background: var(--surface2);
-                    border: 1px solid var(--border);
-                    border-radius: 4px;
-                    padding: 16px;
-                  ">
-                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px">
-                  <span
-                    style="background:var(--accent);color:#0d0d0f;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;font-family:&#39;DM Mono&#39;,monospace;">수정
-                    1 · UI 한국어화</span>
+            <div class="mod-prompts">
+              <div class="mod-card">
+                <div class="mod-card-header">
+                  <span class="mod-badge mod-badge--1">수정 1 · UI 한국어화</span>
+                  <button class="mod-copy-btn" onclick="copyModPrompt(this)">COPY</button>
                 </div>
-                <div
-                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px 14px;border-radius:2px;margin-bottom:8px;">
-                  모든 UI 텍스트와 레이블을 한국어로 번역해줘. 여백을 더 넉넉하게 해서 디자인을
-                  깔끔하게 개선해줘.
-                </div>
-                <div style="font-size: 12px; color: var(--muted)">→ 한국어 UI + 여백 개선</div>
+                <div class="mod-code">모든 UI 텍스트와 레이블을 한국어로 번역해줘. 여백을 더 넉넉하게 해서 디자인을 깔끔하게 개선해줘.</div>
+                <div class="mod-result">→ 한국어 UI + 여백 개선</div>
               </div>
-              <div style="
-                    background: var(--surface2);
-                    border: 1px solid var(--border);
-                    border-radius: 4px;
-                    padding: 16px;
-                  ">
-                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px">
-                  <span
-                    style="background:var(--accent2);color:#0d0d0f;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;font-family:&#39;DM Mono&#39;,monospace;">수정
-                    2 · 기능 추가</span>
+              <div class="mod-card">
+                <div class="mod-card-header">
+                  <span class="mod-badge mod-badge--2">수정 2 · 기능 추가</span>
+                  <button class="mod-copy-btn" onclick="copyModPrompt(this)">COPY</button>
                 </div>
-                <div
-                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px 14px;border-radius:2px;margin-bottom:8px;">
-                  "어젠다 인쇄" 버튼을 추가하고, 출력 영역 상단에 총 예상 미팅 시간을 표시해줘.
-                </div>
-                <div style="font-size: 12px; color: var(--muted)">
-                  → 출력·인쇄 기능 + 총 소요시간 표시
-                </div>
+                <div class="mod-code">"어젠다 인쇄" 버튼을 추가하고, 출력 영역 상단에 총 예상 미팅 시간을 표시해줘.</div>
+                <div class="mod-result">→ 출력·인쇄 기능 + 총 소요시간 표시</div>
               </div>
-              <div style="
-                    background: var(--surface2);
-                    border: 1px solid var(--border);
-                    border-radius: 4px;
-                    padding: 16px;
-                  ">
-                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px">
-                  <span
-                    style="background:var(--accent3);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;font-family:&#39;DM Mono&#39;,monospace;">수정
-                    3 · 고도화 (선택)</span>
+              <div class="mod-card">
+                <div class="mod-card-header">
+                  <span class="mod-badge mod-badge--3">수정 3 · 고도화 (선택)</span>
+                  <button class="mod-copy-btn" onclick="copyModPrompt(this)">COPY</button>
                 </div>
-                <div
-                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px 14px;border-radius:2px;margin-bottom:8px;">
-                  최근 생성된 어젠다 5개를 타임스탬프와 함께 보여주는 히스토리 섹션을 추가해줘.
-                  접기/펼치기 가능하게 해줘.
-                </div>
-                <div style="font-size: 12px; color: var(--muted)">
-                  → 최근 어젠다 히스토리 (접기/펼치기)
-                </div>
+                <div class="mod-code">최근 생성된 어젠다 5개를 타임스탬프와 함께 보여주는 히스토리 섹션을 추가해줘. 접기/펼치기 가능하게 해줘.</div>
+                <div class="mod-result">→ 최근 어젠다 히스토리 (접기/펼치기)</div>
               </div>
             </div>
             <div class="warn-box">
@@ -705,14 +675,14 @@
                 <span class="label">Lovable Prompt — Copy &amp; Paste</span>
                 <button class="copy-btn" onclick="copyPrompt(this, &#39;t2&#39;)">COPY</button>
               </div>
-              <div class="prompt-text" style="line-height: 1.8;" id="prompt-t2">
-                <span id="t2-disp-user" class="highlight-keyword">제조업 HR 담당자</span>를 위한 AI 활용 아이디어 브레인스토밍 웹앱을 만들어줘.
-                <br><br>기능 요구사항:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 직무 선택 버튼: <span id="t2-disp-roles"
-                  class="highlight-keyword">생산기술, 품질관리, 설비/유지보수, HR &amp; 교육, 구매/조달, 연구개발, 안전관리</span><br>- 직무 선택 시 해당
-                직무에 맞는 <span id="t2-disp-output" class="highlight-keyword">AI 활용 아이디어 카드 10개 표시 / 각 카드 구성: 짧은 제목, 한 줄
-                  설명, 난이도 배지 (쉬움/보통/심화)</span><br>- 카드는 2열 그리드, 마우스 오버 시 애니메이션 효과<br>- <span id="t2-disp-value"
-                  class="highlight-keyword">AI와 내 업무의 연결점 즉각 체감</span>을 위한 "아이디어 섞기" 버튼 및 난이도별 필터/검색 바<br>- 노란색 포인트 컬러의
-                모던 다크 UI<br>- 전체 한국어 인터페이스
+              <div class="prompt-text" id="prompt-t2">
+                <span class="prompt-intro"><span id="t2-disp-user" class="highlight-keyword">제조업 HR 담당자</span>를 위한 AI 활용 아이디어 브레인스토밍 웹앱을 만들어줘.</span>
+                <span class="prompt-section">기능 요구사항</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 직무 선택 버튼: <span id="t2-disp-roles" class="highlight-keyword">생산기술, 품질관리, 설비/유지보수, HR &amp; 교육, 구매/조달, 연구개발, 안전관리</span></span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 직무 선택 시 출력: <span id="t2-disp-output" class="highlight-keyword">AI 활용 아이디어 카드 10개 / 각 카드: 짧은 제목, 한 줄 설명, 난이도 배지 (쉬움/보통/심화)</span></span>
+                <span class="prompt-item prompt-sub"><span class="prompt-dot">·</span> 카드는 2열 그리드, 마우스 오버 시 애니메이션 효과</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> <span id="t2-disp-value" class="highlight-keyword">AI와 내 업무의 연결점 즉각 체감</span>을 위한 "아이디어 섞기" 버튼 및 난이도별 필터/검색 바</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 노란색 포인트 컬러의 모던 다크 UI, 전체 한국어 인터페이스</span>
               </div>
             </div>
             <div class="warn-box">
@@ -747,60 +717,30 @@
               기본 생성 앱을 실제 조직 맥락에 맞게 다듬어보세요. 아래 수정 프롬프트를
               선택적으로 적용하면 됩니다.
             </p>
-            <div style="display: grid; gap: 12px; margin: 20px 0">
-              <div style="
-                    background: var(--surface2);
-                    border: 1px solid var(--border);
-                    border-radius: 4px;
-                    padding: 16px;
-                  ">
-                <div
-                  style="font-size:10px;font-weight:700;color:var(--accent);padding:2px 8px;border:1px solid var(--accent);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">
-                  수정 1 · 직무 맞춤
+            <div class="mod-prompts">
+              <div class="mod-card">
+                <div class="mod-card-header">
+                  <span class="mod-badge mod-badge--1">수정 1 · 직무 맞춤</span>
+                  <button class="mod-copy-btn" onclick="copyModPrompt(this)">COPY</button>
                 </div>
-                <div
-                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">
-                  Change job roles to: 생산기술, 품질보증, 설비기술, HR/HRD, 구매, 안전환경,
-                  연구개발
-                </div>
-                <div style="font-size: 12px; color: var(--muted)">
-                  → 실제 조직 구조 반영
-                </div>
+                <div class="mod-code">Change job roles to: 생산기술, 품질보증, 설비기술, HR/HRD, 구매, 안전환경, 연구개발</div>
+                <div class="mod-result">→ 실제 조직 구조 반영</div>
               </div>
-              <div style="
-                    background: var(--surface2);
-                    border: 1px solid var(--border);
-                    border-radius: 4px;
-                    padding: 16px;
-                  ">
-                <div
-                  style="font-size:10px;font-weight:700;color:var(--accent2);padding:2px 8px;border:1px solid var(--accent2);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">
-                  수정 2 · AX 연결
+              <div class="mod-card">
+                <div class="mod-card-header">
+                  <span class="mod-badge mod-badge--2">수정 2 · AX 연결</span>
+                  <button class="mod-copy-btn" onclick="copyModPrompt(this)">COPY</button>
                 </div>
-                <div
-                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">
-                  각 카드에 AX 성숙도 레벨 태그를 추가해줘: 입문 / 실무자 / 전문가
-                </div>
-                <div style="font-size: 12px; color: var(--muted)">→ AX 성숙도 레벨 태그 추가</div>
+                <div class="mod-code">각 카드에 AX 성숙도 레벨 태그를 추가해줘: 입문 / 실무자 / 전문가</div>
+                <div class="mod-result">→ AX 성숙도 레벨 태그 추가</div>
               </div>
-              <div style="
-                    background: var(--surface2);
-                    border: 1px solid var(--border);
-                    border-radius: 4px;
-                    padding: 16px;
-                  ">
-                <div
-                  style="font-size:10px;font-weight:700;color:var(--accent3);padding:2px 8px;border:1px solid var(--accent3);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">
-                  수정 3 · 공유 기능
+              <div class="mod-card">
+                <div class="mod-card-header">
+                  <span class="mod-badge mod-badge--3">수정 3 · 공유 기능</span>
+                  <button class="mod-copy-btn" onclick="copyModPrompt(this)">COPY</button>
                 </div>
-                <div
-                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">
-                  Add a "내 아이디어 저장" button that bookmarks selected cards. Show saved count
-                  in header.
-                </div>
-                <div style="font-size: 12px; color: var(--muted)">
-                  → 관심 아이디어 북마크 기능
-                </div>
+                <div class="mod-code">Add a "내 아이디어 저장" button that bookmarks selected cards. Show saved count in header.</div>
+                <div class="mod-result">→ 관심 아이디어 북마크 기능</div>
               </div>
             </div>
             <ul class="checklist" id="cl-t2-3">
@@ -1093,18 +1033,24 @@
                 <span class="label">Lovable Prompt</span>
                 <button class="copy-btn" onclick="copyPrompt(this, &#39;t3&#39;)">COPY</button>
               </div>
-              <div class="prompt-text" style="line-height: 1.8;" id="prompt-t3">
-                JD(직무기술서) 자동 작성 웹앱을 만들어줘. <br><br>기능 요구사항:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 입력
-                항목:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 직무명 (텍스트, 예: "<span id="t3-disp-role" class="highlight-keyword">HRD
-                  기획자</span>")<br>- 팀/조직 소개 (텍스트 영역, 2~3문장: "<span id="t3-disp-team" class="highlight-keyword">입력
-                  내용</span>")<br>- 핵심 역량 키워드 (텍스트, 쉼표로 구분 입력: "<span id="t3-disp-skills" class="highlight-keyword">키워드
-                  입력</span>")<br>- 우대사항 키워드 (텍스트, 선택 입력)<br>- 경력 조건 (드롭다운: <span id="t3-disp-career"
-                  class="highlight-keyword">3년 이상</span>)<br>- "JD 생성" 버튼<br>-
-                출력 영역: 4개 섹션으로 구성된 JD<br>- 포지션 개요 (2~3문장, 입력 키워드 반영)<br>- 담당 업무 (불릿 포인트 5~7개)<br>- 자격 요건 (불릿 포인트 5개, 경력
-                조건
-                포함)<br>- 우대사항 (불릿 포인트 3개)<br>- "JD 복사" 버튼, "다시 생성" 버튼<br>- 전문적이고 신뢰감 있는 다크 UI, 한국어 인터페이스<br>- 입력된 키워드가
-                JD
-                전체에 자연스럽게 녹아드는 HR 전문 문체
+              <div class="prompt-text" id="prompt-t3">
+                <span class="prompt-intro">JD(직무기술서) 자동 작성 웹앱을 만들어줘.</span>
+                <span class="prompt-section">입력 항목</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 직무명: "<span id="t3-disp-role" class="highlight-keyword">HRD 기획자</span>"</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 팀/조직 소개 (텍스트 영역, 2~3문장): "<span id="t3-disp-team" class="highlight-keyword">입력 내용</span>"</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 핵심 역량 키워드 (쉼표 구분): "<span id="t3-disp-skills" class="highlight-keyword">키워드 입력</span>"</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 우대사항 키워드 (선택 입력)</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 경력 조건 (드롭다운): <span id="t3-disp-career" class="highlight-keyword">3년 이상</span></span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> "JD 생성" 버튼</span>
+                <span class="prompt-section">출력 영역 (4개 섹션)</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 포지션 개요 (2~3문장, 입력 키워드 반영)</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 담당 업무 (불릿 포인트 5~7개)</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 자격 요건 (불릿 포인트 5개, 경력 조건 포함)</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 우대사항 (불릿 포인트 3개)</span>
+                <span class="prompt-section">기타</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> "JD 복사" 버튼, "다시 생성" 버튼</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 전문적이고 신뢰감 있는 다크 UI, 한국어 인터페이스</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 입력된 키워드가 JD 전체에 자연스럽게 녹아드는 HR 전문 문체</span>
               </div>
             </div>
             <ul class="checklist" id="cl-t3-2">
@@ -1129,62 +1075,30 @@
             <div class="step-num">STEP 03 / 수정 실습</div>
             <h3>JD를 우리 회사 버전으로 고도화</h3>
             <p>기본 JD 앱을 우리 회사 채용 맥락에 맞게 다듬어보세요.</p>
-            <div style="display: grid; gap: 12px; margin: 20px 0">
-              <div style="
-                    background: var(--surface2);
-                    border: 1px solid var(--border);
-                    border-radius: 4px;
-                    padding: 16px;
-                  ">
-                <div
-                  style="font-size:10px;font-weight:700;color:var(--accent);padding:2px 8px;border:1px solid var(--accent);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">
-                  수정 1 · 브랜드 톤 적용
+            <div class="mod-prompts">
+              <div class="mod-card">
+                <div class="mod-card-header">
+                  <span class="mod-badge mod-badge--1">수정 1 · 브랜드 톤 적용</span>
+                  <button class="mod-copy-btn" onclick="copyModPrompt(this)">COPY</button>
                 </div>
-                <div
-                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">
-                  JD 전체 문체를 좀 더 인간적이고 따뜻한 톤으로 바꿔줘. "함께", "성장",
-                  "도전"이라는 단어를 자연스럽게 포함해줘.
-                </div>
-                <div style="font-size: 12px; color: var(--muted)">
-                  → 회사 브랜드 톤앤매너 반영
-                </div>
+                <div class="mod-code">JD 전체 문체를 좀 더 인간적이고 따뜻한 톤으로 바꿔줘. "함께", "성장", "도전"이라는 단어를 자연스럽게 포함해줘.</div>
+                <div class="mod-result">→ 회사 브랜드 톤앤매너 반영</div>
               </div>
-              <div style="
-                    background: var(--surface2);
-                    border: 1px solid var(--border);
-                    border-radius: 4px;
-                    padding: 16px;
-                  ">
-                <div
-                  style="font-size:10px;font-weight:700;color:var(--accent2);padding:2px 8px;border:1px solid var(--accent2);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">
-                  수정 2 · 다국어 버전
+              <div class="mod-card">
+                <div class="mod-card-header">
+                  <span class="mod-badge mod-badge--2">수정 2 · 다국어 버전</span>
+                  <button class="mod-copy-btn" onclick="copyModPrompt(this)">COPY</button>
                 </div>
-                <div
-                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">
-                  Add an "English Version" toggle button that shows the same JD in
-                  English for global recruiting.
-                </div>
-                <div style="font-size: 12px; color: var(--muted)">
-                  → 한/영 전환 버튼으로 글로벌 채용 지원
-                </div>
+                <div class="mod-code">Add an "English Version" toggle button that shows the same JD in English for global recruiting.</div>
+                <div class="mod-result">→ 한/영 전환 버튼으로 글로벌 채용 지원</div>
               </div>
-              <div style="
-                    background: var(--surface2);
-                    border: 1px solid var(--border);
-                    border-radius: 4px;
-                    padding: 16px;
-                  ">
-                <div
-                  style="font-size:10px;font-weight:700;color:var(--accent3);padding:2px 8px;border:1px solid var(--accent3);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">
-                  수정 3 · PDF 내보내기
+              <div class="mod-card">
+                <div class="mod-card-header">
+                  <span class="mod-badge mod-badge--3">수정 3 · PDF 내보내기</span>
+                  <button class="mod-copy-btn" onclick="copyModPrompt(this)">COPY</button>
                 </div>
-                <div
-                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">
-                  "PDF로 저장" 버튼을 추가해서 생성된 JD를 PDF 파일로 다운받을 수 있게 해줘. 파일 이름은 직무명-JD.pdf 형식으로 자동 설정해줘.
-                </div>
-                <div style="font-size: 12px; color: var(--muted)">
-                  → 팀장·인사위원회 공유용 문서 즉시 생성
-                </div>
+                <div class="mod-code">"PDF로 저장" 버튼을 추가해서 생성된 JD를 PDF 파일로 다운받을 수 있게 해줘. 파일 이름은 직무명-JD.pdf 형식으로 자동 설정해줘.</div>
+                <div class="mod-result">→ 팀장·인사위원회 공유용 문서 즉시 생성</div>
               </div>
             </div>
             <ul class="checklist" id="cl-t3-3">
@@ -1414,16 +1328,24 @@
                 <span class="label">Lovable Prompt — Copy &amp; Paste</span>
                 <button class="copy-btn" onclick="copyPrompt(this, &#39;t4&#39;)">COPY</button>
               </div>
-              <div class="prompt-text" style="line-height: 1.8;" id="prompt-t4">
-                채용 공고 자동 작성 웹앱을 만들어줘. <br><br>기능 요구사항:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 입력 항목:<br>&nbsp;&nbsp;&nbsp;&nbsp;·
-                직무명 (텍스트, 예: "<span id="t4-disp-role" class="highlight-keyword">HRD 기획자</span>")<br>- 팀/조직 소개 (텍스트 영역,
-                2~3문장: "<span id="t4-disp-team" class="highlight-keyword">저희 팀은 채용 프로세스를 혁신합니다.</span>")<br>- 핵심 역량 키워드
-                (텍스트, 쉼표로 구분 입력: "<span id="t4-disp-skills" class="highlight-keyword">교육과정 설계, 데이터
-                  분석, 이해관계자 소통</span>")<br>- 우대사항 키워드 (텍스트, 선택 입력)<br>- 경력 조건 (드롭다운: <span id="t4-disp-career"
-                  class="highlight-keyword">3년 이상</span> 포함 여부 등)<br>- "공고 생성" 버튼<br>- 출력 영역: 4개 섹션으로 구성된 채용 공고<br>- 포지션
-                개요 (2~3문장, 입력 키워드 반영)<br>- 담당 업무 (불릿 포인트 5~7개)<br>- 자격 요건 (불릿 포인트 5개, 경력 조건 포함)<br>- 우대사항 (불릿 포인트
-                3개)<br>-
-                "공고 복사" 버튼, "다시 생성" 버튼<br>- 전문적이고 신뢰감 있는 다크 UI, 한국어 인터페이스<br>- 입력된 키워드가 공고 전체에 자연스럽게 녹아드는 HR 전문 문체
+              <div class="prompt-text" id="prompt-t4">
+                <span class="prompt-intro">채용 공고 자동 작성 웹앱을 만들어줘.</span>
+                <span class="prompt-section">입력 항목</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 직무명: "<span id="t4-disp-role" class="highlight-keyword">HRD 기획자</span>"</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 팀/조직 소개 (텍스트 영역, 2~3문장): "<span id="t4-disp-team" class="highlight-keyword">저희 팀은 채용 프로세스를 혁신합니다.</span>"</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 핵심 역량 키워드 (쉼표 구분): "<span id="t4-disp-skills" class="highlight-keyword">교육과정 설계, 데이터 분석, 이해관계자 소통</span>"</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 우대사항 키워드 (선택 입력)</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 경력 조건 (드롭다운): <span id="t4-disp-career" class="highlight-keyword">3년 이상</span></span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> "공고 생성" 버튼</span>
+                <span class="prompt-section">출력 영역 (4개 섹션)</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 포지션 개요 (2~3문장, 입력 키워드 반영)</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 담당 업무 (불릿 포인트 5~7개)</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 자격 요건 (불릿 포인트 5개, 경력 조건 포함)</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 우대사항 (불릿 포인트 3개)</span>
+                <span class="prompt-section">기타</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> "공고 복사" 버튼, "다시 생성" 버튼</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 전문적이고 신뢰감 있는 다크 UI, 한국어 인터페이스</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 입력된 키워드가 공고 전체에 자연스럽게 녹아드는 HR 전문 문체</span>
               </div>
             </div>
             <ul class="checklist" id="cl-t4-2">
@@ -1449,61 +1371,30 @@
           <div class="step-block">
             <div class="step-num">STEP 03 / 수정 실습</div>
             <h3>채용 공고를 우리 회사 버전으로 고도화</h3>
-            <div style="display: grid; gap: 12px; margin: 20px 0">
-              <div style="
-                    background: var(--surface2);
-                    border: 1px solid var(--border);
-                    border-radius: 4px;
-                    padding: 16px;
-                  ">
-                <div
-                  style="font-size:10px;font-weight:700;color:var(--accent);padding:2px 8px;border:1px solid var(--accent);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">
-                  수정 1 · 브랜드 톤 적용
+            <div class="mod-prompts">
+              <div class="mod-card">
+                <div class="mod-card-header">
+                  <span class="mod-badge mod-badge--1">수정 1 · 브랜드 톤 적용</span>
+                  <button class="mod-copy-btn" onclick="copyModPrompt(this)">COPY</button>
                 </div>
-                <div
-                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">
-                  공고 전체 문체를 좀 더 인간적이고 따뜻한 톤으로 바꿔줘. "함께", "성장",
-                  "도전"이라는 단어를 자연스럽게 포함해줘.
-                </div>
-                <div style="font-size: 12px; color: var(--muted)">
-                  → 회사 브랜드 톤앤매너 반영
-                </div>
+                <div class="mod-code">공고 전체 문체를 좀 더 인간적이고 따뜻한 톤으로 바꿔줘. "함께", "성장", "도전"이라는 단어를 자연스럽게 포함해줘.</div>
+                <div class="mod-result">→ 회사 브랜드 톤앤매너 반영</div>
               </div>
-              <div style="
-                    background: var(--surface2);
-                    border: 1px solid var(--border);
-                    border-radius: 4px;
-                    padding: 16px;
-                  ">
-                <div
-                  style="font-size:10px;font-weight:700;color:var(--accent2);padding:2px 8px;border:1px solid var(--accent2);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">
-                  수정 2 · 다국어 버전
+              <div class="mod-card">
+                <div class="mod-card-header">
+                  <span class="mod-badge mod-badge--2">수정 2 · 다국어 버전</span>
+                  <button class="mod-copy-btn" onclick="copyModPrompt(this)">COPY</button>
                 </div>
-                <div
-                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">
-                  Add an "English Version" toggle button that shows the same job posting in
-                  English for global recruiting.
-                </div>
-                <div style="font-size: 12px; color: var(--muted)">
-                  → 한/영 전환 버튼으로 글로벌 채용 지원
-                </div>
+                <div class="mod-code">Add an "English Version" toggle button that shows the same job posting in English for global recruiting.</div>
+                <div class="mod-result">→ 한/영 전환 버튼으로 글로벌 채용 지원</div>
               </div>
-              <div style="
-                    background: var(--surface2);
-                    border: 1px solid var(--border);
-                    border-radius: 4px;
-                    padding: 16px;
-                  ">
-                <div
-                  style="font-size:10px;font-weight:700;color:var(--accent3);padding:2px 8px;border:1px solid var(--accent3);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">
-                  수정 3 · 히스토리 (선택)
+              <div class="mod-card">
+                <div class="mod-card-header">
+                  <span class="mod-badge mod-badge--3">수정 3 · 히스토리 (선택)</span>
+                  <button class="mod-copy-btn" onclick="copyModPrompt(this)">COPY</button>
                 </div>
-                <div
-                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">
-                  최근 생성된 공고 3개를 직무명 + 생성 시각과 함께 저장하는 히스토리 섹션을
-                  추가해줘.
-                </div>
-                <div style="font-size: 12px; color: var(--muted)">→ 과거 공고 이력 관리</div>
+                <div class="mod-code">최근 생성된 공고 3개를 직무명 + 생성 시각과 함께 저장하는 히스토리 섹션을 추가해줘.</div>
+                <div class="mod-result">→ 과거 공고 이력 관리</div>
               </div>
             </div>
             <ul class="checklist" id="cl-t4-3">
@@ -1727,18 +1618,23 @@
                 <span class="label">Lovable Prompt — Copy &amp; Paste</span>
                 <button class="copy-btn" onclick="copyPrompt(this, &#39;t5&#39;)">COPY</button>
               </div>
-              <div class="prompt-text" style="line-height: 1.8;" id="prompt-t5">
-                신입사원 온보딩 가이드 자동 생성 웹앱을 만들어줘. <br><br>기능 요구사항:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 입력
-                항목:<br>&nbsp;&nbsp;&nbsp;&nbsp;· 신입사원 이름 (텍스트: "<span id="t5-disp-name"
-                  class="highlight-keyword">김러블리</span>")<br>- 직무 (텍스트, 예: "<span id="t5-disp-role"
-                  class="highlight-keyword">주니어 프론트엔드 개발자</span>")<br>- 팀 정보 (텍스트 영역, 2~3문장, 예: "<span id="t5-disp-team"
-                  class="highlight-keyword">저희 팀은 사용자 경험을 최우선으로 생각하며...</span>")<br>- 입사일 (입력값 반영: <span
-                  id="t5-disp-date" class="highlight-keyword">YYYY-MM-DD</span>)<br>- "가이드 생성" 버튼<br>-
-                출력
-                영역: 4개 섹션으로 구성된 온보딩 가이드<br>- 환영 메시지 (신입사원 이름, 직무, 팀 정보, 입사일 반영)<br>- 첫 주 할 일 (불릿 포인트 5~7개, 직무 특성
-                반영)<br>-
-                팀 소개 (팀 정보 기반으로 상세 설명)<br>- 유용한 링크 (회사 내부 시스템, 복지 정보 등)<br>- "가이드 복사" 버튼, "다시 생성" 버튼<br>- 친근하고 환영하는 분위기의
-                UI, 한국어 인터페이스<br>- 입력된 정보가 가이드 전체에 자연스럽게 녹아드는 개인화된 문체
+              <div class="prompt-text" id="prompt-t5">
+                <span class="prompt-intro">신입사원 온보딩 가이드 자동 생성 웹앱을 만들어줘.</span>
+                <span class="prompt-section">입력 항목</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 신입사원 이름: "<span id="t5-disp-name" class="highlight-keyword">김러블리</span>"</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 직무: "<span id="t5-disp-role" class="highlight-keyword">주니어 프론트엔드 개발자</span>"</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 팀 정보 (텍스트 영역, 2~3문장): "<span id="t5-disp-team" class="highlight-keyword">저희 팀은 사용자 경험을 최우선으로 생각하며...</span>"</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 입사일: <span id="t5-disp-date" class="highlight-keyword">YYYY-MM-DD</span></span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> "가이드 생성" 버튼</span>
+                <span class="prompt-section">출력 영역 (4개 섹션)</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 환영 메시지 (이름, 직무, 팀 정보, 입사일 반영)</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 첫 주 할 일 (불릿 포인트 5~7개, 직무 특성 반영)</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 팀 소개 (팀 정보 기반으로 상세 설명)</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 유용한 링크 (회사 내부 시스템, 복지 정보 등)</span>
+                <span class="prompt-section">기타</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> "가이드 복사" 버튼, "다시 생성" 버튼</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 친근하고 환영하는 분위기의 UI, 한국어 인터페이스</span>
+                <span class="prompt-item"><span class="prompt-dot">·</span> 입력된 정보가 가이드 전체에 자연스럽게 녹아드는 개인화된 문체</span>
               </div>
             </div>
             <ul class="checklist" id="cl-t5-2">
@@ -1764,60 +1660,30 @@
           <div class="step-block">
             <div class="step-num">STEP 03 / 수정 실습</div>
             <h3>온보딩 가이드를 우리 회사 버전으로 고도화</h3>
-            <div style="display: grid; gap: 12px; margin: 20px 0">
-              <div style="
-                    background: var(--surface2);
-                    border: 1px solid var(--border);
-                    border-radius: 4px;
-                    padding: 16px;
-                  ">
-                <div
-                  style="font-size:10px;font-weight:700;color:var(--accent);padding:2px 8px;border:1px solid var(--accent);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">
-                  수정 1 · 회사 정보 추가
+            <div class="mod-prompts">
+              <div class="mod-card">
+                <div class="mod-card-header">
+                  <span class="mod-badge mod-badge--1">수정 1 · 회사 정보 추가</span>
+                  <button class="mod-copy-btn" onclick="copyModPrompt(this)">COPY</button>
                 </div>
-                <div
-                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">
-                  Add a "회사 비전 및 미션" 섹션을 가이드에 추가하고, 회사 소개 페이지 링크를 포함해줘.
-                </div>
-                <div style="font-size: 12px; color: var(--muted)">
-                  → 회사 비전 및 미션 반영
-                </div>
+                <div class="mod-code">Add a "회사 비전 및 미션" 섹션을 가이드에 추가하고, 회사 소개 페이지 링크를 포함해줘.</div>
+                <div class="mod-result">→ 회사 비전 및 미션 반영</div>
               </div>
-              <div style="
-                    background: var(--surface2);
-                    border: 1px solid var(--border);
-                    border-radius: 4px;
-                    padding: 16px;
-                  ">
-                <div
-                  style="font-size:10px;font-weight:700;color:var(--accent2);padding:2px 8px;border:1px solid var(--accent2);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">
-                  수정 2 · 멘토 정보 추가
+              <div class="mod-card">
+                <div class="mod-card-header">
+                  <span class="mod-badge mod-badge--2">수정 2 · 멘토 정보 추가</span>
+                  <button class="mod-copy-btn" onclick="copyModPrompt(this)">COPY</button>
                 </div>
-                <div
-                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">
-                  Add an input field for "멘토 이름" and include a "멘토에게 연락하기" 섹션을 가이드에 추가해줘.
-                </div>
-                <div style="font-size: 12px; color: var(--muted)">
-                  → 멘토 정보 연동
-                </div>
+                <div class="mod-code">Add an input field for "멘토 이름" and include a "멘토에게 연락하기" 섹션을 가이드에 추가해줘.</div>
+                <div class="mod-result">→ 멘토 정보 연동</div>
               </div>
-              <div style="
-                    background: var(--surface2);
-                    border: 1px solid var(--border);
-                    border-radius: 4px;
-                    padding: 16px;
-                  ">
-                <div
-                  style="font-size:10px;font-weight:700;color:var(--accent3);padding:2px 8px;border:1px solid var(--accent3);display:inline-block;border-radius:2px;margin-bottom:10px;font-family:&#39;DM Mono&#39;,monospace;">
-                  수정 3 · 30/60/90일 체크리스트
+              <div class="mod-card">
+                <div class="mod-card-header">
+                  <span class="mod-badge mod-badge--3">수정 3 · 30/60/90일 체크리스트</span>
+                  <button class="mod-copy-btn" onclick="copyModPrompt(this)">COPY</button>
                 </div>
-                <div
-                  style="font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:#c8ffa0;background:#0a0a0c;padding:10px;border-radius:2px;margin-bottom:6px;">
-                  "30일/60일/90일 목표" 탭을 추가해서 신입사원이 단계별 목표를 체크할 수 있는 인터랙티브 체크리스트를 만들어줘.
-                </div>
-                <div style="font-size: 12px; color: var(--muted)">
-                  → 성장 로드맵 시각화로 조기 전력화 지원
-                </div>
+                <div class="mod-code">"30일/60일/90일 목표" 탭을 추가해서 신입사원이 단계별 목표를 체크할 수 있는 인터랙티브 체크리스트를 만들어줘.</div>
+                <div class="mod-result">→ 성장 로드맵 시각화로 조기 전력화 지원</div>
               </div>
             </div>
             <ul class="checklist" id="cl-t5-3">
