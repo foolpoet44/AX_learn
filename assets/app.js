@@ -134,19 +134,6 @@ function completeTask(task) {
   const bar = document.getElementById(`p-${task}`);
   if (bar) bar.style.width = '100%';
   saveProgress();
-
-  // T5 완료 시 모든 과제가 끝났으면 wrap-up 자동 제안
-  const allTasks = ['t1', 't2', 't3', 't4', 't5'];
-  if (allTasks.every((t) => state.completedTasks.has(t))) {
-    setTimeout(() => {
-      const wrapBtn = document.querySelector('[data-task="wrap"]');
-      if (wrapBtn) {
-        wrapBtn.style.animation = 'pulse 1s ease 3';
-        wrapBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-      showTask('wrap');
-    }, 1200);
-  }
 }
 
 // ── CHECKLIST ──

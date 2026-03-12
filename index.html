@@ -65,10 +65,6 @@
           <span class="num">05</span> 신입사원 온보딩 가이드
           <span class="check">✓</span>
         </button>
-        <button class="task-btn task-btn-wrap" data-task="wrap" style="margin-top:8px;border-top:1px solid var(--border);padding-top:12px;">
-          <span class="num">🏁</span> 오늘의 정리
-          <span class="check">✓</span>
-        </button>
       </div>
     </div>
 
@@ -1876,102 +1872,6 @@
         </div>
       </div>
     </div>
-      <!-- ════════ WRAP-UP ════════ -->
-      <div id="view-wrap" class="task-selector">
-        <div class="task-header">
-          <button class="back-btn" onclick="showTask('overview')">← 과제 목록으로</button>
-          <div class="task-badge">🏁 오늘의 정리</div>
-          <h2>오늘 무엇을 배웠는가?</h2>
-          <p>5가지 과제를 통해 체득한 핵심 사고 방식을 정리합니다.</p>
-        </div>
-
-        <div class="step-block">
-          <div class="step-num">TODAY'S KEY TAKEAWAYS</div>
-          <h3>프롬프트 작성의 공식</h3>
-          <div class="eval-grid">
-            <div class="eval-item">
-              <div class="eval-label">INPUT 정의</div>
-              사용자가 무엇을 넣는가 — 폼 필드, 드롭다운, 텍스트 입력
-            </div>
-            <div class="eval-item">
-              <div class="eval-label">OUTPUT 정의</div>
-              앱이 무엇을 보여주는가 — 섹션 구조, 표시 형식
-            </div>
-            <div class="eval-item">
-              <div class="eval-label">사용자 맥락</div>
-              누가 쓰는가 → 디자인 톤, 언어, UI 밀도
-            </div>
-            <div class="eval-item">
-              <div class="eval-label">핵심 가치</div>
-              "이것만큼은 꼭" → 동적 반영, 개인화, 1-click 복사 등
-            </div>
-          </div>
-
-          <hr class="divider" />
-
-          <h3>오늘 만든 앱 목록</h3>
-          <div style="display:grid;gap:10px;margin:16px 0;">
-            <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:14px;display:flex;align-items:center;gap:12px;">
-              <span style="font-size:20px;">🗣</span>
-              <div>
-                <div style="font-size:13px;font-weight:600;">Task 01 — 1on1 미팅 어젠다 생성기</div>
-                <div style="font-size:12px;color:var(--muted);margin-top:2px;">팀원 정보 입력 → 맞춤 어젠다 자동 생성</div>
-              </div>
-            </div>
-            <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:14px;display:flex;align-items:center;gap:12px;">
-              <span style="font-size:20px;">💡</span>
-              <div>
-                <div style="font-size:13px;font-weight:600;">Task 02 — 역할별 AI 활용 브레인스토머</div>
-                <div style="font-size:12px;color:var(--muted);margin-top:2px;">직무 선택 → 난이도별 AI 아이디어 10가지</div>
-              </div>
-            </div>
-            <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:14px;display:flex;align-items:center;gap:12px;">
-              <span style="font-size:20px;">📝</span>
-              <div>
-                <div style="font-size:13px;font-weight:600;">Task 03 — JD 자동 생성기</div>
-                <div style="font-size:12px;color:var(--muted);margin-top:2px;">포지션 + 핵심 역량 → 직무 기술서 초안</div>
-              </div>
-            </div>
-            <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:14px;display:flex;align-items:center;gap:12px;">
-              <span style="font-size:20px;">📢</span>
-              <div>
-                <div style="font-size:13px;font-weight:600;">Task 04 — 채용 공고 자동 작성기</div>
-                <div style="font-size:12px;color:var(--muted);margin-top:2px;">JD 기반 → 구직자 시선의 채용 공고 문안</div>
-              </div>
-            </div>
-            <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:14px;display:flex;align-items:center;gap:12px;">
-              <span style="font-size:20px;">🌱</span>
-              <div>
-                <div style="font-size:13px;font-weight:600;">Task 05 — 신입사원 온보딩 가이드 앱</div>
-                <div style="font-size:12px;color:var(--muted);margin-top:2px;">입사자 정보 → 개인화된 첫 주 가이드</div>
-              </div>
-            </div>
-          </div>
-
-          <hr class="divider" />
-
-          <h3>다음 단계 — 지금 당장 해볼 수 있는 것</h3>
-          <div class="info-box">
-            <div class="info-label">내 업무에 바로 적용하기</div>
-            <p style="line-height:1.9;">
-              오늘 배운 공식으로, 내 팀의 실제 문제를 해결하는 앱을 하나 더 만들어보세요.<br />
-              <strong style="color:var(--text)">① 내 업무 중 반복적으로 시간이 걸리는 작업을 하나 고른다</strong><br />
-              ② INPUT / OUTPUT / 사용자 / 핵심 가치를 종이에 적는다<br />
-              ③ Lovable에 프롬프트를 붙여넣고 앱을 만든다<br />
-              ④ 팀원 한 명에게 링크를 공유한다
-            </p>
-          </div>
-
-          <div class="info-box" style="border-color:rgba(71,200,255,0.3);">
-            <div class="info-label">기억해야 할 한 가지</div>
-            <p>
-              AI는 "무엇을 만들지"를 결정하지 않습니다. 그 판단은 여러분의 몫입니다.<br />
-              오늘 여러분이 한 것은 프롬프트 복사가 아니라, <strong style="color:var(--text)">문제를 정의하고 해결책을 기획한 것</strong>입니다.
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- /wrap-up -->
 
     <!-- /content -->
   </div>
@@ -1989,7 +1889,6 @@
       <option value="t3">03 · JD 생성기</option>
       <option value="t4">04 · 채용 공고 자동 작성기</option>
       <option value="t5">05 · 신입사원 온보딩 가이드</option>
-      <option value="wrap">🏁 오늘의 정리</option>
     </select>
   </div>
 </body>
