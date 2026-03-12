@@ -20,6 +20,10 @@ function saveProgress() {
       });
       if (idxs.length) checks[ul.id] = idxs;
     });
+    const formValues = {};
+    document.querySelectorAll('.prompt-input[id]').forEach((el) => {
+      if (el.value) formValues[el.id] = el.value;
+    });
     localStorage.setItem(
       'hrax_progress',
       JSON.stringify({
@@ -27,6 +31,7 @@ function saveProgress() {
         taskSteps: state.taskSteps,
         completedTasks: [...state.completedTasks],
         checks,
+        formValues,
       }),
     );
   } catch (e) { }
@@ -57,6 +62,16 @@ function loadProgress() {
             items[i].querySelector('.cb').textContent = '✓';
           }
         });
+      });
+    }
+    if (saved.formValues) {
+      Object.entries(saved.formValues).forEach(([id, value]) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.value = value;
+          el.dispatchEvent(new Event('input', { bubbles: true }));
+          el.dispatchEvent(new Event('change', { bubbles: true }));
+        }
       });
     }
     const taskToShow = saved.currentTask || 'overview';
@@ -119,13 +134,27 @@ function completeTask(task) {
   const bar = document.getElementById(`p-${task}`);
   if (bar) bar.style.width = '100%';
   saveProgress();
+
+  // T5 완료 시 모든 과제가 끝났으면 wrap-up 자동 제안
+  const allTasks = ['t1', 't2', 't3', 't4', 't5'];
+  if (allTasks.every((t) => state.completedTasks.has(t))) {
+    setTimeout(() => {
+      const wrapBtn = document.querySelector('[data-task="wrap"]');
+      if (wrapBtn) {
+        wrapBtn.style.animation = 'pulse 1s ease 3';
+        wrapBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      showTask('wrap');
+    }, 1200);
+  }
 }
 
 // ── CHECKLIST ──
 function toggleCheck(li) {
   li.classList.toggle('checked');
-  if (li.classList.contains('checked')) li.querySelector('.cb').textContent = '✓';
-  else li.querySelector('.cb').textContent = '';
+  const checked = li.classList.contains('checked');
+  li.querySelector('.cb').textContent = checked ? '✓' : '';
+  li.setAttribute('aria-checked', String(checked));
   saveProgress();
 }
 
@@ -338,49 +367,70 @@ function showRoleIdeas(role) {
 }
 
 
+// ── TASK 03/04: 직무 카테고리 분류 ──
+function _getRoleProfile(role) {
+  const r = role.toLowerCase();
+  if (/hr|hrd|인사|채용|교육|온보딩|조직/.test(r)) return {
+    overview: '사람과 조직을 연결하는 핵심 포지션으로, 채용부터 구성원 성장까지 HR 사이클 전반을 담당합니다.',
+    tasks: ['채용 프로세스 기획 및 운영 (JD 작성, 인터뷰 설계, 합격 관리)', '구성원 교육·개발 프로그램 기획 및 효과 측정', '온보딩/오프보딩 프로세스 표준화', 'HR 데이터 분석 및 경영진 보고'],
+    mustHave: ['HR 제도 설계 또는 채용 운영 실무 경험', '데이터 기반 인사 의사결정 경험', 'HRIS/ATS 툴 활용 능력'],
+    niceToHave: ['HR 자동화 툴(AI 채용, 학습 플랫폼) 도입 경험', '노동법 기초 지식 보유자', 'SHRM/PHRi 등 HR 자격증 보유자'],
+  };
+  if (/개발|엔지니어|engineer|dev|sw|backend|frontend|풀스택|플랫폼/.test(r)) return {
+    overview: '제품의 핵심 기능을 설계·구현하는 포지션으로, 안정적인 시스템 구축과 지속적인 기술 혁신을 주도합니다.',
+    tasks: ['서비스 핵심 기능 설계 및 개발', '코드 리뷰·테스트 자동화·CI/CD 파이프라인 운영', '기술 부채 식별 및 리팩터링', '유관 PO/디자이너와 요구사항 정의 및 스펙 협의'],
+    mustHave: ['주요 언어(Java/Python/Kotlin/TypeScript 등) 실무 경험 3년 이상', '관계형 DB 설계 및 쿼리 최적화 경험', '애자일/스크럼 환경 경험'],
+    niceToHave: ['클라우드 인프라(AWS/GCP/Azure) 운영 경험', 'AI/ML 파이프라인 연동 경험', '오픈소스 기여 경험'],
+  };
+  if (/마케팅|marketing|브랜드|콘텐츠|그로스|퍼포먼스/.test(r)) return {
+    overview: '브랜드 인지도와 고객 획득을 동시에 책임지는 포지션으로, 데이터 기반 캠페인 전략으로 성장을 견인합니다.',
+    tasks: ['디지털 마케팅 캠페인 기획·실행·성과 분석', 'SEO/SEM 및 퍼포먼스 광고 운영', '콘텐츠 캘린더 관리 및 채널별 톤앤매너 정립', '고객 데이터 분석 및 CRM 전략 수립'],
+    mustHave: ['디지털 마케팅 또는 브랜드 콘텐츠 실무 경험', 'GA4/Meta Ads/Google Ads 운영 경험', 'KPI 기반 성과 측정 및 리포팅 능력'],
+    niceToHave: ['마케팅 자동화 툴(HubSpot/Mailchimp 등) 활용 경험', 'AI 카피라이팅·이미지 생성 툴 활용 경험', 'B2B 또는 SaaS 마케팅 경험'],
+  };
+  if (/재무|회계|finance|구매|구매\/조달|조달|SCM/.test(r)) return {
+    overview: '조직의 재무 건전성을 관리하고 비용 효율화를 주도하는 포지션으로, 정확한 분석과 전략적 의사결정을 지원합니다.',
+    tasks: ['월별/분기별 재무 결산 및 경영진 보고', '예산 수립·집행·차이 분석', '원가 분석 및 비용 절감 방안 도출', '감사 대응 및 세무 신고 지원'],
+    mustHave: ['회계 또는 재무 실무 경험 (결산, 예산, 원가 중 1개 이상)', 'ERP 시스템(SAP/Oracle 등) 사용 경험', '재무제표 분석 및 보고 능력'],
+    niceToHave: ['CPA/CIMA/CFA 등 재무 관련 자격증', 'FP&A 또는 M&A 업무 경험', 'BI 툴(Power BI/Tableau) 활용 경험'],
+  };
+  // 기본 fallback
+  return {
+    overview: `비즈니스 성장을 이끌어갈 전문성 있는 <strong style="color:var(--text)">${role}</strong> 포지션을 모집합니다. 본 포지션은 팀 내 핵심 역할을 수행하며 주도적으로 업무를 리드합니다.`,
+    tasks: [],
+    mustHave: ['논리적 사고 및 문제 해결 능력', '원활한 대내외 커뮤니케이션 능력'],
+    niceToHave: ['AI 툴(ChatGPT 등) 업무 활용 경험', '자기주도적 학습 및 성장 지향'],
+  };
+}
+
 // ── TASK 03: JD GENERATOR ──
 function generateJobDescription() {
   const role = document.getElementById('t3-p-role').value || '직무 미입력';
   const skills = document.getElementById('t3-p-skills').value || '핵심 역량 미입력';
-  const career = document.getElementById('t3-career').value;
-  const skillList = skills
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean);
+  const career = document.getElementById('t3-p-career').value;
+  const skillList = skills.split(',').map((s) => s.trim()).filter(Boolean);
+  const profile = _getRoleProfile(role);
+
+  const taskLines = profile.tasks.length
+    ? profile.tasks.map((t) => `• ${t}`).join('<br>')
+    : skillList.map((s) => `• ${s} 관련 전략 수립 및 실행`).join('<br>') + '<br>• 유관 부서와의 협업 및 성과 지표(KPI) 관리';
+  const mustLines = [`• 해당 직무 경력 ${career}`, ...profile.mustHave, ...(skillList[0] ? [`• ${skillList[0]} 실무 역량 보유자`] : [])].join('<br>');
+  const niceLines = profile.niceToHave.map((n) => `• ${n}`).join('<br>');
 
   const out = document.getElementById('t3-output');
   out.innerHTML = `
     <div style="font-size:12px;color:var(--accent);margin-bottom:16px;font-family:'DM Mono',monospace;">📄 ${role} 채용 JD 초안</div>
     <div style="display:grid;gap:14px;">
       ${[
-      {
-        title: '포지션 개요',
-        content: `저희 팀은 비즈니스 성장을 이끌어갈 전문성 있는 <strong style="color:var(--text)">${role}</strong> 포지션을 모집합니다. 본 포지션은 팀 내 핵심 역할을 수행하며, 주어진 목표를 달성하기 위해 주도적으로 업무를 리드합니다.`,
-      },
-      {
-        title: '담당 업무',
-        content:
-          skillList.map((s) => `• ${s} 관련 전략 수립 및 실행`).join('<br>') +
-          '<br>• 유관 부서와의 긴밀한 커뮤니케이션 및 협업<br>• 성과 지표(KPI) 및 데이터 기반 인사이트 도출',
-      },
-      {
-        title: '자격 요건',
-        content: `• 해당 직무 경력 ${career}<br>• ${skillList[0] || '관련 분야'} 실무 경험 2년 이상<br>• 논리적 사고 및 문제 해결 능력<br>• 원활한 대내외 커뮤니케이션 능력`,
-      },
-      {
-        title: '우대사항',
-        content: '• 관련 산업군(IT/스타트업) 경험자<br>• 업무 자동화 및 AI 툴(ChatGPT 등) 활용 능통자<br>• 자기주도적 학습 및 성장 지향적인 분',
-      },
-    ]
-      .map(
-        (s) => `
+      { title: '포지션 개요', content: profile.overview },
+      { title: '담당 업무', content: taskLines },
+      { title: '자격 요건', content: mustLines },
+      { title: '우대사항', content: niceLines },
+    ].map((s) => `
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px;">
           <div style="font-size:11px;color:var(--accent);font-family:'DM Mono',monospace;margin-bottom:8px;">${s.title}</div>
           <div style="font-size:13px;color:var(--muted);line-height:1.8;">${s.content}</div>
-        </div>
-      `,
-      )
-      .join('')}
+        </div>`).join('')}
     </div>
   `;
   out.classList.add('visible');
@@ -393,43 +443,32 @@ function generateJobPosting() {
   const role = document.getElementById('t4-p-role').value || '미입력 직무';
   const skills = document.getElementById('t4-p-skills').value || '커뮤니케이션, 문제 해결, 협업';
   const career = document.getElementById('t4-p-career').value;
-  const skillList = skills
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean);
+  const skillList = skills.split(',').map((s) => s.trim()).filter(Boolean);
+  const profile = _getRoleProfile(role);
+
+  const taskLines = profile.tasks.length
+    ? profile.tasks.map((t) => `• ${t}`).join('<br>')
+    : skillList.map((s) => `• ${s} 관련 업무 기획 및 실행`).join('<br>') + '<br>• 유관 부서와의 협업 및 프로젝트 관리';
+  const mustLines = [`• 경력 ${career}`, ...(skillList[0] ? [`• ${skillList[0]} 실무 경험 보유자`] : []), ...profile.mustHave.slice(0, 2), '• 주도적이고 책임감 있는 업무 태도'].join('<br>');
+  const niceLines = [...profile.niceToHave.slice(0, 2), ...(skillList[1] ? [`• ${skillList[1]} 관련 프로젝트 성과 보유자`] : [])].map((n) => `• ${n}`).join('<br>');
+
   const out = document.getElementById('t4-output');
   out.innerHTML = `
-    <div style="font-size:12px;color:var(--accent);margin-bottom:16px;font-family:'DM Mono',monospace;">📄 ${role} 채용 공고 초안</div>
+    <div style="font-size:12px;color:var(--accent);margin-bottom:16px;font-family:'DM Mono',monospace;">📢 ${role} 채용 공고 초안</div>
     <div style="display:grid;gap:14px;">
       ${[
       {
-        title: '포지션 개요',
-        content: `저희 팀은 <strong style="color:var(--text)">${role}</strong>를 모집합니다. ${skillList.slice(0, 2).join('과 ')} 역량을 갖추고, 빠르게 변화하는 환경에서 주도적으로 성장할 인재를 찾습니다. 함께 더 나은 조직을 만들어갈 분을 기다립니다.`,
+        title: '✨ 이런 일을 함께 합니다',
+        content: `저희 팀에서 <strong style="color:var(--text)">${role}</strong>를 모집합니다.<br>${profile.overview}`,
       },
-      {
-        title: '담당 업무',
-        content:
-          skillList.map((s) => `• ${s} 관련 업무 기획 및 실행`).join('<br>') +
-          '<br>• 유관 부서와의 협업 및 프로젝트 관리<br>• 결과 분석 및 개선 방향 도출',
-      },
-      {
-        title: '자격 요건',
-        content: `• 경력 ${career}<br>• ${skillList[0] || '관련 분야'} 실무 경험 보유자<br>• 데이터 기반 의사결정 가능자<br>• 원활한 대내외 커뮤니케이션 능력<br>• 주도적이고 책임감 있는 업무 태도`,
-      },
-      {
-        title: '우대사항',
-        content: `• ${skillList[1] || '관련 자격증'} 경험자<br>• AI/자동화 도구 활용 경험자<br>• 관련 프로젝트 성과 보유자`,
-      },
-    ]
-      .map(
-        (s) => `
+      { title: '📌 주요 업무', content: taskLines },
+      { title: '✅ 지원 자격', content: mustLines },
+      { title: '🌟 이런 분이면 더 좋아요', content: niceLines },
+    ].map((s) => `
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px;">
           <div style="font-size:11px;color:var(--accent);font-family:'DM Mono',monospace;margin-bottom:8px;">${s.title}</div>
           <div style="font-size:13px;color:var(--muted);line-height:1.8;">${s.content}</div>
-        </div>
-      `,
-      )
-      .join('')}
+        </div>`).join('')}
     </div>
   `;
   out.classList.add('visible');
@@ -490,6 +529,19 @@ window.addEventListener('DOMContentLoaded', () => {
     el.setAttribute('aria-atomic', 'true');
   });
 
+  // ── CHECKLIST ACCESSIBILITY ──
+  document.querySelectorAll('ul.checklist li').forEach((li) => {
+    li.setAttribute('role', 'checkbox');
+    li.setAttribute('tabindex', '0');
+    li.setAttribute('aria-checked', li.classList.contains('checked') ? 'true' : 'false');
+    li.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleCheck(li);
+      }
+    });
+  });
+
   document.querySelectorAll('.overview-card').forEach((card) => {
     card.setAttribute('tabindex', '0');
     card.setAttribute('role', 'button');
@@ -539,4 +591,16 @@ window.addEventListener('DOMContentLoaded', () => {
   mapPrompt(3, ['role', 'team', 'skills', 'career']);
   mapPrompt(4, ['role', 'team', 'skills', 'career']);
   mapPrompt(5, ['name', 'role', 'team', 'date']);
+
+  // ── AUTO-SAVE FORM VALUES ON INPUT ──
+  let saveTimer;
+  document.addEventListener('input', (e) => {
+    if (e.target.classList.contains('prompt-input')) {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(saveProgress, 500);
+    }
+  });
+  document.addEventListener('change', (e) => {
+    if (e.target.classList.contains('prompt-input')) saveProgress();
+  });
 });

@@ -776,6 +776,14 @@ body {
   .step-flow {
     flex-wrap: nowrap;
   }
+  .step-pill {
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+  .prompt-text {
+    font-size: 11px;
+    padding: 14px;
+  }
 }
 
 @media (max-width: 520px) {
@@ -815,7 +823,7 @@ body {
   padding: 10px 14px;
   margin: 14px 0 8px;
   font-size: 13px;
-  color: var(--fg);
+  color: var(--text);
   line-height: 1.6;
   flex-wrap: wrap;
 }
@@ -908,6 +916,11 @@ body {
 .output-area.visible {
   display: block;
 }
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(230, 255, 71, 0.6); }
+  50% { box-shadow: 0 0 0 6px rgba(230, 255, 71, 0); }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
